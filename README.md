@@ -1,5 +1,60 @@
-# mercan01
-shellhelp
+ver servicios:
+
+$cat /etc/services 
+
+buscar un servicio especifico
+
+$cat /etc/services |grep openvpn
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+Editor vi
+
+_Cursor:
+hjkl : izq/aba/arr/der
+b mueve el cursor al comienzo de la palabra anterior
+e mueve el cursor al final de la palabra siguiente
+0 mueve el cursor al comienzo de la línea (cero)
+$ mueve el cursor al final de la línea
+_Entrada de texto:
+a añade texto a partir del carácter en que está situado el cursor.
+A añade texto al final de la línea actual.
+i inserta texto a partir de la posición del cursor
+I inserta texto al principio de la línea actual.
+o inserta una línea debajo de la posición del cursor
+O inserta una línea encima de la posición del cursor
+:r fich  permite insertar el fichero fich tras la línea actual
+_Borrar y cambiar texto:
+x borra el carácter en el cursor
+nx borra n caracteres hacia la derecha, incluido el que está sobre el cursor.
+nX borra n caracteres hacia la izquierda.
+r sustituye el carácter en el cursor
+dd borra la línea en la que está el cursor
+dw borra la palabra actual
+ndd borra n líneas hacia abajo incluyendo la que contiene el cursor.
+_Dehaciendo comandos:
+u deshace el comando previo
+U deshace todos los cambios realizados en la linea actual
+_Abandonar vi:
+ZZ Guarda los cambios en el fichero original, y vuelve al intérprete de comandos
+:wq Igual que ZZ
+:q! Abandona el editor, no guarda los cambios, y vuelve al intérprete de comandos
+_Scroll de pantalla:
+ctrl-d una pantalla abajo
+ctrl-u una pantalla arriba
+_Busqueda:
+Otro método de posicionarse dentro de un fichero es buscando una cadena de caracteres. En el modo de comandos, cualquier cadena de caracteres precedida por / significa el comando de búsqueda hacia adelante. El cursor se posiciona en la primera ocurrencia de dicha cadena.
+El comando n busca hacia adelante la siguiente ocurrencia.
+Para buscar hacia atrás, se utiliza el comando ?
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 listar archivos
 
 listar con (l)listado largo, (h)formato entendible, (g)sin mostrar grupo, (o)sin mostrar dueño
@@ -17,6 +72,8 @@ $ls -lhgo|grep -i *.txt > /root/listado.txt
 
 
 tcpdump
+
+operadores: and|or|not ; inbound|outbound (para PPP protocols) ; 
 
 listar interfaces
 $tcpdump -D   
@@ -46,12 +103,67 @@ capturar paquetes icmp
 $tcpdump -v icmp
 capturar paquetes arp
 $tcpdump -v arp
-capturar paquetes icmp o arp
+capturar paquetes icmp o arp (lo mismo para el resto de los protocolos: tcp,udp,rarp,ip,ipv6) 
 $tcpdump -v "arp or icmp"
 capturar paquetes broadcast o multicast
 $tcpdump -n "broadcast or multicast"
 capturar 500 bytes de datos por cada paquete en lugar de los 68 bytes por default
 $tcpdump -s 500
+
+Advanced tcpdump ----------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+_____________________________________IP HEADER______________________________
+|                                                                          |
+0                                      16                                 31
+|-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+|	
+| VERSION(4)|IHL(4)|TYPE OF SERVICE(8) |      TOTAL LENGTH    (16)         |
+----------------------------------------------------------------------------
+|       IDENTIFICATION  (16)           |FLAGS (3) FRAGMENT OFFSET (13)     |
+----------------------------------------------------------------------------
+|       TTL (8) PROTOCOL (8)           |   HEADER CHECKSUM (16)            |
+----------------------------------------------------------------------------
+|                       IP ORIGEN   (32)                                   |
+----------------------------------------------------------------------------
+|                       IP DESTINO  (32)                                   |
+----------------------------------------------------------------------------
+|  OPCIONES (VARIA TAMAÑO) + RELLENO (PARA CABECERA MULTIPLO DE 32 BITS)   |
+|+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
+
+
+____________________________________TCP HEADER______________________________
+|                                                                          |
+|                                                                          |
+|+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
+|  SOURCE PORT (16BITS)               |    DEST PORT   (16 )               |
+|--------------------------------------------------------------------------|
+|                             SEQUENCE NUMBER                              |
+----------------------------------------------------------------------------
+|                         ACKNOWLEDGMENT NUMBER                            |
+|--------------------------------------------------------------------------|
+| DATA OFFSET (4) RESERVED (3)        |        WINDOW SIZE  (16)           |    
+| FLAGS (9) NS/CWR/ECE/U/A/P/R/S/F    |                                    |
+|--------------------------------------------------------------------------|
+|          CHECKSUM (16)              |URGENT POINTER(16)if URG flag is set|
+|--------------------------------------------------------------------------|
+|          OPTIONS (VARIABLE 0-320 BITS, DIVISIBLE BY 32)                  |
+|      Nota: Options (Padded at the end with "0" bytes if necessary.)      |
+|--------------------------------------------------------------------------|
+|+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-|
+
+
+
+
+
+
+captura paquetes desde la interfaz wlan0, cantidad de paquetes 10, filtrando por flag SYN en el paquete tcp
+$tcpdump -i wlan0 -c10 'tcp[13]=2'
+captura paquetes, -l activando un buffer de linea, filtrando tcp, puerto 80, host x.x.x.x, usando el comando string (que imprime datos reconocidos
+como texto), y GREPeampos HTTP, el operador -w - escribe los datos a un STDOUT en lugar de un archivo.
+$tcpdump -i wlan0 -l -w - tcp host x.x.x.x dst port 80 \ | strings | grep http
+captura de paquetes, filtrado tcp, puerto 80, net x.x.x.x/X, STRINGeando, GREPeando las lineas 'GET\|Host' para ver las URL
+$tcpdump -i wlan0 -l -w - net x.x.x.x/X and port 80 \ | strings | grep 'GET\|Host' 
+
+
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -64,7 +176,7 @@ hacia el remoto
 $ scp FILE.txt user@servidor:~/directorio_remoto
 desde el remoto
 $ scp user@servidor:/home/usuario
-copiar desde un servidor a otro:
+copiar desde un servidor a otro:	
 $ scp user@servidor1:/root/FILE.txt user@servidor2:/root
 copia carpeta completa:
 $ scp -r /carpeta_local user@servidor:/directorio_remoto
@@ -199,7 +311,7 @@ $ iptables -A FORWARD -i eth0 -o eth1 -m state --state ESTABLISHED,RELATED -j AC
 "Aceptar reenviar los paquetes que son parte de conexiones existentes (ESTABLISHED) o relacionadas de tráfico entrante desde la interfaz eth1 para tráfico saliente por la interfaz eth0:"
 
 $ iptables -A INPUT -i eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
-"Permitir paquetes en el propio muro cortafuegos para tráfico saliente a través de la interfaz eth0 que son parte de conexiones existentes o relacionadas:"
+"Permitir paquetes en el pro	pio muro cortafuegos para tráfico saliente a través de la interfaz eth0 que son parte de conexiones existentes o relacionadas:"
 
 $ iptables -A INPUT -i eth1 -s 0/0 -d 0/0 -j ACCEPT
 $ iptables -A INPUT -i lo -s 0/0 -d 0/0 -j ACCEPT
@@ -328,5 +440,6 @@ $ history | tail -50
 referencias:
 
 -_-     mega.z
+
 
 
