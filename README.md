@@ -163,6 +163,36 @@ $tcpdump -i wlan0 -l -w - tcp host x.x.x.x dst port 80 \ | strings | grep http
 captura de paquetes, filtrado tcp, puerto 80, net x.x.x.x/X, STRINGeando, GREPeando las lineas 'GET\|Host' para ver las URL
 $tcpdump -i wlan0 -l -w - net x.x.x.x/X and port 80 \ | strings | grep 'GET\|Host' 
 
+ejemplo masking: 
+IP HEADER:
+Version+IHL: 01000101 (valor comun de este campo en IPv4)
+para enmascarar los primeros 4 bits y filtrar solamente teniendo en cuenta los ultimos 4 bits (IHL):
+0100 0101: 1° byte original
+0000 1111: masking the byte. 0 va a enmascarar los valores y 1 los mantiene (0xF en Hex o 15 en Dec)
+----------
+0000 0101: resultado de enmascarar. 
+en forma practica, para tcpdump sería:
+$tcpdump -i eth0 'IP[0] & 15 > 5'
+ó
+$tcpdump -i eth0 'IP[0] & 0xF > 5'
+
+captura paquetes con el bit MF, incluyendo el ultimo paquete que tiene el bit MF seteado a 0, teniendo en cuenta que
+el bit DF va a estar en 0 en este ultimo paquete y no en 1. (Matching the fragments and the last fragments)
+$tcpdump -i eth0 '((ip[6:2] > 0) and (not ip [6] = 64))'
+
+captura paquetes con los flags SYN-SYN/ACK and not ACK
+Enmascaramos el ACK para capturar solamente SYN y SYN/ACK
+00010010 : SYN-ACK packet
+00000010 : mask (2 in decimal)
+--------
+00000010 : result (2 in decimal)
+
+Every bits of the mask match !
+$tcpdump -i eth1 'tcp[13] & 2 = 2'
+
+
+
+
 
 
 
