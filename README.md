@@ -1,6 +1,15 @@
 
 
+wevtutil.exe ( Administrar Eventos WIN)
 
+exportar un registro de eventos a un archivo:
+#wevtutil epl Security C:\Eventos.evtx
+
+
+Nota: Datos: 
+-EVXT es el formato de log de eventos
+-Logs Files are stored in %System32%winevt%logs
+-
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
