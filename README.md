@@ -4,12 +4,25 @@ wevtutil.exe ( Administrar Eventos WIN)
 
 exportar un registro de eventos a un archivo:
 #wevtutil epl Security C:\Eventos.evtx
+obtener informacion sobre un evento
+#wevtutil gl Microsoft-Windows-Winlogon/Diagnostic
+obtener lista de los eventos
+#wevtutil el
+obtener lista de los publicadores de eventos
+#wevtutil ep
+hacer un backup de un evento-log y luego limpiar el registro de ese evento
+#wevtutil cl application /bu:C:\Windows\log.evtx
+
+wecutil.exe (Recopilador de eventos de Windows) 
+"Permite crear y administrar suscripciones a eventos reenviados desde origenes
+de eventos remotos compatibles con el protocolo WS-Management"
+
 
 
 Nota: Datos: 
 -EVXT es el formato de log de eventos
 -Logs Files are stored in %System32%winevt%logs
--
+
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
