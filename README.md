@@ -42,6 +42,9 @@ Extraer autenticaciones y logueos en sistema remoto en un archivo HTML con forma
 Nota: Datos: 
 -EVXT es el formato de log de eventos
 -Logs Files are stored in %System32%winevt%logs
+-Referencia: https://www.sans.org/reading-room/whitepapers/forensics/windows-logon-forensics-34132
+             https://www.sans.org/reading-room/whitepapers/logging/evtx-windows-event-logging-32949
+             
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
