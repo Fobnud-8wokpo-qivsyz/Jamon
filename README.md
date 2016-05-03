@@ -1,6 +1,12 @@
 
 
-wevtutil.exe ( Administrar Eventos WIN)
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Eventos|EventLog|Authentication|logueos
+
+
+""""""""""""""""""""""""""""""""""""wevtutil.exe ( Administrar Eventos WIN)""""""""""""""""""""""""""""""""""""""""""""""""
 
 exportar un registro de eventos a un archivo:
 #wevtutil epl Security C:\Eventos.evtx
@@ -13,9 +19,23 @@ obtener lista de los publicadores de eventos
 hacer un backup de un evento-log y luego limpiar el registro de ese evento
 #wevtutil cl application /bu:C:\Windows\log.evtx
 
-wecutil.exe (Recopilador de eventos de Windows) 
+"""""""""""""""""""""""""""""""""""wecutil.exe (Recopilador de eventos de Windows) """"""""""""""""""""""""""""""""""""""""
 "Permite crear y administrar suscripciones a eventos reenviados desde origenes
 de eventos remotos compatibles con el protocolo WS-Management"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""powershell""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Extracting last 100 account authentication:
+>>get-eventlog -log security | where-object {$_.EventID -match "^680$|^528$|^672$|^4768$|^4776$" –AND $_.UserName -notmatch 'SYSTEM|NETWORK SERVICE|LOCAL SERVICE|ANONYMOUS LOGON' –AND $_.TimeGenerated -gt [datetime]::today } | sort-object -property TimeGenerated | select-object -last 100 | Format-Table -AutoSize –Wrap
+
+Extraer los ultimos 50 logueos y autenticaciones en una maquina remota en los ultimos 5 dias:
+>>get-eventlog -computername MARTINPC -log security | where-object {$_.EventID -match  "^680$|^528$|^540$|^672$|^4768$|^4624$|^4776$" –AND  $_.Message -match "testuser1" –AND $_.TimeGenerated -gt  (get-date).adddays(-5) }| sort-object -property TimeGenerated | select-object -last 50 | Format-Table TimeCreated, ID, ProviderName, Message -AutoSize –Wrap
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""wmic""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Extraer autenticaciones y logueos en sistema remoto en un archivo HTML con formato de tabla
+>>WMIC /node:remotesystem /output:c:\temp\authentication_events.html NTEVENT WHERE "LogFile='security' and (eventcode='680' or eventcode='528' or eventcode='672' or eventcode='4768' or eventcode='4776')" list brief /format:htable.xsl
+
+
 
 
 
