@@ -35,6 +35,14 @@ Extraer los ultimos 50 logueos y autenticaciones en una maquina remota en los ul
 Extraer autenticaciones y logueos en sistema remoto en un archivo HTML con formato de tabla
 >>WMIC /node:remotesystem /output:c:\temp\authentication_events.html NTEVENT WHERE "LogFile='security' and (eventcode='680' or eventcode='528' or eventcode='672' or eventcode='4768' or eventcode='4776')" list brief /format:htable.xsl
 
+Obtener detalles del Host
+>>WMIC /node:192.9.200.10 /user:administrator /password:pass computersystem list brief /format:list
+Obtener usuarios
+>>WMIC /node:192.9.200.10 /user:administrator /password:pass computersystem get username
+Crear un proceso
+>>WMIC /node:192.9.200.10 /user:admin /password:pass process call create "calc.exe"
+Listar procesos
+>>WMIC /node:192.9.200.10 /user:admin /password:pass process get /format:list
 
 
 
@@ -97,7 +105,7 @@ getuid
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+NETBIOS/SMB
 
 smbclient:
 
@@ -130,6 +138,37 @@ $mount -t smbfs IP:/Recurso_compartido /mnt/punto_de_montaje -o username=USER,wo
 $smbmount //IP/Recurso_compartido /mnt/Punto_de_montaje -o username=USER
 ó
 $smbmount "\\\Samba1\\Recurso" -U USER -c 'mount /Recurso -u 500 -g 100'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""nbtscan""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Informacion sobre un host netbios
+ejemplo:
+$nbtscan -vh 192.9.200.10
+                        Doing NBT name scan for addresses from 192.9.200.10
+                        NetBIOS Name Table for Host 192.9.200.10:
+			Incomplete packet, 155 bytes long.
+			Name             Service          Type
+			----------------------------------------
+			SRV-CENTRAL      Workstation Service
+			WORKGROUP        Domain Name
+			SRV-CENTRAL      File Server Service
+			Adapter address: 00:25:64:fc:c2:94
+			----------------------------------------
+
+"""""""""""""""""""""""""""""""""""""""""""""""psexec"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+in MSFCONSOLE
+>>search psexec
+>>use exploit/windows/smb/psexec
+Configure options and then...
+>>exploit
+
+;););););););););););););););)
+
+
+
+
+
 
 
 
@@ -250,6 +289,9 @@ capturar paquetes broadcast o multicast
 $tcpdump -n "broadcast or multicast"
 capturar 500 bytes de datos por cada paquete en lugar de los 68 bytes por default
 $tcpdump -s 500
+buscando a metasploit
+$tcpdump -r5g.pcap -l -s0 -w - | strings | grep "PUT /"
+
 
 Advanced tcpdump ----------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
