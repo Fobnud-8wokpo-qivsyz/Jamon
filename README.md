@@ -49,9 +49,13 @@ Opcion 2) Use the mimikatz build-in on metasploit
 
 
 
+Otras herramientas para Dump'ear hashes: Gsecdump.exe / Pwdump7 / Metasploit hashdump / 
 
-
-
+mACHETE>> User3:1013:E7EED3F5C2C85B88AAD3B435B51404EE:6AA15B3D14492D3FA4AA7C5E9CDC0E6A:::
+          - 1st field: username(Administrator, User1, etc.)
+          - 2nd field: Relative Identification (RID):last 3-4 digits of the Security Identifier (SID) unique for each user
+          - 3rd field : LM hash
+	  - 4th field : NTLM hash
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
