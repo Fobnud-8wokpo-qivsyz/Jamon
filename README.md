@@ -87,6 +87,14 @@ mACHETE>> User3:1013:E7EED3F5C2C85B88AAD3B435B51404EE:6AA15B3D14492D3FA4AA7C5E9C
           - 3rd field : LM hash
 	  - 4th field : NTLM hash
 
+Nota: Desde WIN 8.1 & 2012R2 se aplica las siguientes medidas de ¿seguridad?
+REF: https://technet.microsoft.com/library/dn344918.aspx#BKMK_CredentialsProtectionManagement
+- Restricted admin mode for Remote Desktop Connection //Avoid user credentials to be sent to the server(and stolen)
+-*Aun asi permite la autenticacion Pass-the-hash, pass-the-ticket & overpass-the-hash con CredSSP
+- LSA Protection (Previene la inyeccion de codigo) //Deny memory access to LSASS process
+-*Bypassed by a driver or another protected process (mimikatz has a Driver ;)
+- Protected users Security group //no more (Mr Nice Guy) NTLM, WDigest, CredSSP, no delegation nor SSO, only Kerberos
+-*Kerberos ticket can still be stolen and replayed (and smartcard/pin code is in memory;)
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 Eventos|EventLog|Authentication|logueos
