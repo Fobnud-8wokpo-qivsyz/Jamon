@@ -313,11 +313,19 @@ antivirus mas comunes....
   			avgctrl.exe...............................bla bla bla
   			
 Un antivirus tiene procesos asociados que van a revivir a nuestro cadaver (antivirus)
+Por ejemplo ESET tiene defaulteada la opcion Enable-SelfDefense que NO permite usar el comando de WIN:
+>> sc config ekrn start= disabled
+>>[SC] OpenService ERROR 5:
+>>
+>>Acceso denegado.
+  
+Si deshabilitamos la opcion Enable-Self Defense recien vamos a poder Asesinar al Antivirus:
+
+>>sc config ekrn start= disabled
+>>[SC] ChangeServiceConfig CORRECTO   ;););)   ojo que para llegar acá deberíamos haber deshabilitado el servicio y reiniciado el sistema................
 
 
-  
-  
-  
+
 
 
 
