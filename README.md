@@ -616,7 +616,7 @@ copiar archivos a traves de SSH:
 hacia el remoto
 $ scp FILE.txt user@servidor:~/directorio_remoto
 desde el remoto
-$ scp user@servidor:/home/usuario
+$ scp user@servidor:/home/usuario /carpeta_Destino
 copiar desde un servidor a otro:	
 $ scp user@servidor1:/root/FILE.txt user@servidor2:/root
 copia carpeta completa:
