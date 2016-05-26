@@ -853,6 +853,20 @@ $ find / -perm 777
 $ find / -user root
 "busca por usuario"
 
+$ find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
+"buscar archivos humman-readables"
+
+$ find -type f -size 1033c -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
+"buscar archivos hummand-readables con un tamaño especifico, ejemplo: 1033 bytes
+As units you can use:
+    b – for 512-byte blocks (this is the default if no suffix is used)
+    c – for bytes
+    w – for two-byte words
+    k – for Kilobytes (units of 1024 bytes)
+    M – for Megabytes (units of 1048576 bytes)
+    G – for Gigabytes (units of 1073741824 bytes)
+
+
 «««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
 
 
@@ -896,10 +910,18 @@ TIPS:
 - Cuando usemos el password de alguien para entrar a distintos servicios o aplicaciones, en lo posible deberíamos usar
 una IP de la misma ciudad o al menos del mismo  pais. y copiar su User-Agent para que el usuario no reciba un email 
 sobre una nueva entrada a sus cuentas desde un nuevo dispositivo y desde un nuevo origen. (TKS Phineas Fisher, From
-Catalan Police Union Hack video  ;) ;) ;) ;)     
+Catalan Police Union Hack video  ;) ;) ;) ;)    
 
+- Cuando nos encontramos con un archivo en linux que empieza con el carácter "-" 
+  The usual way of doing this is to prefix the filename with a path - ./-, or /home/Tim/-. This technique is also used to get around similar issues where command line options clash with filenames, so a file referred to as ./-e does not appear as the -e command line option to a program, for example.
 
+- Listar hidden files en un directorio: ls -a|less
 
+- Find humman-readable files on linux systems: 
+  find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
+
+- Buscar the only line of text data.txt that occurs only once:  < file.txt sort | uniq -u       # only print unique lines 
+        							< file.txt sort | uniq -d       # only print duplicate lines                 
 _______________________________________________________________________________________________________________________
 referencias:
 
