@@ -1,3 +1,13 @@
+TOR
+
+- Anonimizar navegacion. Con Servicio de TOR corriendo apuntamos nuestra configuracion Network del navegador para que
+  salga a traves de SOCKS: 127.0.0.1:9050
+- Anonimizar aplicacion: Proxychains+(nmap-iceweasel-etc...)
+- DNSRequest a través de TOr, editar /etc/tor/torrc al final DNSPort 53, despues editamos el /etc/resolv.conf --> nameserver 127.0.0.1
+- 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 WIN7 
 
 
@@ -878,9 +888,22 @@ $ history | tail -50
 
 «««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
 
+TIPS:
+- 1) Stay SAFE - Volúmenes encriptados+Whonix+TOR+an Anonymous WIFI ;)(thanks to the Estacion de Servicio+Biblioteca)
+- 2) Mapping out the Target: fierce+Whois lookups on IP&Domain names+Reverse Whois lookups to find all IP addresses and domain names....repeatedly sobre todas las IP's y dominios con los que nos vayamos encontrando, google search's y todo lo que se nos ocurra para sacar una foto con paisaje de nuestro objetivo, lo que sobra en la red es ¿....?, es ¿...?, es INFORMACION: Twitter-Fcbook-LKDIN-bla,bla,bla
+- 3) Scanning&Exploiting: NMAP over todas las IP's(Services-MalasConfiguraciones-Software viejo)+Run NIKTO/WhatWeb/(Especific --> wpscan/CMS-explorer/Joomscan....)+
+
+- Cuando usemos el password de alguien para entrar a distintos servicios o aplicaciones, en lo posible deberíamos usar
+una IP de la misma ciudad o al menos del mismo  pais. y copiar su User-Agent para que el usuario no reciba un email 
+sobre una nueva entrada a sus cuentas desde un nuevo dispositivo y desde un nuevo origen. (TKS Phineas Fisher, From
+Catalan Police Union Hack video  ;) ;) ;) ;)     
+
+
+
+_______________________________________________________________________________________________________________________
 referencias:
 
 -_-     mega.z
 
 
-
+_______________________________________________________________________________________________________________________
