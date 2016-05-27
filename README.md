@@ -921,7 +921,14 @@ Catalan Police Union Hack video  ;) ;) ;) ;)
   find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
 
 - Buscar the only line of text data.txt that occurs only once:  < file.txt sort | uniq -u       # only print unique lines 
-        							< file.txt sort | uniq -d       # only print duplicate lines                 
+        							< file.txt sort | uniq -d       # only print duplicate lines 
+
+- Print solo readable-hummans lines on data.txt matching with the specific character "=" (signo igual): 
+  strings data.txt | grep =
+
+- Decodear una archivo ROT13: 
+  cat data.txt | tr a-zA-Z n-za-mN-ZA-M
+
 _______________________________________________________________________________________________________________________
 referencias:
 
