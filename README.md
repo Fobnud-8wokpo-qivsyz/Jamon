@@ -618,6 +618,13 @@ $tcpdump -i eth1 'tcp[13] & 2 = 2'
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                                   SSH
+
+Error común:
+$sshd start
+sshd re-exec requires execution with an absolute path
+solucion: indicar la ruta completa:
+$/usr/sbin/sshd
 
 
 
