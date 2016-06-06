@@ -1,3 +1,13 @@
+listar particiones:
+
+- lsblk
+- lsscsi
+- fdisk -l
+- df -h
+- 
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 TOR
 
 - Anonimizar navegacion. Con Servicio de TOR corriendo apuntamos nuestra configuracion Network del navegador para que
