@@ -1,0 +1,81 @@
+import zipfile
+zFile = zipfile.ZipFile('jamones.zip')
+zFile.extractall(pwd='secret')
+
+
+Este script generaba un error al usar el interprete de python 3.x:
+
+TypeError: pwd: expected bytes, got <class 'str'>
+
+Solucion: --> pwd should be bytes objects  'Agregamos b para definir el tipo' o .encode('ascii') (ver 2)
+
+import zipfile
+zFile = zipfile.ZipFile('jamones.zip')
+zFile.extractall(pwd=b'secret')
+_________________________________________________________2__________________________________________________________________
+
+import zipfile
+import os
+zFile = zipfile.ZipFile('jamones.zip')
+passFile=open('dictionary.txt')
+for line in passFile.readlines():
+    password = line.strip('\n')
+    try:
+        zFile.extractall(pwd=password.encode('ascii'))
+        print ('Password ='+password+'\n')
+        exit(0)
+    except Exception as e:
+        pass
+        
+_________________________________________________________3__________________________________________________________________
+
+import zipfile
+import threading
+import optparse
+
+def extractFile(zFile, password):
+    try:
+        zFile.extractall(pwd=password.encode('ascii'))
+        print('Pass is:\n'+password+'\n')
+    except Exception as e:
+        print(e)
+def main():
+    parser=optparse.OptionParser('Muerto! usa los Flags:\n '+\
+    '-f <zipfile> -d <dictionary>')
+    parser.add_option('-f', dest='zname', type='string', \
+    help='specify zip file')
+    parser.add_option('-d', dest='dname', type='string', \
+    help='specify dictionary')
+    (options,args)=parser.parse_args()
+    if (options.zname==None) | (options.dname==None):
+        print (parser.usage)
+        exit(0)
+    else:
+        zname=options.zname
+        dname=options.dname
+    zFile=zipfile.ZipFile(zname)
+    passFile=open(dname)
+    for line in passFile.readlines():
+        password=line.strip('\n')
+        t=threading.Thread(target=extractFile, args=(zFile,password))
+        t.start()
+if __name__=='__main__':
+    main()
+
+
+
+
+
+
+    #zFile=zipfile.ZipFile('jamones.zip')
+    #passFile=open('dictionary.txt')
+    #for line in passFile.readlines():
+    #    password=line.strip('\n')
+    #    t=threading.Thread(target=extractFile, args=(zFile, password))
+    #    t.start()
+if __name__=='__main__':
+    main()
+
+
+_____________________________________________________________________________________________________________________________
+
