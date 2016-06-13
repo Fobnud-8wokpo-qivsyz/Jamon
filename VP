@@ -79,3 +79,65 @@ if __name__=='__main__':
 
 _____________________________________________________________________________________________________________________________
 
+
+import optparse
+import socket
+from socket import *
+
+#parser = optparse.OptionParser('Flags -H '+\
+#    '<target host> -p <target port>')
+#parser.add_option('-H', dest='tgtHost', type='string',\
+#    help='specify target host')
+#parser.add_option('-p', dest ='tgtPort', type='int',\
+#    help='specify port')
+#(options, args)= parser.parse_args()
+#tgtHost = options.tgtHost
+#tgtPort = options.tgtPort
+#if (tgtHost == None) | (tgtPort == None):
+#    print parser.usage
+#    exit(0)
+def connScan(tgtHost, tgtPort):
+    try:
+        connSkt = socket(AF_INET, SOCK_STREAM)
+        connSkt.connect((tgtHost, tgtPort))
+        connSkt.send('VPene para LOLA\r\n')
+        results = connSkt.recv(1024)
+        print ('%d/tcp open'% tgtPort)
+        print (+str(results))
+        connSkt.close()
+    except:
+        print ('%d/tcp closed'% tgtPort)
+def portScan (tgtHost, tgtPort):
+    try:
+        tgtIp=gethostbyname(tgtHost)
+    except:
+        print('Cannot Resolve: ''%s'': Unknow Host' +tgtHost)
+        return
+    try:
+        tgtName = gethostbyaddr(tgtIp)
+        print ('\n Scan Results: ' +tgtName[0])
+    except:
+        print ('\n Scan Results: ' +tgtIp)
+    setdefaulttimeout(1)
+    for tgtPort in tgtPort:
+        print('Scanning Port: ' +tgtPort)
+        connScan(tgtHost, int(tgtPort))
+def main():
+
+ parser = optparse.OptionParser('Flags -H '+\
+    '<target host> -p <target port>')
+ parser.add_option('-H', dest='tgtHost', type='string',\
+    help='specify target host')
+ parser.add_option('-p', dest ='tgtPort', type='string',\
+    help='specify port[s] separated by comma')
+ (options, args)= parser.parse_args()
+ tgtHost = options.tgtHost
+ tgtPort = str(options.tgtPort).split(',')
+ if (tgtHost == None) | (tgtPort[0] == None):
+    print ('Especifica Host y Puerto')
+    exit(0)
+ portScan(tgtHost, tgtPort)
+if __name__=='__main__':
+    main()
+
+
