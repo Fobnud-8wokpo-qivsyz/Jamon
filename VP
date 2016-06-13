@@ -100,7 +100,7 @@ def connScan(tgtHost, tgtPort):
     try:
         connSkt = socket(AF_INET, SOCK_STREAM)
         connSkt.connect((tgtHost, tgtPort))
-        connSkt.send('VPene para LOLA\r\n')
+        connSkt.send('VP\r\n')
         results = connSkt.recv(1024)
         print ('%d/tcp open'% tgtPort)
         print (+str(results))
