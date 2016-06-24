@@ -946,9 +946,11 @@ Catalan Police Union Hack video  ;) ;) ;) ;)
 - Decodear una archivo ROT13: 
   cat data.txt | tr a-zA-Z n-za-mN-ZA-M
 
-
+__________________________________________________GATHERING____________________________________________________________
 - Gathering: 1) Gathering Information 2) Network Range 3) Acitve Machines Identification 4) Open Ports & Aplications 5) Detecting OS 6) Fingerprint Services 7) MApping The Network            ..... ;)      Be quiet, be Ninja................
 
+- TOOLS.TRACEMYIP.ORG
+- https://myip.ms/view/ip_addresses
 _______________________________________________________________________________________________________________________
 referencias:
 
