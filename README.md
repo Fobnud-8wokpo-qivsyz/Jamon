@@ -921,7 +921,7 @@ $ history | tail -50
 
 TIPS:
 - 1) Stay SAFE - Volúmenes encriptados+Whonix+TOR+an Anonymous WIFI ;)(thanks to the Estacion de Servicio+Biblioteca)
-- 2) Mapping out the Target: fierce+Whois lookups on IP&Domain names+Reverse Whois lookups to find all IP addresses and domain names....repeatedly sobre todas las IP's y dominios con los que nos vayamos encontrando, google search's y todo lo que se nos ocurra para sacar una foto con paisaje de nuestro objetivo, lo que sobra en la red es ¿....?, es ¿...?, es INFORMACION: Twitter-Fcbook-LKDIN-bla,bla,bla
+- 2) Mapping out the Target: fierce+Whois lookups on IP&Domain names+Reverse Whois lookups to find all IP addresses and domain names....repeatedly sobre todas las IP's y dominios con los que nos vayamos encontrando, google search's y todo lo que se nos ocurra para sacar una foto con paisaje de nuestro objetiscpvo, lo que sobra en la red es ¿....?, es ¿...?, es INFORMACION: Twitter-Fcbook-LKDIN-bla,bla,bla
 - 3) Scanning&Exploiting: NMAP over todas las IP's(Services-MalasConfiguraciones-Software viejo)+Run NIKTO/WhatWeb/(Especific --> wpscan/CMS-explorer/Joomscan....)+
 
 - Cuando usemos el password de alguien para entrar a distintos servicios o aplicaciones, en lo posible deberíamos usar
@@ -951,6 +951,9 @@ __________________________________________________GATHERING_____________________
 
 - TOOLS.TRACEMYIP.ORG
 - https://myip.ms/view/ip_addresses
+- https://www.threatcrowd.org/
+- https://www.malwaredomainlist.com
+- 
 _______________________________________________________________________________________________________________________
 referencias:
 
