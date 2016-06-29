@@ -181,3 +181,44 @@ if __name__=='__main__':
     main()
 _________________________________________________________________________________________________________________________
 
+from pexpect import pxssh
+import getpass
+
+#Desde VP Book
+
+"""def send_commandline(s, cmd):
+    s.sendline(cmd)
+    s.prompt()
+    print s.before
+def connect(host,user,password):
+    s=  pxssh.pxssh()
+    s.login(host,user,password)
+    return s
+s = connect('127.0.0.1', 'root', 'xxx')
+send_command(s, 'scp ....bla.bla.bla')"""
+
+
+#Desde Pexpect WeB
+
+try:
+
+    s = pxssh.pxssh()
+    hostname = raw_input('hostname: ')
+    username = raw_input('username: ')
+    password = getpass.getpass('password: ')
+    s.login (hostname, username, password)
+    s.sendline ('uptime')
+    s.prompt()
+    print(s.before)
+    s.sendline('scp -r /xxx xxx@x.x.x.x:/xxx/algun_archivo')
+    s.prompt()
+    print(s.before)
+    s.sendline('df')
+    s.prompt()
+    print(s.before)
+    s.logout()
+except Exception as e:
+    print(e)
+____________________________________________________________________________________________________________________________
+
+
