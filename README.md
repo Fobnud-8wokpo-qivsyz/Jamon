@@ -1,7 +1,104 @@
+irssi                   
+
+/set nick <nick>                                      **set the nick
+/set real_name <name>                                 **set real_name
+/set user_name                                        **Modifica el user_name, OJO vacio usa el nombre de usuario de sistema
+/connect -ssl OnionIRC 6697                           **Si queremos usar conexion segura
+/network add OnionIRC                                 **Una vez dentro añadimos la red a la configuracion
+/server add -network OnionIRC -ssl onionirchubx 6697  **anñadimos el servidor de OnionIRC, con SSL y el puerto 6697
+/network add -autosendcmd "/msg <nick> identify <pass>; wait 2000" OnionIRC      **Si tenemos el Nick registrado
+/channel add -auto #OpAfrica OnionIRC                 **añadimos el canal #Opafrica
+/save                                                 **guardamos los cambios
+/exit                                                 **salimos
+/connect OnionIRC                                     **una vez que tenemos configurado lo anterior nos conectamos mas facil
+/network list & /server list                          **to ver all the configured networks and servers
+alt+#   where # is 0 a 9                              **SWITCHING WINDOWS
+alt ← alt → 					      **SWITCHING WINDOWS
+alt 1                                                 **SWITCH TO STATUS BAR
+/q <para_nick>                                        **PRIVATE MSG 'q' is short for 'query'
+/msg <nick> bla bla bla                               **mensaje para <nick>
+/msg <nick1>,<nick2> bla bla bla                      **mensaje para varios
+/invite <nick> #politics                              **invita a <john> al canal #politics
+/help <command>                                       **ayuda sobre un comando puntual
+/set                                                  **SEE SEETINGS → use PageUp/Down
+/set timestamp_format %H:%M:%S                        **SET TIME
+/save                                                 **SAVE THE SET
+/script exec $ENV{'TZ'}='UTC';                        **SET UTC TIME
+/ban 	/bans, /b 	                              **Sets or List bans for a channel
+/clear 	/c, /cl 	                              **Clears a channel buffer
+/join 	/j 	                                      **Joins a channel
+/kick 	/k 	                                      **Kicks a user
+/kickban 	/kb 	                              **Kickban a user
+/msg 	/m 	                                      **Send a private message to a user
+/unban* 	/mub 	                              **Clears the unbanlist (unbans everyone) in a channel
+/names 	/n 	                                      **Lists the users in the current channel
+/query 	/q 	                                      **Open a query window with a user, or close current query window
+/topic 	/t 	                                      *1*Displays/edits current topic. Tip: use /t[space][tab] to                                                                  *2*automatically fill in existing topic.
+/window close 	/wc 	                              **Force closure of a window.
+/whois 	/wi 	                                      **WHOIS a user. Displays user information
+/run <scriptname>	                              *1*Run <scriptname> Ejecuta un script	
+                                                      *2*Perl scripts for irssi (scripts.irssi.org)
+                                                      *3*Download the scripts to the carpeta ~/.irssi/scripts
+
+Anti_Leakage:
+
+ignores = ( { level = "CTCPS"; } );                   *1*To minimize information leakage from irssi add                                                                            *2*to irssi config (if irssi isn't running!)
+/ignore * CTCPS                                       **or type (if irssi is running!) in your status window
+/save
+
+ If you run irssi without user_name and nick set to the empty string, irssi will automatically rewrite the config file to contain your user name, then it will continue to run. This may leak your username to any servers and rooms to which irssi automatically connects:
+
+______________________________________________irssi Anti_leakage_________________________________________________________
+If you run irssi without user_name and nick set to the empty string, irssi will automatically rewrite the config file to contain your user name, then it will continue to run. This may leak your username to any servers and rooms to which irssi automatically connects:       
+
+$ whoami
+example_user
+$ cp ~/.irssi/config ./config_before_running_irssi 
+$ torify irssi
+ <quit irssi>
+$ diff -u ./config_before_running_irssi ~/.irssi/config 
+--- ./config_before_running_irssi       2012-02-13 20:36:03.057787378 -0800
++++ /home/example_user/.irssi/config    2012-02-13 20:36:42.630898407 -0800
+@@ -259,8 +259,8 @@
+ settings = {
+   core = {
+     real_name = "";
+-    user_name = "";
+-    nick = "";
++    user_name = "example_user";
++    nick = "example_user";
+   };
+   "fe-text" = { actlist_sort = "refnum"; };
+
+
+from: https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/irssi#PreventLeakageirssi
+
+________________________________________________irssi Anti_leakage_____________________________________________________
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 socat
 
 socat TCP4-LISTEN:6666, fork SOCKS4A:127.0.0.1:DireccionDeOnion:6697,socksport=9150
 
+
+socat tcp-listen:9999,interface=lo,fork socks4a:localhost:<proxyhost>:<proxyport>,socksport=9150
+
+Para entender un poco más lo que hacemos:
+
+tcp-listen: 9999 <- el puerto de escucha en nuestra máquina
+interface= lo <- el interface donde escucha nuestro puerto
+socks4a:localhost: <- el host donde esta funcionando tor
+socksport: 9150 <- el puerto de tor que estamos usando
+<proxyhost> <- direccion del http proxy
+<proxyport> <- puerto del http proxy
+
+Por último sólo nos queda configurar en firefox: En Preferencias -> Avanzado -> Red -> Configuración -> Proxy: localhost: 9999 SOCKS4A o SOCKS5 con resolución DNS activada.
+
+Con esto añadimos un salto más al salir por el nodo de salida de tor. Aunque no está cifrado podemos usar direcciones de servidores proxy que no esten en las blacklist de los proveedores, los cuales están bloqueando los nodos de salida tor ;-)
+
+From: https://elbinario.net/2015/03/08/torificar-un-proxy-con-socat-un-salto-mas-al-infinito/
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
