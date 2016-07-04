@@ -15,6 +15,8 @@ irssi
 alt+#   where # is 0 a 9                              **SWITCHING WINDOWS
 alt ← alt → 					      **SWITCHING WINDOWS
 alt 1                                                 **SWITCH TO STATUS BAR
+/list                                                 **Lista los canales del IRC
+/rmreconns                                            **Stop irssi trying connections
 /q <para_nick>                                        **PRIVATE MSG 'q' is short for 'query'
 /msg <nick> bla bla bla                               **mensaje para <nick>
 /msg <nick1>,<nick2> bla bla bla                      **mensaje para varios
