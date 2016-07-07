@@ -1069,5 +1069,7 @@ referencias:
 
 -_-     mega.z
 
+https://github.com/enddo/awesome-windows-exploitation        //LISTA DE EXPLOITATIONS FOR...FOR....YES !!! FOR WINDOWS
+
 
 _______________________________________________________________________________________________________________________
