@@ -578,7 +578,11 @@ _____________________________________________________Trabajo con la red (LAN Y W
 
 
 
-1. ip link      → listar interfaces de red
+1.a) ip link      → listar interfaces de red
+1.b) ip link show dev eth0
+1.c) ip link set etrh0 up
+1.d) systemctl start dhcpcd@eth0.service
+
 1. iw dev       → listar interfaces de red
 1. ifconfig eth0 → mostrar la configuración de una tarjeta de red Ethernet.
 2. ifup eth0 → activar una interface ‘eth0′.
