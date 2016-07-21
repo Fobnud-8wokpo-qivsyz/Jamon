@@ -1,0 +1,130 @@
+Ajustamos nuestro teclado:
+Los archivos de confirguracion de teclados estan en /usr/share/kbd/keymaps   /i386 /qwerty  -->> es.map.gz
+
+#loadkeys es.map.gz
+
+chequear la conexion a internet:
+
+#ip addr
+#ip link show dev eth0
+#ip link set eth0 up
+#systemctl start dhcpcd@eth0.service
+
+check:
+
+#ping ......
+
+particionado del disco:
+
+#cfdisk                                  //Utilidad para crear las particiones necesarias, ejemplo: / /swap /boot
+/dev/sda1     /boot
+/dev/sda2     /
+/dev/sda3     /swap
+
+Para formatear las unidades vamos a usar ext2 (/boot) y ext4 (/)
+
+#mkfs.ext2 /dev/sda1
+#mkfs.ext4 /dev/sda2
+#mkswap /dev/sda3
+#swapon /dev/sda3
+
+Montamos las particiones:
+
+#mount /dev/sda2 /mnt
+#mkdir /mnt/boot
+#mount /dev/sda1 /mnt/boot
+
+Para la instalacion vamos a usar el Script 'pacstrap'       --> Podemos chequear los mirrorlists en /etc/pacman.d/mirrorlist
+
+#pacstrap -i /mnt base base-devel
+
+Tambien instalamos el programa 'networkmanager'
+
+#pacstrap /mnt networkmanager
+
+Como paso adicional, actualizamos las KEYS de Arch:
+
+#pacman-key --init
+#pacman-key --populate archlinux
+
+Para empezar a configurar el sistema primero vamos a crear la fstab para ir indicando los puntos de montaje:
+
+#genfstab -U -p /mnt >> /mnt/etc/fstab
+
+Cambiamos a Root en el sistema:
+
+#arch-chroot /mnt /bin/bash
+
+Le ponemos un nombre a nuestro sistema y lo mandamos al archivo /etc/hostname:
+
+#echo ARCH > /etc/hostname
+
+Seteamos nuestra zona horaria con tzselect.....
+
+Linkeamos un fichero a la zona horaria:
+
+#ln -s /usr/share/zoneinfo/Argentina/Argentina /etc/localtime
+
+Editamos locale.gen descomentando los idiomas que vamos a necesitar:
+
+#nano /etc/locale.gen
+#locale-gen
+#echo LANG=es_AR.UTF-8 > /etc/locale.conf
+
+definimos la distribucion del teclado:
+#nano /etc/vconsole.conf
+
+agregamos:
+
+KEYMAP=la-latin1
+
+Generamos la configuracion del KERNEL:
+
+#mkinitcpio -p linux
+
+Seteamos el root passwd:
+
+#passwd
+
+Instalamos el GRUB:
+
+#pacman -S grub
+#grub-mkconfig -o /boot/grub/grub.cfg
+#grub-install --recheck /dev/sda
+
+Salimos de CHroot: 
+
+#exit
+
+Desmontamos:
+
+#umount -R /mnt
+#reboot
+
+Instalamos el servidor X para un escritorio:
+
+#pacman -S xorg-server xorg-server-utils xorg-apps
+#pacman -S ttf-dejavu ttf-droid ttf-inconsolata
+
+Instalamos le escritorio xfce4:
+
+#pacman -S xfce4 xfce4-goodies
+
+Si estamos en VBOX necesitamos instalar los guest additions:
+
+#pacman -S virtualbox-guest-utils
+
+Instalamos los headers de linux:
+
+#pacman -Syy
+#pacman -S linux
+#reboot
+#pacman -S linux-headers
+
+
+Ahora si:  
+
+#startxfce4
+
+
+..................................
