@@ -749,6 +749,8 @@ $/usr/sbin/sshd
 
 copiar archivos a traves de SSH:
 
+option -v nos muestra el copy status, special for ansiosos
+
 hacia el remoto
 $ scp FILE.txt user@servidor:~/directorio_remoto
 desde el remoto
@@ -757,6 +759,36 @@ copiar desde un servidor a otro:
 $ scp user@servidor1:/root/FILE.txt user@servidor2:/root
 copia carpeta completa:
 $ scp -r /carpeta_local user@servidor:/directorio_remoto
+hacia el remoto manteniendo el timestamp del origen:     -->importante si queremos "implantar" un timestamp falso
+$ scp -rvp test root@192.168.4.200:/root/Desktop/
+comprimir y copiar de forma rapida archivos/carpetas al remoto:   -->Esto sucede a nivel de Red 'el destino recibe el file original sin comprimir'
+$ scp -C linux-nrpe-agent.tar.gz root@192.168.4.200:/root/
+copiar archivos sin usar password:
+$ ssh-keygen -t rsa
+$ ssh-copy-id root@192.168.4.200
+$ scp key stdin root@192.168.4.200:/root/
+
+______________________________________________________________
+script para copiar a varios servidores:
+_______________# nano /tmp/destfile.txt
+192.168.4.200
+192.168.4.2
+192.168.4.90
+#chmod 777 /tmp/destfile.txt
+_______________# nano /scripts/multiscp.sh
+#!/bin/bash
+## Author: Ankam Ravi Kumar
+## Purpose: Copy files to multiple Server using single script
+## Date: 21st July 2016
+echo -e "Please Enter the file path which you want to copy:\c"
+read file
+for dest in `cat /tmp/destfile.txt`; do
+  scp -rC $file ${dest}:/tmp/
+done
+_______________# chmod u+x /scripts/multiple.sh
+_______________# sh /scripts/mutiple.sh
+_______________________________________________________________
+
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
