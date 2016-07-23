@@ -1,3 +1,30 @@
+luks  (skywalker  ;););););))
+
+basico:
+
+# lsblk
+# dd if=/dev/urandom |pv| dd of=/dev/sdax          **rellenamos con datos aleatorios
+# umount /dev/sdaX
+# cryptsetup --verbose --verify-passphrase luksFormat /dev/sdax 
+# cryptsetup luksOpen /dev/sdaX superGelatina
+Lo anterior crea un nuevo dispositivo denominado /dev/mapper/superGelatina
+# fdisk -l
+# mkfs.ext4 /dev/mapper/superGelatina              **lo formateamos para que el sistema pueda usarlo
+Editamos el /etc/crypttab si queremos que nos pida la contraseña de la particion al inicio del sistema
+Ejemplo: superGelatina UUID:d67286c6-6531-4c82-917b-5a59a8c0c7ad none
+# nano /etc/crypttab                     (Ayuda:  cryptsetup luksDump /dev/sdaX)
+Editamos fstab:
+Añada lo siguiente o bien se reemplaza el nombre del dispositivo anterior (UUID=xxxxxxxxxxxx, /dev/sdaX o LABEL=/datos, dependiendo de la versión del sistema operativo) —como /dev/mapper/datos— para que el sistema operativo utilice automáticamente el dispositivo con el siguiente reinicio:
+
+/dev/mapper/superGelatina   /superGelatina   ext4   defaults,noatime,nodiratime   1 2
+# nano /etc/fstab
+# cryptsetup luksClose /dev/mapper/superGelatina            **desconectamos el dispositivo
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
 irssi                   
 
 /set nick <nick>                                      **set the nick
