@@ -21,6 +21,27 @@ Añada lo siguiente o bien se reemplaza el nombre del dispositivo anterior (UUID
 # cryptsetup luksClose /dev/mapper/superGelatina            **desconectamos el dispositivo
 
 
+______________________________________________backup de header:_________________________________________________________
+
+Analizamos nuestro dispositivo luks
+# cryptsetup luksDump /dev/sdx2
+backup'eamos' los headers
+# cryptsetup luksHeaderBackup /dev/sdx1 --header-backup-file portatil-header.bak
+Cada header es de aprox 1MiB, así que multiplicamos 1MiB por el nro de headers que tengamos y le damos un extra de 2 claves+:
+despues chequeamos con isLuks si el dispositivo es Luks, rellenamos con /dev/zero para destruir nuestras headers y volvemos 
+a chequear con isLuks para cerciorarnos de que ya no tenemos acceso al dispositivo encriptado (tks elbinario)
+# cryptsetup -v isLuks /dev/sdx1
+# head -c 3145728 /dev/zero > /dev/sdx1
+# cryptsetup -v isLuks /dev/sdx1
+restauramos los headers:
+# cryptsetup luksHeaderRestore /dev/sdx1 --header-backup-file portatil-header.bak
+# cryptsetup -v isLuks /dev/sdx1
+tip: para evitar borrar como un nabo los headers, les cambiamos los atributos:
+# chattr +i clave.luks
+
+
+_____________________________________________________________________________________________________________________________
+
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
