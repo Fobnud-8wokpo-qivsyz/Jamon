@@ -1,0 +1,24 @@
+conversion de bytes
+
+Salida en Megas
+#echo "scale=2; $(fdisk -s /dev/sdaX) / 1024" | bc        
+Salida en GB
+#echo "scale=2; $(fdisk -s /dev/sdaX) / 1024^2" | bc       **alt+94 = ^
+Usando el commando numfmt:
+# numfmt --to=iec-i --suffix=B --padding=7 1052672
+o
+# printf %s\\n 1052672 | numfmt --to=iec-i
+_____________________________________________________Script____________________________________________________________________
+awk 'function human(x) {
+         s=" B   KiB MiB GiB TiB EiB PiB YiB ZiB"
+         while (x>=1024 && length(s)>1) 
+               {x/=1024; s=substr(s,5)}
+         s=substr(s,1,4)
+         xf=(s==" B  ")?"%5d   ":"%8.2f"
+         return sprintf( xf"%s\n", x, s)
+      }
+      {gsub(/^[0-9]+/, human($1)); print}'
+      
+________________________________________________________________________________________________________________________________
+      
+      
