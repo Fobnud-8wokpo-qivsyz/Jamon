@@ -4,7 +4,7 @@ basico:
 
 # lsblk
 # dd if=/dev/urandom |pv| dd of=/dev/sdax          **rellenamos con datos aleatorios
-# umount /dev/sdaX
+# umount /dev/sdX
 # cryptsetup --verbose --verify-passphrase luksFormat /dev/sdax 
 # cryptsetup luksOpen /dev/sdaX superGelatina
 Lo anterior crea un nuevo dispositivo denominado /dev/mapper/superGelatina
