@@ -14,6 +14,7 @@ Editamos el /etc/crypttab si queremos que nos pida la contraseña de la particio
 Ejemplo: superGelatina UUID:d67286c6-6531-4c82-917b-5a59a8c0c7ad none
 # nano /etc/crypttab                     (Ayuda:  cryptsetup luksDump /dev/sdaX)
 Editamos fstab:
+
 Añada lo siguiente o bien se reemplaza el nombre del dispositivo anterior (UUID=xxxxxxxxxxxx, /dev/sdaX o LABEL=/datos, dependiendo de la versión del sistema operativo) —como /dev/mapper/datos— para que el sistema operativo utilice automáticamente el dispositivo con el siguiente reinicio:
 
 /dev/mapper/superGelatina   /superGelatina   ext4   defaults,noatime,nodiratime   1 2
@@ -802,7 +803,7 @@ option -v nos muestra el copy status, special for ansiosos
 hacia el remoto
 $ scp FILE.txt user@servidor:~/directorio_remoto
 desde el remoto
-$ scp user@servidor:/home/usuario /carpeta_Destino
+$ scp user@servidor:/home/usuario /C
 copiar desde un servidor a otro:	
 $ scp user@servidor1:/root/FILE.txt user@servidor2:/root
 copia carpeta completa:
