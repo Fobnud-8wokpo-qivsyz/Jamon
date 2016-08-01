@@ -26,6 +26,7 @@ ___________________________________________________Información del sistema
 24.clock -w → guardar los cambios de fecha en la BIOS.
 25.blkid → mostrar información (nombre, etiqueta, UUID, tipo de partición) sobre los
 dispositivos de bloque (discos rígidos, etc.)
+26.echo $DESKTOP_SESSION           → mostrar the windows manager terminal
 
  
 ______________________________________________________Apagar, reiniciar o cerrar sesión
