@@ -695,6 +695,10 @@ _____________________________________________________Monitoreando y depurando
 20.tail /var/log/dmesg → mostrar eventos inherentes al proceso de carga del kernel.
 21.tail /var/log/messages → mostrar los eventos del sistema.
 22.multitail --follow-all /var/log/dmesg /var/log/messages → mostrar dos registros de eventos en una misma pantalla.
+23.ps axZ | grep 'proceso'    → Averiguar el contexto de seguridad de un proceso
+El primer campo contiene la identidad, el rol, el dominio y el nivel MCS separados por dos puntos.
+24.id -Z    → Averiguar contexto de seguridad en una consola
+25.ls -Z    → Averiguar el tipo asignado a un archivo
 
 
 __________________________________________________________________Otros comandos útiles
