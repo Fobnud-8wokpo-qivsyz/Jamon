@@ -1,3 +1,25 @@
+selinux
+
+instalacion
+>apt install selinux-basics selinux-policy-default
+
+_________________________
+>semodule -i /usr/share/selinux/default/abrt.pp.bz2     'habilita el modulo abrt.pp.bz2' pp.bz2 (policypackage.bz2)
+>semodule -r 'modulo'            → Elimina un modulo de la configuracion actual
+>semodule -l                     → Lista los modulos instalados
+>sestatus                        → Muestra el estado actual de Selinux
+>semodule -e 'modulo'            → Activa un modulo selectivamente
+>semodule -d 'modulo'            → Desactiva un modulo selectivamente
+>semanage                        → si no está instalado en RHEL7/CENTOS7 'yum install policycoreutils-python'
+>semanage login -l               → Enumera las correspondencias actuales entre identificadores...
+                                 → ...de usuario e identidades Selinux
+>semanage login -a -s user_u juanperez     → Asocia la identidad user_u con el usuario juanperez
+>semanage login -d juanperez     → elimina la asociacion asignada al usuario
+>semanage user -l                → enumera las asociaciones entre las entidades Selinux y los roles permitidos
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 luks  (skywalker  ;););););))
 
 basico:
