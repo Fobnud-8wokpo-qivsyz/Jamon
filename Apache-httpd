@@ -1,0 +1,69 @@
+Apache
+
+>yum install httpd
+>systemctl start httpd
+>firewall-cmd --permanent add-port=80/tcp
+>firewall-cmd --permanent add-port=443/tcp
+>firewall-cmd --reload
+>systemctl restart httpd
+
+>ln -s /home/dir /var/www/html    **symlink a un directorio diferente
+
+_______________________________________________________403 Forbidden________________________________________________________
+
+La solucion estupida para destruir la seguridad en el sistema y que el kernel no bloquee el acceso a una ubicacion diferente
+a /var/www/html es editar el archivo de configuracion de selinux:
+
+>nano config          →  editando el archivo selinux config podemos establecer 3 valores: 
+SELINUX=permissive
+>reboot
+
+La solucion ninja para que esto no suceda es cambiar el contexto de seguridad de los directorios a los que queremos acceder,
+...primero chequeamos el [type field] del directorio y archivo al cual pretendemos acceder y lo comparamos con el index.html
+para ver los contextos de ambos: el contexto de jamon.html y el de index.html
+
+>ls -Z /var/www/html/jamon.html
+-rw-r--r--  root root user_u:object_r:default_t        /html/index.html
+vemos que el contexto de seguridad de jamon.html es [default_t]
+>ls -Z /var/www/html/index.html
+-rw-r--r--  username username system_u:object_r:httpd_sys_content_t /var/www/html/index.html 
+>chcon -v --type=httpd_sys_content_t /html               **cambiamos contexto de /html
+>chcon -v --type=httpd_sys_content_t /html/index.html    **cambiamos contexto de /html/jamon.html
+>ls -Z /var/www/html/jamon.html                          **chequeamos que haya cambiado el contexto
+
+Equally we could have set both in one go using the -R recursive switch: 
+>chcon -Rv --type=httpd_sys_content_t /html
+
+To make the security context changes permanent, even through a complete filesystem relabel, we can use the SELinux Management
+Tool or the 'semanage' command from the command line: 
+>semanage fcontext -a -t httpd_sys_content_t "/html(/.*)?"   **to add the file context httpd_sys_content_t for everything under /html. 
+
+
+_________________________________________________Algo de Teoria____________________________________________________________
+From https://wiki.centos.org/es/HowTos/SELinux
+"Access is only allowed between similar types, so Apache running as httpd_t can read /var/www/html/index.html 
+of type httpd_sys_content_t. Because Apache runs in the httpd_t domain and does not have the userid:username, 
+it can not access /home/username/myfile.txt even though this file is world readable because /home/username/myfile.txt 
+SELinux security context is not of type httpd_t. If Apache were to be exploited, assuming for the sake of this 
+example that the root account right needed to effect a SELinux re-labeling into another context were not obtained, 
+it would not be able to start any process not in the httpd_t domain (which prevents escalation of privileges) or 
+access any file not in an httpd_t related domain." 
+
+From https://wiki.centos.org/es/HowTos/SELinux                    **interesante diferencia entre (mv) y (cp)
+5.2. Restore Default Security Contexts
+The 'restorecon' command may be used to restore file(s) default SELinux security contexts.
+Again, let's use Apache as an example. Suppose a user edits a copy of index.html in his/her home directory and 
+moves (mv) the file to the DocumentRoot /var/www/html. Whilst the copy (cp) command will typically adopt the 
+destination directory's or file's security context, move (mv) will maintain the source's security context. We could 
+use the 'chcon' command to change the security context of the file(s) in question but as the file(s) are now in the 
+default Apache DocumentRoot (/var/www/html) we can just restore the default security contexts for that directory or file(s).
+To restore just the index.html file, we would use:
+
+# restorecon -v /var/www/html/index.html 
+or to recursively restore the default security contexts for the whole directory:
+# restorecon -Rv /var/www/html 
+Additionally, if we simply wanted to examine the security contexts of the /var/www/html directory to see if any files needed their security contexts restored, we can use restorecon with the -n switch to prevent any relabelling occurring:
+# restorecon -Rv -n /var/www/html 
+
+_______________________________________________________________________________________________________________________________
+
