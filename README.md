@@ -837,6 +837,10 @@ solucion: indicar la ruta completa:
 $/usr/sbin/sshd
 
 
+Tip: es mejor correr sshd OnDemand con el comando >systemctl start sshd.socket, de esta manera evitamos que el Daemon
+este corriendo y solo se inicia cuando el socket recibe una peticion de conexion
+
+
 
 copiar archivos a traves de SSH:
 
