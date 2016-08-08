@@ -1092,6 +1092,11 @@ $ iptables -X
 
 "Your firewall will now allow all network traffic. If you list your rules now, you will will see there are none, and only the three default chains (INPUT, FORWARD, and OUTPUT) remain."
 
+
+nmap error: offending packet
+$iptables -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED,INVALID -j ACCEPT
+$iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
 «««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
 
 
