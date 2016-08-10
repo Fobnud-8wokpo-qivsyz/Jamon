@@ -590,6 +590,20 @@ _____________________________________________________Trabajo con la red (LAN Y W
 1.c) service network start
 1.d) dhclient eht0
 
+1.3) Configurar IP fija en centos:
+1.a) nano /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+BOOTPROTO=none 
+NM_CONTROLLED=no 
+ONBOOT=yes
+TYPE=Ethernet 
+IPADDR=192.168.1.90 
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1
+1.b)reboot
+
+ 
+
 1. iw dev       → listar interfaces de red
 1. ifconfig eth0 → mostrar la configuración de una tarjeta de red Ethernet.
 2. ifup eth0 → activar una interface ‘eth0′.
