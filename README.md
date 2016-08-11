@@ -1197,6 +1197,22 @@ __________________________________________________GATHERING_____________________
 - http://www.senderbase.org/
 - 
 _______________________________________________________________________________________________________________________
+USB Vbox problems:
+1) First of all open regedit and navigate to HKEY_LOCAL_MACHINE > SYSTEM > CurrentControlSet > Control > Class > {36­FC9E60-C465-11CF-8056-44455354­0000}
+
+After you need to delete UpperFilters reg key from the right side.
+2) Reboot your computer.
+3) Now connect the USB device to your computer and open VirtualBox.
+4) From the list select the virtual machine and from top open Settings and go to "USB" menu.
+5) Now at right side press on "USB plus" green button and select USB device. Press on OK button and start the virtual machine.
+6) Now disconnect USB device. Turn off the virtual machine and completely close VirtualBox.
+7) Now connect the USB device and start virtual machine again.
+If you are doing right then, USB device should work on your virtual machine.
+
+________________________________________________________________________________________________________________________
+
+
+
 referencias:
 
 -_-     mega.z
