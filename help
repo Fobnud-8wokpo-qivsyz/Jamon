@@ -295,6 +295,8 @@ simultánea.
 
 27.unzip file1.zip → descomprimir un archivo zip.
 
+28.xz -d file.xz
+
  
 ____________________________________________________________________Paquetes rpm (Red Hat, Fedora y similares)
 
