@@ -5,7 +5,11 @@ MAIN:
     -I, --interface IFACE            Network interface name - default: eth0
     -G, --gateway ADDRESS            Manually specify the gateway address, if not specified the current gateway will be retrieved and used.
     -T, --target ADDRESS1,ADDRESS2   Target IP addresses, if not specified the whole subnet will be targeted.
+    // -T 192.168.1.1,192.168.1.2
+    // -T 00:11:22:33:44:55:66:77 (MAC ADDRESS TARGET)
+    // --random-mac Randomiza entre direcciones MAC durante el ataque
         --ignore ADDRESS1,ADDRESS2   Ignore these addresses if found while searching for targets.
+    // --ignore 192.168.1.1,192.168.1.2
         --no-discovery               Do not actively search for hosts, just use the current ARP cache, default to false.
         --no-target-nbns             Disable target NBNS hostname resolution.
         --packet-throttle NUMBER     Number of seconds ( can be a decimal number ) to wait between each packet to be sent.
@@ -22,12 +26,16 @@ LOGGING:
 SPOOFING:
 
     -S, --spoofer NAME               Spoofer module to use, available: NONE, ICMP, ARP - default: ARP.
+        // sudo bettercap or sudo bettercap -S ARP or sudo bettercap --spoofer ARP
+        // sudo bettercap -S ICMP or sudo bettercap --spoofer ICMP
         // Si queremos realizar una arpspoof contra 2 maquinas: bettercap -T 192.168.1.Victima -G 192.168.1.Gateway 
         //--spoofer ICMP/ARP/NONE. Si no indicamos Target Spoofearemos toda la red Local
         --no-spoofing                Disable spoofing, alias for --spoofer NONE.
+        // sudo bettercap -S NONE or sudo bettercap --spoofer NONE or sudo bettercap --no-spoofing
         // Si por ejemplo configuramos a bettercap como sniffer debemos indicar que no queremos Spoofear (--no-spoofing)
         --half-duplex                Enable half-duplex MITM, this will make bettercap work in those cases when the router is not vulnerable.
         --kill                       Instead of forwarding packets, this switch will make targets connections to be killed.
+        // sudo bettercap -T 192.168.1.2 --kill (No dear 192.168.1.2, you won’t connect to anything anymore :D)
 
 SNIFFING:
 
@@ -59,6 +67,7 @@ PROXYING:
   HTTP:
 
         --proxy                      Enable HTTP proxy and redirects all HTTP requests to it, default to false.
+        //solo registra solicitudes HTTP
         --proxy-port PORT            Set HTTP proxy port, default to 8080.
         --no-sslstrip                Disable SSLStrip.
         --proxy-module MODULE        Ruby proxy module to load, either a custom file or one of the following: injecthtml, injectjs, injectcss.
