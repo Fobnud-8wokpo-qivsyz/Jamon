@@ -754,5 +754,61 @@ producidos por init, funcionamiento actual y últimos cambios del reloj del sist
 
 19.uncomando | tee archivodesalida.txt → ejecuta un comando, muestra la salida en la pantalla y simultáneamente la escribe a un archivo.
 
- 
+___________________________________________________________sed__________awk_______cut
+
+1. sed '5,10p' file.txt                                //ver un rango de lineas en un archivo
+2. sed '5,10d' file.txt                                //ver un documento expecto el rango especificado
+3. sed -n -e '5,10p' -e '15,20p' file.txt              //ver dos rangos de lineas en un archivo
+
+Reemplazar palabras o caracteres:
+
+4. sed 's/version/story/g' myfile.txt                  //reemplazamos version por story 
+5. sed 's/version/story/gi' myfile.txt                 //reemplazamos version por story ignorando mayus/minusc
+6. sed '30,40 s/version/story/g' myfile.txt            //reemplazamos palabras en un rango dentro de file.txt
+6b.sed -n ‘/INICIO/,/FIN/p’ fichero                    //ver todo el texto entre las palabras INICIO y FIN
+
+Ejemplo para Limpiar por ejemplo Configuration Files:
+
+7. sed '/^#\|^$\| *#/d' httpd.conf                     //elimina todos los comentarios, dejando solo los parametros
+
+8. awk '//{print}'/etc/hosts                           //imprime el archivo etc/hosts
+9. awk '/localhost/{print}' /etc/hosts                 //imprime las lineas localhosts de /etc/hosts
+
+10. cut -d " " -f 1 fichero.txt                        //imprime el primer campo en pantalla de un fichero delimitado por un espacio
+El parámetro -d específica el “delimitador” el elemento que separa los campos, y el -f el número de “field” o de campo
+
+Del archivo con el siguiente contenido imprimiria en pantalla solo la columna userX
+
+user0 pass0 A
+user1 pass1 B
+user2 pass2 C
+user3 pass3 D
+
+10.b cut -d " " -f 1,3 fichero.txt                    //imprimir el 1° y 3° campo --> en el ej. user0 A
+
+
+                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
