@@ -640,6 +640,21 @@ transferencia.
 26.sockstat → mostrar información sobre las conexiones abiertas.
 27.arp-scan -l → descubrir en la red las direcciones IP y MAC.
 
+Redireccionas trafico de una IP/puerto a otra IP/puerto
+28.echo "1" >/proc/sys/net/ipv4/ip_forward o 28.sysctl net.ipv4.ip_froward=1
+29.service networking restart o 29.service nertwork restart
+Ahora pasaremos a lo importante, indicarle al servidor mediante iptables qué redireccionar:
+30.iptables -t nat -A PREROUTING -p tcp --dport <puerto receptor> -j DNAT --to-destination <ip final>:<puerto de ip final>
+Ej.iptables -t nat -A PREROUTING -p tcp --dport 110 -j DNAT --to-destination 10.10.0.2:110
+"El servidor 10.10.0.2 verá que todos los paquetes o peticiones vienen desde la IP del cliente, en caso de que quieran 
+natear las peticiones, o sea, que el 2do servidor vea que las peticiones llegan con la IP del 1er servidor 
+(y en el cual aplicamos la redirección), sería poner además esta segunda línea:"
+31.iptables -t nat -A POSTROUTING -j MASQUERADE
+
+
+
+
+
  
 ____________________________________________________________Redes de Microsoft Windows (Samba)
 
