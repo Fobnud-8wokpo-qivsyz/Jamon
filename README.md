@@ -1,3 +1,67 @@
+mitmf
+"MITMf on the kali repos is deprecated. Use the instructions on the wiki (https://github.com/byt3bl33d3r/MITMf/wiki/Installation) to get the latest version."
+
+# Archlinux
+$ sudo pacman -S python-virtualenvwrapper
+# Fedora
+$ sudo dnf install python-virtualenvwrapper
+# Debian, Ubuntu
+$ sudo apt-get install virtualenvwrapper
+O se puede usar pip:
+# Linux, OS X
+$ sudo pip install virtualenvwrapper
+# Archlinux
+# (si pip ha sido instalado usando el gestor de paquetes)
+$ sudo pip2 install virtualenvwrapper
+
+agregar un par de variables de entorno al archivo ~/.bashrc ó ~/.bash_profile:
+#export WORKON_HOME=/opt/virtualenvs
+#export VIRTUALENVWRAPPER_HOOK_DIR=$WORKON_HOME/hooks
+
+La variable WORKON_HOME determina en que directorio se deben crear los virtualenvs al ejecutar el comando mkvirtualenv.
+
+La segunda variable, VIRTUALENVWRAPPER_HOOK_DIR, establece el directorio en donde se instalaran algunos scripts muy útiles que pueden ser usados para automatizar ciertas tareas, como por ejemplo hacer un commit a un repositorio justo antes de desactivar el virtualenv.
+
+Por último, se debe agregar una línea al archivo ~/.bashrc ó ~/.bash_profile para especificar en dónde esta ubicado el ejecutable de virtualenvwrapper:
+
+source /usr/bin/virtualenvwrapper.sh
+
+Si se ha instalado virtualenvwrapper en Debian usando el gestor de paquetes, es probable que la línea de arriba no funcione. Intente la siguiente:
+
+source /etc/bash_completion.d/virtualenvwrapper
+
+Si las dos líneas anteriores han fallado, es posible que el archivo virtualenvwrapper.sh se encuentre ubicado en el directorio /usr/local/bin/:
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+Lo que hace este último comando es procesar el código contenido en el script virtualenvwrapper.sh dentro del shell o terminal que estamos utilizando para que los comandos mkvirtualenv, rmvirtualenv y workon estén disponibles.
+
+    Create your virtualenv:
+
+mkvirtualenv MITMf -p /usr/bin/python2.7
+
+    Clone the MITMf repository:
+
+git clone https://github.com/byt3bl33d3r/MITMf
+
+    cd into the directory, initialize and clone the repos submodules:
+
+cd MITMf && git submodule init && git submodule update --recursive
+
+    Install the dependencies:
+
+pip install -r requirements.txt
+
+    You're ready to rock!
+
+python mitmf.py --help
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 ettercap DoS basico
 
 script:
