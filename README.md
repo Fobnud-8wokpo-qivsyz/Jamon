@@ -58,6 +58,12 @@ python mitmf.py --help
 
 
 
+Comun Errors:
+
+Dns port in use -->>>>>  Modificar el puerto DNS en el archivo /etc/mitmf/mitmf.conf
+
+
+
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
