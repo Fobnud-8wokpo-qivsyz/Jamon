@@ -44,6 +44,10 @@ FakeAP
 
 
 
+Posibles Errores: 
+-Can't open lease database /var/lib/dhcp/dhcpd.leases: No such file or directory --
+-Solucion: # #touch /var/lib/dhcp/dhcpd.leases
+
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
