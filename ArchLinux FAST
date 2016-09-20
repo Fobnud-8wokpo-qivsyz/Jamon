@@ -4,17 +4,31 @@ Los archivos de confirguracion de teclados estan en /usr/share/kbd/keymaps   /i3
 #loadkeys es.map.gz
 
 chequear la conexion a internet:
-
+Si usamos un eth0
 #ip addr
 #ip link show dev eth0
 #ip link set eth0 up
 #systemctl start dhcpcd@eth0.service
 
+Si usamos un wla0 con WPA
+#nano /etc/wpa_supplicant/wlan0.conf
+network={
+        ssid="AP"
+        psk="Clave"
+        }
+#wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wlan0.conf
+
 check:
 
 #ping ......
 
-particionado del disco:
+2 Opciones de Tablas de Particiones: MBR (Old school) o GPT (New Order)
+
+Si el modo UEFI está activado en una placa base UEFI, Archiso arrancará en consecuencia a través de systemd-boot. 
+Para comprobar esto, enumere el contenido del directorio efivars: 
+# ls /sys/firmware/efi/efivars
+
+_________________________________________Particionado del disco: (MBR)
 
 #cfdisk                                  //Utilidad para crear las particiones necesarias, ejemplo: / /swap /boot
 /dev/sda1     /boot
@@ -28,11 +42,48 @@ Para formatear las unidades vamos a usar ext2 (/boot) y ext4 (/)
 #mkswap /dev/sda3
 #swapon /dev/sda3
 
+_________________________________________Particionado del disco: (GPT)
+
+Cuando iniciamos la herramienta gdisk nos informa si estamos trabajando con una tabla MBR y nos da la opcion de 
+convertirla a GPT, por lo tanto.... convertimos:
+
+#gdisk
+"GPT invalid. MBR valid.....Bla Bla Bla...." Continuamos:   "No hay perdida de Datos, pero que asusta asusta..."
+'?' para ver todas las opciones
+'r' para entrar recovery/transformation mode... only experts ;)
+'f' para converitr
+'Y' para confirmar
+'m' para volver al menu principal
+'w' write to write
+ 
+ Con esto ya tenemos una Tabla de particiones GPT, lo podemos chequear con #parted
+ 
+ Para trabajar con GPT necesitamos crear una particion EFI o ESP:
+ 
+ #gdisk
+ 'n'
+ Definimos el tamaño, por ejemplo 512M y la marcamos con el codigo EF00 o ef00 con gdisk
+ 
+ De ahora en mas podemos definir el resto de las particiones: ejemplo: 
+ - swap
+ - boot
+ - raiz
+ - home
+ 
+ _________________________________________________________________________________________________________________________
+ 
+
+
 Montamos las particiones:
 
 #mount /dev/sda2 /mnt
 #mkdir /mnt/boot
 #mount /dev/sda1 /mnt/boot
+
+para GPT tambien vamos a montar la particion EFI/ESP:
+
+#mkdir /boot/efi
+#mount dev/sdaX /boot/efi                /dev/sdaX es la particion de EFI/ESP
 
 Para la instalacion vamos a usar el Script 'pacstrap'       --> Podemos chequear los mirrorlists en /etc/pacman.d/mirrorlist
 
@@ -90,7 +141,15 @@ Instalamos el GRUB:
 
 #pacman -S grub
 #grub-mkconfig -o /boot/grub/grub.cfg
-#grub-install --recheck /dev/sda
+#grub-install --recheck /dev/sda            //usado en tabla MBR
+
+#grub-install --efi-directory=/boot/efi /dev/sda    //para GPT
+
+Posibles Errores en el paso de grub-install se deben a:
+1)no haber hecho la particion ESP/EFI
+2)no haber montado la particion ESP/EFI               
+3)no tener instalado efibootmgr        #pacman -S efibootmgr
+
 
 Salimos de CHroot: 
 
