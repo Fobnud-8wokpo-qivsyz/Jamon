@@ -665,3 +665,53 @@ network={
 }
 # wpa_supplicant -B -i interfaz -c archivo_de_configuración
 # dhcpcd wlan0
+
+
+Puente (desordene atomos)
+
+#brctl   
+#brctl addbr puente                     //nombre del puente 'puente'
+#brctl addif puente at0
+#brctl addif puente eth0                //con estos 2 comandos acabamos de unir las interfaces
+#ip link set up dev bridge_name         //si fuera necesario levantar la interfaz puente (ARCH)
+#ip link set dev bridge_name down       //si fuera necesario bajar la interfaz puente
+#[dhcpcd | dhclient] puente
+#brctl show
+#brctl delbr bridge_name                //eliminar la interfaz puente
+
+Virtual interface temporary
+
+#ifconfig eth0:0
+#ifconfig eth0:0 192.168.1.1
+#ifconfig eth0:0 down            //disable virtual interface
+
+Virtual interface permanent
+
+DEBIAN 
+#edit /etc/network/interfaces
+iface eth0:0 inet static               //o iface eth0:0 inet dhcp 
+address 123.123.22.22
+netmask 255.0.0.0
+broadcast 123.255.255.255
+#/etc/init.d/networking restart
+
+REDHAT/FEDORA/CENTOS
+#in the directory /etc/sysconfig/network-scripts añadir un archivo correspondiente a la interfaz ej. ifcfg-eth0:0
+DEVICE=eth0:0
+IPADDR=123.123.22.22
+NETMASK=255.0.0.0
+NETWORK=123.0.0.0
+BROADCAST=123.255.255.255
+ONBOOT=yes
+                           //or DHCP
+DEVICE=eth0:0
+BOOTPROTO=dhcp
+ONBOOT=yes
+
+#service network restart
+
+
+
+
+
+
