@@ -229,5 +229,19 @@ $ sudo pacman -S blackarch-<category>
 # To see the blackarch categories, run
 $ sudo pacman -Sg | grep blackarch 
 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Si estamos chroot'eando' en un Debian dentro de nuestro ARCH y no podemos ejecutar comandos:
+
+Note that Arch's default PATH only has "/usr/local/sbin", "/usr/local/bin", and "/usr/bin", whereas debian uses these directories as well as "/bin", "/sbin" and "/usr/sbin" (though the sbin dirs are only added to the root's PATH).
+
+When you chroot, you retain Arch's PATH. You should run
+
+export PATH="$PATH:/usr/sbin:/sbin:/bin"
+
+in the chroot, or source /etc/profile.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 
