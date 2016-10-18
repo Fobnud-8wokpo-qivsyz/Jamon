@@ -1,3 +1,11 @@
+___________________________________________________Analisis de procesos y monitoreo del sistema
+
+1. uptime → hora.fecha.usuarios conectados
+2. top    → info detallada de los procesos.memoria.cpu.hora.etc...
+3. watch -n1 -d free → mostrar uso de memoria
+4. vmstat → info sobre el uso de virtual mem por threads del nucleo.disco.procesador
+
+
 ___________________________________________________Información del sistema
 
 1. arch → mostrar la arquitectura de la máquina (1).
