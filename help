@@ -42,9 +42,16 @@ Borrar una clave publica/privada
 
 Encriptar archivos:
 15.  gpg -e archivo_a_encriptar  //encripta con la clave publica por defecto
-15.a gpg --encrypt--recipient id_key archivo_a_encriptar
+15.a gpg --encrypt --recipient id_key archivo_a_encriptar
 16.  gpg -er 'clave_publica_destinatario' archivo_a_encriptar
 17.  gpg -a -er 'clave_publica_destinatario' archivo_a_encriptar  //encripta con 7-bit ASCII
+
+Subir/exportar la clave publica a un servidor de claves:
+18. gpg --send-keys --keyserver pgp.mit.edu id_key
+
+Bajar/importar clave desde un servidor:
+19. gpg --keyserver pgp.mit.edu --recv-keys id_key
+
 
 
 
