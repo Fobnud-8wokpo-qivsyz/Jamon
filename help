@@ -1,3 +1,60 @@
+___________________________________________________Cipher_Keys_and others
+
+Simetrico
+1.  gpg -c supersecreto.txt      //cifrado
+1.b gpg -d supersecreto.txt.gpg  //descrifrado
+
+Asimetrico
+1.  gpg --gen-key   //elegimos el algoritmo para generar clave.longitud de clave.contraseña de priv-key.Id de usuario.
+2.  gpg -k          //visualizar keyring
+2.b gpg -kv         //visualizar keyring
+2.c gpg --list-public-keys
+2.d gpg --list-secret-keys
+2.e gpg --fingerprint       //listar con huellas de las claves
+2.f gpg --list-sigs         //ver la firma de cada clave
+2.g gpg --edit-key          //editar una clave (fecha de caducidad.añadir huella.firmar la clave)
+3.  gpg -a --export id_usuario    //visualizar la clave en formato ASCII
+
+Para guardar/exportar nuestra clave publica a un archivo podemos usar alguno de estos 3 comandos donde miclave.asc es el nombre
+del archivo en el que guardaremos nuestra clave:
+
+4. gpg -a --export -o miclave.asc key_id
+5. gpg -a --export --output miclave.asc key_id
+6. gpg -a --export key_id > miclave.asc
+
+Para importar a nuestro keyring la clave publica de otra persona:
+7. gpg --import clavepublica.asc
+
+Para firmar un documento:
+8. gpg -sb -a documentoafirmar   /nos pedira nuestra contraseña de clave privada y generara documentoafirmar.asc
+9. gpg hello.txt.asc             /teniendo el hello.txt + hello.txt.asc corroboramos la firma del mismo
+
+Para exportar nuestra clave privada:
+10. gpg --export-secret-key -a id_key > private.key
+
+Para importar clave privada
+11. gpg --import private.key
+12. gpg --allow-secret-key-import --import private.key    //esta 2 opcion para importar es considerada +segura
+
+Borrar una clave publica/privada
+13. gpg --delete-key id_key
+14. gpg --delete-secret-key id_key
+
+Encriptar archivos:
+15.  gpg -e archivo_a_encriptar  //encripta con la clave publica por defecto
+15.a gpg --encrypt--recipient id_key archivo_a_encriptar
+16.  gpg -er 'clave_publica_destinatario' archivo_a_encriptar
+17.  gpg -a -er 'clave_publica_destinatario' archivo_a_encriptar  //encripta con 7-bit ASCII
+
+
+
+
+
+
+
+
+
+
 ___________________________________________________Analisis de procesos y monitoreo del sistema
 
 1. uptime → hora.fecha.usuarios conectados
