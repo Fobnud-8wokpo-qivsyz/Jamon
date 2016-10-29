@@ -1,0 +1,6 @@
+__________Alternate entre TextMode and GraphicalMode
+
+#systemctl set-default multi-user.target
+or
+#systemctl set-default graphical.target
+
