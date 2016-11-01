@@ -1,0 +1,36 @@
+YARA
+
+Detection of Malware
+
+Puede integrarse la base de datos de ClamAV para que trabaje con Yara.
+
+_____wget
+Bajamos el Script Py https://code.google.com/p/malwarecookbook/source/browse/trunk/3/3/clamav_to_yara.py
+Bajamos la base de Rules de ClamAV http://database.clamav.net/main.cvd
+_____Run the Script
+#python clamav_to_yara.py –f main.cvd –o testing_clamav.yara
+_____Chequeamos las reglas convertidas:
+#yara –r testing_clamav.yara  /directory/to/check
+
+Otra opcion al Script Py es usar el GO de sec51 (https://github.com/sec51/clamav-yara)
+
+If un error se nos aparece:
+[cannot find package golang.org/x/crypto/openpgp/armor]
+Then:
+[go get -u golang.org/x/crypto/openpgp/armor]   //REF: https://gist.github.com/achun/ce31d5d6210cc9c991df
+
+[Para instalar GO en Debian: apt-get install golang + export GOPATH=$HOME/go]
+
+Despues adentro de la carpeta GIT que bajamos del github de sec51:
+
+#go build
+#go test -v
+#clamav-yara                //and wait for the definitions download
+
+;) ;) ;) ;) ;) ;) ;) Happy detection or... happy infection ;) ;) ;) ;) ;) ;) ;) ;) ;) ;) ;) ;)
+
+
+
+
+
+
