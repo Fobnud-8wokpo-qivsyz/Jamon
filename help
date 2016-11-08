@@ -1,3 +1,28 @@
+___________________________________________________DNS-hostname-domainname-fqdn
+
+#hostname
+#domainname
+
+Para asignar el fqdn, añadimos esta linea al archivo etc/hosts que es el que lee init.d/hostname.sh para configurar el fqdn:
+#echo "127.0.0.1 mipc.localhost.com mipc localhost" > /etc/hosts
+
+
+Your hostname is the name of your computer.
+Your fully qualified domain name is your hostname plus the domain your company uses often ending in .local.
+So if the name of your computer is bob, and your company's domain is contoso.local, your computer's fully qualified domain name (FQDN) is bob.contoso.local:
+    Hostname: bob
+    Domain: contoso.com
+    FQDN: bob.contoso.com
+
+#bind9          
+
+/etc/bind/named.conf 
+                   __> named.conf.options
+                   __> named.conf.local
+                   __> db.127
+                   __> db.root
+                   
+
 ___________________________________________________Cipher_Keys_and others
 
 Simetrico
