@@ -22,7 +22,80 @@ So if the name of your computer is bob, and your company's domain is contoso.loc
                    __> db.127
                    __> db.root
                    
+                   
+---------------------------------
+                                |
+                                |Ejemplo para dominio casita.com
+                                |
+                                >>> named.conf.local
+zone "casita.com" {
+      type master;
+      file "/etc/bind/zones/db.casita.com";
+      };
 
+zone "10.168.192.in-addr.arpa" {
+      type master;
+      file "/etc/bind/zones/rev.10.168.192.in-addr.arpa";
+      };
+---------------------------------
+                                |
+                                |mkdir zones & cp db.local zones/db.casita.com & cp db.127 zones/rev.10.168.192.in-addr.arpa
+                                |
+                                >>> nano db.casita.com
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     casita.com. root.casita.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      mimaquina.casita.com.
+mimaquina        IN      A       192.9.200.75
+
+---------------------------------
+                                |
+                                |
+                                |
+                                >>> nano rev.10.168.192.in-addr.arpa
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     casita.com. root.casita.com. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      mimaquina.casita.com.
+75      IN      PTR     mimaquina.
+
+
+---------------------------------
+                                |
+                                |
+                                |
+                                >>> nano /etc/bind/named.conf.options
+ forwarders {
+      208.67.222.222;
+      208.67.220.220;
+};
+
+--------------------------------->>> /etc/init.d/bind9 restart
+--------------------------------->>> /etc/resolv.conf 
+nameserver 192.9.200.75
+nameserver 8.8.8.8
+
+                
+                                
+                                
+                                
+                                
 ___________________________________________________Cipher_Keys_and others
 
 Simetrico
