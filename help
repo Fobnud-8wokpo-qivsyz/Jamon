@@ -518,6 +518,9 @@ una fuente rpm.
 
 26.rpmbuild --rebuild package_name.src.rpm → construir un paquete rpm desde una fuente rpm.
 
+27.cat /var/log/dpkg.log | grep "status installed"     → ver paquetes instalados con apt-get
+28.cat /var/log/aptitude | grep "\[INSTALA\]"          → ver paquetes instalados con aptitude
+
  
 _____________________________________________________________Actualizador de paquetes yum (Fedora, Redhat y otros)
 
