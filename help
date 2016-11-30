@@ -1,3 +1,19 @@
+__________________________________________________SQL basic
+
+show databases;
+use agendaDB;
+show tables;
+create table ejemplo(
+numero int,
+nombre varchar(50),
+apellido varchar(50),
+primary key (numero),
+);
+describe ejemplo;
+select nombre,apellido from agenda;
+insert into ejemplo values(1,'esteban','quito');
+delete from ejemplo where numero = 1;
+
 ___________________________________________________DNS-hostname-domainname-fqdn
 
 #hostname
