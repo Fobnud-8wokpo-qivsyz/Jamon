@@ -15,6 +15,25 @@ insert into ejemplo values(1,'esteban','quito');
 delete from ejemplo where numero = 1;
 
 
+
+___________________________________________________CHROOT
+
+apt-get install debootstrap
+//vamos a necesitar tener una particion extra. por ejemplo /sdb1
+mkdir /media/Debian
+mount /dev/sdb1 /media/Debian
+//si queremos instalar wheezy para arquitectura 386
+debootstrap --arch i386 wheezy /media/Debian http://ftp.fr.debian.org/debian
+chroot /media/Debian /bin/bash
+//instalamos el Kernel. antes chequeamos y editamos las sources.list
+nano /etc/sources.list
+apt-get update && apt-get upgrade
+//buscamos un kernel que nos satisfaga
+aptitude search linux-image-
+apt-get install 'el kernel que hayamos elejido'
+
+
+
 ___________________________________________________KERNEL
 
 #aptitude search linux-image-                      //ver los kernels disponibles
