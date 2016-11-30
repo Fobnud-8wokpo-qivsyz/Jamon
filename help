@@ -14,6 +14,14 @@ select nombre,apellido from agenda;
 insert into ejemplo values(1,'esteban','quito');
 delete from ejemplo where numero = 1;
 
+
+___________________________________________________KERNEL
+
+#aptitude search linux-image-                      //ver los kernels disponibles
+#apt-get install 'el kernel que elijamos'
+
+
+
 ___________________________________________________DNS-hostname-domainname-fqdn
 
 #hostname
