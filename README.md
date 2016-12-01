@@ -1,3 +1,45 @@
+TORTUNNEL
+
+
+-LINKS
+https://github.com/manurautela/tortunnel.git
+https://github.com/moxie0/tortunnel.git
+
+#cd tortunnel...
+#autoreconf
+#automake --add-missing
+#./configure
+#make
+#make install
+
+Dependencias necesarias:
+apt-get install libboost-all-dev
+apt-get install libboost*
+apt-get install automake
+apt-get install g++
+apt-get install gcc
+apt-get install libssl-dev
+
+Posibles Errores:
+
+Error 1)
+perl: warning: Falling back to the standard locale ("C").
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LANGUAGE = "es_AR:es",
+        LC_ALL = (unset),
+        LANG = "es_AR.UTF-8"
+    are supported and installed on your system.
+
+Solucion 1)
+Configurar locales
+#locale-gen es_ES.UTF-8
+#dpkg-reconfigure locales
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	
+
 FakeAP
 
 - install dhcpd
