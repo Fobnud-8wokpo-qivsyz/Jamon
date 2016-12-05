@@ -1377,6 +1377,13 @@ Catalan Police Union Hack video  ;) ;) ;) ;)
 
 - Find humman-readable files on linux systems: 
   find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
+  
+- Listar recursivamente en un servidor ordenando por dueño y grupo, ademas podemos 'grep':
+
+    ls -l -R | sort -k 3 - sorts by owner and by default sorts the next field (group) and on
+    ls -l -R | sort -k 4,4 -k 3 |grep usuarioSeñorX - sorts by group and then by owner
+    ls -l -R | sort -k 3,3 -k 8 - sorts by owner and then by filename
+
 
 - Buscar the only line of text data.txt that occurs only once:  < file.txt sort | uniq -u       # only print unique lines 
         							< file.txt sort | uniq -d       # only print duplicate lines 
