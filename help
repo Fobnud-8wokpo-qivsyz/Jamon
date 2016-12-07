@@ -1,3 +1,18 @@
+_________________________________________________update-rc.d
+
+El comando update-rc.d nos permite automatizar el proceso de creación y borrado de enlaces 
+a los scripts de inicio, con en fin de iniciar/parar servicios.
+
+#update-rc.d -f nombre_proceso remove          //eliminar servicios del proceso de arranque
+#update-rc.d -f squid remove
+
+#update-rc.d nombre_proceso defaults          //crear enlaces usando parámetros por defecto
+#update-rc.d ssh defaults                     //ejemplo 1
+#update-rc.d networking defaults              //ejemplo 2
+#/etc/init.d/networking restart
+
+
+
 __________________________________________________SSH authentication
 
 //chequeamos la configuracion /etc/ssh/sshd_config
@@ -625,6 +640,7 @@ ________________________________________________________Actualizador de paquetes
 6. apt-get check → verificar la correcta resolución de las dependencias.
 7. apt-get clean → limpiar cache desde los paquetes descargados.
 8. apt-cache search searched-package → retorna lista de paquetes que corresponde a la serie «paquetes buscados».
+9. apt-cache show <paquete>  → muestra una descripcion completa del paquete
 
  
 ____________________________________________________________Ver el contenido de un fichero
