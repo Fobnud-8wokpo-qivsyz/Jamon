@@ -243,6 +243,32 @@ ___________________________________________________Analisis de procesos y monito
 2. top    → info detallada de los procesos.memoria.cpu.hora.etc...
 3. watch -n1 -d free → mostrar uso de memoria
 4. vmstat → info sobre el uso de virtual mem por threads del nucleo.disco.procesador
+5. time → tiempo de ejecución del código de un programa por parte del procesador
+6. ps → procesos lanzados en el sistema por el usuario
+7. free → uso de la memorio fisica y swap
+8. df → examina el sistema de ficheros
+9.  du → capacidad ocupada por un sistema en concreto
+10. hdparm → conocer y cambiar parametros de un disco
+11. w → info de usuarios conectados a la maquina
+12. mpstat → info de rendimiento de cada procesador del sistema
+13. iostat → info de actividad del CPU y de dispositivos de E/S
+
+14. sar → Consta de dos órdenes complementarias:
+Algunos parámetros son:
+u: utilización del procesador
+B: paginación de memoria virtual
+c: creación de procesos
+b: transferencias con E/S
+d: transferencias por cada disco
+I: sistema de interrupciones
+n: conexión de red
+q: carga media del sistema
+r: sistema de memoria
+w: cambios de contexto
+W: intercambio 
+(swapping)
+14.b sadc(system activity data collector): recoge los datos relacionados con el sistema y construye con ellos un registro en formato binario.
+14.c sar (system activity reader): recopila datos en formato texto o binario y permite leer los datos binarios recogidos por sadc, y los traduce a formato texto.
 
 
 ___________________________________________________Información del sistema
