@@ -1,3 +1,19 @@
+FIREFOX Basicas
+
+network.http.keep-alive.timeout  -->  300
+network.http.pipelining  --> TRUE
+network.http.pipelining.maxrequests  --> 8
+network.http.max-persistent-connections-per-proxy  --> 16
+network.http.proxy.pipelining --> TRUE
+network.http.pipelining.ssl   --> TRUE 
+network.proxy.socks_remote_dns  --> TRUE
+
+Fuente: https://thehackerway.com/2011/11/11/preservando-el-anonimato-y-extendiendo-su-uso-%e2%80%93-mejorando-el-anonimato-navegando-con-firefox-%e2%80%93-parte-xv/
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 TORTUNNEL
 
 
