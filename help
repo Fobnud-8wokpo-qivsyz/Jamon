@@ -427,6 +427,8 @@ tipo de sistema de ficheros).
 ____________________________________________________________________Espacio en disco
 
 1. lsblk  → muestra todos los dispositivos conectados junto con sus esquemas de particionado
+1. lsscsi
+1. fdisk -l
 1. df -h → mostrar una lista de las particiones montadas.
 2. ls -lSr | more → mostrar el tamaño de los ficheros y directorios ordenados por tamaño.
 3. du -sh dir1 → Estimar el espacio usado por el directorio ‘dir1′.
