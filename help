@@ -288,6 +288,7 @@ ___________________________________________________Información del sistema
 13.cat /proc/version → mostrar la versión del kernel.
 14.cat /proc/net/dev → mostrar adaptadores de red y estadísticas.
 15.cat /proc/mounts → mostrar el sistema de ficheros montado.
+15A.cat /etc/services → mostrar servicios
 16.lspci -tv → mostrar los dispositivos PCI.
 17.lsusb -tv → mostrar los dispositivos USB.
 18.lshw → listar el hardware.
@@ -328,29 +329,29 @@ ___________________________________________________________Gestionar archivos y 
 7. pwd → mostrar el camino del directorio actual.
 8. ls → listar el contenido de un directorio.
 9. ls -F → listar el contenido de un directorio (distinguiendo los directorios con una barra)
-10.ls -l → listar el contenido de un directorio, mostrando los detalles.
-11.ls -lh → listar el contenido de un directorio, mostrando los detalles (y el tamaño en un
+10. ls -l → listar el contenido de un directorio, mostrando los detalles.
+11. ls -lh → listar el contenido de un directorio, mostrando los detalles (y el tamaño en un
 formato “humanizado”).
 
-12.ls -a → listar el contenido de un directorio, incluendo los ficheros ocultos.
-13.ls *[0-9] → listar los ficheros y carpetas que contienen números.
-14.ls -laR | less → listar recursivamente el contenido del directorio actual y todos los
+12. ls -a → listar el contenido de un directorio, incluendo los ficheros ocultos.
+13. ls *[0-9] → listar los ficheros y carpetas que contienen números.
+14. ls -laR | less → listar recursivamente el contenido del directorio actual y todos los
 subdirectorios y archivos, incluyendo los ocultos, separados por página.
-
-15.tree → mostrar los ficheros y carpetas en forma de árbol comenzando por la raíz.(1)
-16.lstree → mostrar los ficheros y carpetas en forma de árbol comenzando por la raíz.(2)
-17.mkdir dir1 → crear un directorio de nombre ‘dir1′.
-18.mkdir dir1 dir2 → crear dos directorios a la vez (en la ubicación actual).
-19.mkdir -p /tmp/dir1/dir2 → crear una estructura de directorios, si no existe.
-20.rm file1 → eliminar el archivo ‘file1′.
-21.rm -f file1 → eliminar el archivo ‘file1′ en modo forzado.
-22.rmdir dir1 → borrar el directorio ‘dir1′.
-
+14A. ls -lhgo → listar con (l)listado largo, (h)formato entendible, (g)sin mostrar grupo, (o)sin mostrar dueño
+14B. ls -lhgoR → lo mismo anterior + RECURSIVE
+15. tree → mostrar los ficheros y carpetas en forma de árbol comenzando por la raíz.(1)
+16. lstree → mostrar los ficheros y carpetas en forma de árbol comenzando por la raíz.(2)
+17. mkdir dir1 → crear un directorio de nombre ‘dir1′.
+18. mkdir dir1 dir2 → crear dos directorios a la vez (en la ubicación actual).
+19. mkdir -p /tmp/dir1/dir2 → crear una estructura de directorios, si no existe.
+20. rm file1 → eliminar el archivo ‘file1′.
+21. rm -f file1 → eliminar el archivo ‘file1′ en modo forzado.
+22. rmdir dir1 → borrar el directorio ‘dir1′.
  
-23.rm -rf dir1 → eliminar recursivamente y en modo forzado el directorio ‘dir1′ con todo lo
+23. rm -rf dir1 → eliminar recursivamente y en modo forzado el directorio ‘dir1′ con todo lo
 que contenga.
 
-24.rm -rf dir1 dir2 → borrar dos directorios con su contenido de forma recursiva.
+24. rm -rf dir1 dir2 → borrar dos directorios con su contenido de forma recursiva.
 25.mv dir1 new_dir → renombrar o mover un fichero o carpeta (directorio).
 26.cp file1 destino/ → copiar un fichero al destino elegido.
 27.cp file1 file2 destino/ → copiar a la vez dos ficheros a un mismo directorio.
