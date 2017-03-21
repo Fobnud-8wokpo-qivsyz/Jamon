@@ -204,7 +204,7 @@ drop();
 kill();
 msg("Packet Dropped\n");
 }
-
+	
 Save as dos.elt
 
 #etterfilter dos.elt -o dos.ef
@@ -388,18 +388,7 @@ Con esto añadimos un salto más al salir por el nodo de salida de tor. Aunque n
 
 From: https://elbinario.net/2015/03/08/torificar-un-proxy-con-socat-un-salto-mas-al-infinito/
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-
-
-listar particiones:
-
-- lsblk
-- lsscsi
-- fdisk -l
-- df -h
-- 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -833,24 +822,6 @@ Configure options and then...
 
 
 
-
-
-
-
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
-ver servicios:
-
-$cat /etc/services 
-
-buscar un servicio especifico
-
-$cat /etc/services |grep openvpn
-
-
-
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -895,17 +866,7 @@ El comando n busca hacia adelante la siguiente ocurrencia.
 Para buscar hacia atrás, se utiliza el comando ?
 
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-listar archivos
-
-listar con (l)listado largo, (h)formato entendible, (g)sin mostrar grupo, (o)sin mostrar dueño
-$ls -lhgo
-listar recursivamente incluyendo subdirectorios (R)
-$ls -lhgoR
-listar omitiendo mayusculas o minusculas (i), y enviando el resultado al fichero listado.txt
-$ls -lhgo|grep -i *.txt > /root/listado.txt
 	
 
 
