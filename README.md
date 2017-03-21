@@ -396,8 +396,10 @@ socat TCP4:192.168.1.33:3333
 
 																				      *************************************************************
 																				      
-Ejecucion de comandos de forma remota:															
-socat - EXEC:'Hello World'													
+Ejecucion de comandos de forma remota:												
+Ejemplos:
+a. socat - EXEC:'Hello World'		
+b. socat – EXEC:’ssh -p 22 root@192.168.1.34′,pty,setsid,ctty 
 
 
 
