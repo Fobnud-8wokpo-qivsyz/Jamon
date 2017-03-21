@@ -366,15 +366,13 @@ ________________________________________________irssi Anti_leakage______________
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-socat
+______________________________________________________socat____________________________________________________________
 
 socat TCP4-LISTEN:6666, fork SOCKS4A:127.0.0.1:DireccionDeOnion:6697,socksport=9150
-
 
 socat tcp-listen:9999,interface=lo,fork socks4a:localhost:<proxyhost>:<proxyport>,socksport=9150
 
 Para entender un poco más lo que hacemos:
-
 tcp-listen: 9999 <- el puerto de escucha en nuestra máquina
 interface= lo <- el interface donde escucha nuestro puerto
 socks4a:localhost: <- el host donde esta funcionando tor
@@ -387,6 +385,18 @@ Por último sólo nos queda configurar en firefox: En Preferencias -> Avanzado -
 Con esto añadimos un salto más al salir por el nodo de salida de tor. Aunque no está cifrado podemos usar direcciones de servidores proxy que no esten en las blacklist de los proveedores, los cuales están bloqueando los nodos de salida tor ;-)
 
 From: https://elbinario.net/2015/03/08/torificar-un-proxy-con-socat-un-salto-mas-al-infinito/
+
+                                      *************************************************************
+				      
+Establecimiento de una puerto de escucha local y un forward hacia otro destino:
+
+socat TCP4-LISTEN:3333 TCP4:www.google.com.ar:www → Con esto abrimos el puerto 3333 y redirigimos el trafico de este hacia google
+socat TCP4:192.168.1.33:3333
+
+																				      *************************************************************
+															
+															
+
 
 
 
