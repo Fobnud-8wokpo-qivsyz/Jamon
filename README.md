@@ -112,6 +112,7 @@ Posibles Errores:
 
 
 mitmf
+
 "MITMf on the kali repos is deprecated. Use the instructions on the wiki (https://github.com/byt3bl33d3r/MITMf/wiki/Installation) to get the latest version."
 
 # Archlinux
@@ -394,8 +395,10 @@ socat TCP4-LISTEN:3333 TCP4:www.google.com.ar:www → Con esto abrimos el puerto
 socat TCP4:192.168.1.33:3333
 
 																				      *************************************************************
-															
-															
+																				      
+Ejecucion de comandos de forma remota:															
+socat - EXEC:'Hello World'													
+
 
 
 
