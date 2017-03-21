@@ -8,6 +8,15 @@ Dns Problem: ------>>>>> Modificar el Archivo config.yaml   DNS: enable:True to 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+INSTALL: (http://hackpuntes.com/obtener-credenciales-https-con-bettercap-y-sslstrip/)
+
+apt-get install build-essential ruby-dev libpcap-dev
+git clone https://github.com/evilsocket/bettercap          --clonamos el repositorio a nuestro equipo
+cd bettercap
+gem build bettercap.gemspec
+gem install bettercap*.gem
+
+
 
 Usage: bettercap [options]
 
