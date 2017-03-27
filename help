@@ -277,7 +277,9 @@ ___________________________________________________Información del sistema
 2. uname -m → mostrar la arquitectura de la máquina (2).
 3. uname -r → mostrar la versión del kernel usado.
 4. uname -a → mostrar la información completa.
+4.1 uname -mars 
 5. cat /etc/issue → mostrar el nombre de la distribución
+5.1 cat /etc/*-release → Info sobre la distribucion
 6. dmidecode -q → mostrar los componentes (hardware) del sistema.
 7. hdparm -i /dev/hda → mostrar las características de un disco duro.
 8. hdparm -tT /dev/sda → realizar prueba de lectura en un disco duro.
