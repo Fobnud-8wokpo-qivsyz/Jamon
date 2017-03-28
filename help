@@ -85,6 +85,11 @@ ___________________________________________________KERNEL
 
 ___________________________________________________DNS-hostname-domainname-fqdn
 
+#nslookup 192.168.1.10
+#dig casita.com
+#dig -x 192.168.1.10
+#host 192.168.1.10
+#host -t NS -T parrot.casita.com
 #hostname
 #domainname
 
