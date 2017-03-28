@@ -1,3 +1,11 @@
+____________________________________________________SMB
+
+Imprimir desde la Linea de Comandos en una impresora compartida en red:
+#echo -en "\rHello\r\f" | smbclient "//192.9.200.165/MULTIPROPOSITO" "password" -c "print -" -N -U "username" -W "workgroup"
+
+
+
+
 _________________________________________________update-rc.d
 
 El comando update-rc.d nos permite automatizar el proceso de creación y borrado de enlaces 
