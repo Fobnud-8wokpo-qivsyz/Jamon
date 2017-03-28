@@ -369,6 +369,28 @@ ________________________________________________irssi Anti_leakage______________
 
 ______________________________________________________socat____________________________________________________________
 
+Socat
+Socat nos permite crear tuberías de datos (conexiones entre puertos, vpns, ejecución remota, etc.) entre máquinas remotas, usando la sintaxis a continuación:
+
+Socat [opciones] tipo:valor tipo2:valor2
+Creación de una tubería de datos de tipo tipo, hacia una tubería de datos de tipo tipo2.
+
+Los tipos y valores que se pueden especificar son, entre otros, los siguientes:
+
+ TUN Creación de un túnel IP
+ EXEC Ejecución remota de un comando
+ STDOUT Conectar con la salida estándar
+ STDIN Conectar con la entrada estándar
+ STDIO Permitir comunicación de entrada y salida
+ TCP-LISTEN Escuchar en un puerto determinado (orientado a conexión)
+ TCP_CONNECT Establecer una conexión con un puerto que está a la escucha (orientado a conexión)
+ UDP_LISTEN Escuchar en un puerto determinado (NO orientado a conexión)
+ UDP_CONNECT Establecer una conexión con un puerto que está a la escucha (NO orientado a conexión)
+ … (muchos más)
+
+Creación de un túnel ip con otra máquina remota (172.16.0.3), usando ssh-keygen para autenticación remota
+#socat tun:10.0.0.1/8 exec:"ssh -i /root/.ssh/id_rsa root@172.16.0.3 'socat tun:10.0.0.2/8 stdio'" &
+
 socat TCP4-LISTEN:6666, fork SOCKS4A:127.0.0.1:DireccionDeOnion:6697,socksport=9150
 
 socat tcp-listen:9999,interface=lo,fork socks4a:localhost:<proxyhost>:<proxyport>,socksport=9150
@@ -400,6 +422,19 @@ Ejecucion de comandos de forma remota:
 Ejemplos:
 a. socat - EXEC:'Hello World'		
 b. socat – EXEC:’ssh -p 22 root@192.168.1.34′,pty,setsid,ctty 
+
+Obtener la hora desde un Servidor:
+#socat TCP:time.nist.gov:13 -
+
+Conectar un puerto Serial a otro puerto Serial:
+#socat /dev/ttyS0,raw,echo=0,crnl /dev/ttyS1,raw,echo=0,crnl
+
+Redirigir puerto http 80 a otro puerto http 80:
+#socat TCP-LISTEN:80,fork TCP:www.domain.org:80
+
+Redirigir Terminal a un puerto Serial:
+#socat READLINE,history=$HOME/.cmd_history /dev/ttyS0,raw,echo=0,crnl 
+
 
 
 
