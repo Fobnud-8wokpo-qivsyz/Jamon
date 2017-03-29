@@ -265,6 +265,7 @@ ___________________________________________________Analisis de procesos y monito
 11. w → info de usuarios conectados a la maquina
 12. mpstat → info de rendimiento de cada procesador del sistema
 13. iostat → info de actividad del CPU y de dispositivos de E/S
+14. sockstat → info de procesos y sockets usados
 
 14. sar → Consta de dos órdenes complementarias:
 Algunos parámetros son:
