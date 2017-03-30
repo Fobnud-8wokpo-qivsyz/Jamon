@@ -21,6 +21,12 @@ a los scripts de inicio, con en fin de iniciar/parar servicios.
 
 
 
+  _____ _____ _    _ 
+ / ____/ ____| |  | |
+| (___| (___ | |__| |
+ \___ \\___ \|  __  |
+ ____) |___) | |  | |
+|_____/_____/|_|  |_|
 __________________________________________________SSH authentication
 
 //chequeamos la configuracion /etc/ssh/sshd_config
@@ -83,6 +89,12 @@ ___________________________________________________KERNEL
 
 
 
+ _____  _   _  _____ 
+|  __ \| \ | |/ ____|
+| |  | |  \| | (___  
+| |  | | . ` |\___ \ 
+| |__| | |\  |____) |
+|_____/|_| \_|_____/
 ___________________________________________________DNS-hostname-domainname-fqdn
 
 #nslookup 192.168.1.10
@@ -184,8 +196,12 @@ nameserver 8.8.8.8
                 
                                 
                                 
-                                
-                                
+  _____ _____ _____  _    _ ______ _____  
+ / ____|_   _|  __ \| |  | |  ____|  __ \ 
+| |      | | | |__) | |__| | |__  | |__) |
+| |      | | |  ___/|  __  |  __| |  _  / 
+| |____ _| |_| |    | |  | | |____| | \ \ 
+ \_____|_____|_|    |_|  |_|______|_|  \_\
 ___________________________________________________Cipher_Keys_and others
 
 Simetrico
@@ -250,6 +266,13 @@ Bajar/importar clave desde un servidor:
 
 
 
+ _____  _____   ____   _____ ______  _____  ____   _____ 
+|  __ \|  __ \ / __ \ / ____|  ____|/ ____|/ __ \ / ____|
+| |__) | |__) | |  | | |    | |__  | (___ | |  | | (___  
+|  ___/|  _  /| |  | | |    |  __|  \___ \| |  | |\___ \ 
+| |    | | \ \| |__| | |____| |____ ____) | |__| |____) |
+|_|    |_|  \_\\____/ \_____|______|_____/ \____/|_____/ 
+                                                         
 ___________________________________________________Analisis de procesos y monitoreo del sistema
 
 1. uptime → hora.fecha.usuarios conectados
@@ -275,7 +298,7 @@ c: creación de procesos
 b: transferencias con E/S
 d: transferencias por cada disco
 I: sistema de interrupciones
-n: conexión de red
+n: conexión de 
 q: carga media del sistema
 r: sistema de memoria
 w: cambios de contexto
@@ -285,6 +308,14 @@ W: intercambio
 14.c sar (system activity reader): recopila datos en formato texto o binario y permite leer los datos binarios recogidos por sadc, y los traduce a formato texto.
 
 
+
+  _______     _______ _______ ______ __  __   _____ _   _ ______ ____  
+ / ____\ \   / / ____|__   __|  ____|  \/  | |_   _| \ | |  ____/ __ \ 
+| (___  \ \_/ / (___    | |  | |__  | \  / |   | | |  \| | |__ | |  | |
+ \___ \  \   / \___ \   | |  |  __| | |\/| |   | | | . ` |  __|| |  | |
+ ____) |  | |  ____) |  | |  | |____| |  | |  _| |_| |\  | |   | |__| |
+|_____/   |_| |_____/   |_|  |______|_|  |_| |_____|_| \_|_|    \____/ 
+                                                                       
 ___________________________________________________Información del sistema
 
 1. arch → mostrar la arquitectura de la máquina (1).
@@ -459,6 +490,13 @@ paquetes rpm instalados organizados por tamaño (Fedora, Redhat y otros).
 awk '{printf ”%.3f MB\t%s\n”, $2/(1024), $1}‘ → mostrar (en Debian o derivadas) un listado con los 25 paquetes 
 instalados que más espacio consumen (en orden descendente).
 
+
+ _    _  _____ _    _         _____  _____ ____   _____ 
+| |  | |/ ____| |  | |  /\   |  __ \|_   _/ __ \ / ____|
+| |  | | (___ | |  | | /  \  | |__) | | || |  | | (___  
+| |  | |\___ \| |  | |/ /\ \ |  _  /  | || |  | |\___ \ 
+| |__| |____) | |__| / ____ \| | \ \ _| || |__| |____) |
+ \____/|_____/ \____/_/    \_\_|  \_\_____\____/|_____/ 
 ______________________________________________________________________Usuarios y grupos
 
 1. groupadd nombre_del_grupo → crear un nuevo grupo.
@@ -489,6 +527,8 @@ de grupos.
 de los ficheros creados recientemente.
 
  
+ 
+ 
 _____________________________________________________Permisos en ficheros (usar “+” para colocar permisos y “-” para eliminar)
 
 1. ls -lh → Mostrar permisos.
@@ -518,6 +558,9 @@ directorio.
 ficheros solamente a los dueños legítimos.
 
 15.chmod o-t /home/public → desabilitar un bit STIKY en un directorio.
+
+
+
 
 ___________________________________________Atributos especiales en ficheros (usar “+” para colocar permisos y “-” para eliminar)
 
@@ -674,6 +717,7 @@ _______________________________________________________Paquetes deb (Debian, Ubu
 8. dpkg -S /bin/ping → verificar cuál paquete pertenece a un fichero dado. 
 
 
+
 ________________________________________________________Actualizador de paquetes apt (Debian, Ubuntu y otros)
 
 
@@ -687,7 +731,7 @@ ________________________________________________________Actualizador de paquetes
 8. apt-cache search searched-package → retorna lista de paquetes que corresponde a la serie «paquetes buscados».
 9. apt-cache show <paquete>  → muestra una descripcion completa del paquete
 
- 
+
 ____________________________________________________________Ver el contenido de un fichero
 
 
@@ -698,6 +742,8 @@ ____________________________________________________________Ver el contenido de 
 5. head -2 file1 → ver las dos primeras líneas de un fichero.
 6. tail -2 file1 → ver las dos últimas líneas de un fichero.
 7. tail -f /var/log/messages → ver en tiempo real qué ha sido añadido al fichero.
+
+
 
 ____________________________________________________________Manipulación de texto
 
@@ -728,6 +774,8 @@ que contienen números.
 13.sed -n '/string1/p‘ → visualizar solamente las líneas que contienen la palabra “string1”.
 
 
+
+     
 ____________________________________________Establecer caracter y conversión de ficheros
 
 
@@ -742,6 +790,7 @@ MSDOS.
 4. recode -l | more → mostrar todas las conversiones de formato disponibles.
 
  
+
 ___________________________________________________________Análisis del sistema de ficheros
 
 
@@ -772,6 +821,7 @@ el disco hda1.
 disco hda1.
 
 
+
 _______________________________________________________________Formatear un sistema de ficheros
 
 
@@ -787,6 +837,13 @@ partición hda1.
 6. mkswap /dev/hda3 → crear un fichero de sistema swap.
 
 
+
+  _______          __     _____  
+ / ____\ \        / /\   |  __ \ 
+| (___  \ \  /\  / /  \  | |__) |
+ \___ \  \ \/  \/ / /\ \ |  ___/ 
+ ____) |  \  /\  / ____ \| |     
+|_____/    \/  \/_/    \_\_|     
 ________________________________________________________________Partición de sistema swap
 
 
@@ -795,6 +852,13 @@ ________________________________________________________________Partición de si
 3. swapon /dev/hda2 /dev/hdb3 → activar dos particiones swap.
 
 
+
+  _____         _ __      __      _____ 
+ / ____|  /\   | |\ \    / /\    / ____|
+| (___   /  \  | | \ \  / /  \  | (___  
+ \___ \ / /\ \ | |  \ \/ / /\ \  \___ \ 
+ ____) / ____ \| |___\  / ____ \ ____) |
+|_____/_/    \_\______\/_/    \_\_____/ 
 _____________________________________________________________________Salvas
 
 
@@ -843,6 +907,13 @@ Record) salvada en un floppy.
 
 
 
+  
+  _____ ____          _____   ____  __  __
+ / ____|  __ \       |  __ \ / __ \|  \/  |
+| |    | |  | |______| |__) | |  | | \  / |
+| |    | |  | |______|  _  /| |  | | |\/| |
+| |____| |__| |      | | \ \| |__| | |  | |
+ \_____|_____/       |_|  \_\\____/|_|  |_|
 ______________________________________________________________________CDROM
 
 
@@ -869,10 +940,14 @@ iso de un directorio.
 12.eject -v → expulsar un medio o disco extraíble, ofreciendo información adicional.
 
 
-
-
-
-_____________________________________________________Trabajo con la red (LAN Y WIFI)
+    
+ _   _ ______ _________          ______  _____  _  _
+| \ | |  ____|__   __\ \        / / __ \|  __ \| |/ /
+|  \| | |__     | |   \ \  /\  / / |  | | |__) | ' / 
+| . ` |  __|    | |    \ \/  \/ /| |  | |  _  /|  <  
+| |\  | |____   | |     \  /\  / | |__| | | \ \| . \ 
+|_| \_|______|  |_|      \/  \/   \____/|_|  \_\_|\_\
+______________________________________________________Trabajo con la red (LAN Y WIFI)
 
 
 
@@ -889,7 +964,7 @@ _____________________________________________________Trabajo con la red (LAN Y W
 1.d) dhclient eht0
 
 1.3) Configurar IP fija en centos:
-1.a) nano /etc/sysconfig/network-scripts/ifcfg-eth0
+1.a) #nano /etc/sysconfig/network-scripts/ifcfg-eth0
 DEVICE=eth0
 BOOTPROTO=none 
 NM_CONTROLLED=no 
@@ -900,6 +975,37 @@ NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
 1.b)reboot
 
+1.4) Configurar Multiples Direcciones IPs en una Interfaz (DEBIAN)
+From:https://www.linuxito.com/gnu-linux/nivel-medio/405-configurar-multiples-direcciones-ip-en-una-misma-interfaz-de-red-en-debian-y-centos
+
+1.4.a) #nano /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet static
+        address 10.10.150.1
+        netmask 255.255.255.0
+        network 10.10.150.0
+        broadcast 10.10.150.255
+        gateway 192.168.1.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 8.8.8.8 8.8.4.4
+
+allow-hotplug eth0:0
+iface eth0:0 inet static
+        address 10.10.151.1
+        netmask 255.255.255.0
+        network 10.10.151.0
+        broadcast 10.10.151.255
+1.4.b)ifup eth0:0
+1.4.c)ifconfig     → Check and Enjoy tu nueva interfaz
  
 
 1. iw dev       → listar interfaces de red
