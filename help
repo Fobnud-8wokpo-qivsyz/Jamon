@@ -257,6 +257,10 @@ Bajar/importar clave desde un servidor:
 19. gpg --keyserver pgp.mit.edu --recv-keys id_key
 
 
+20. OPENSSL
+
+Generar un certificado con openssl
+#openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout cert
 
 
 
