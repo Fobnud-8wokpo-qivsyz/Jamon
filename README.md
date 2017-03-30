@@ -417,27 +417,49 @@ socat TCP4-LISTEN:3333 TCP4:www.google.com.ar:www → Con esto abrimos el puerto
 socat TCP4:192.168.1.33:3333
 
 																				      *************************************************************
-																				      
+																
+1)																
 Ejecucion de comandos de forma remota:												
 Ejemplos:
 a. socat - EXEC:'Hello World'		
 b. socat – EXEC:’ssh -p 22 root@192.168.1.34′,pty,setsid,ctty 
 
+2)
 Obtener la hora desde un Servidor:
 #socat TCP:time.nist.gov:13 -
 
+3)
 Conectar un puerto Serial a otro puerto Serial:
 #socat /dev/ttyS0,raw,echo=0,crnl /dev/ttyS1,raw,echo=0,crnl
 
+4)
 Redirigir puerto http 80 a otro puerto http 80:
 #socat TCP-LISTEN:80,fork TCP:www.domain.org:80
 
+5)
 Redirigir Terminal a un puerto Serial:
 #socat READLINE,history=$HOME/.cmd_history /dev/ttyS0,raw,echo=0,crnl 
 
+6)
+Conversacion unidireccional entre 2 maquinas:
+IP del Server '192.9.200.10'
+Server Side #socat -u TCP-LISTEN:5000 STDOUT
+Client Side #socat -u STDIN TCP:192.9.200.10:5000
 
+7)
+Conversacion bidireccional entre 2 maquinas:
+Server Side #socat TCP-LISTEN:5000 STDIO
+Client Side #socat TCP:192.9.200.10:5000 STDIO
 
+8)
+Enviar LOGs a un Server desde la lectura de un cliente:
+En algun lugar remoto del Cliente estamos TCPDUMP'eando paquetes y guardandolos en el LOG /var/log/tcpdump/tcpdump.log y lo que capturamos lo leemos
+en la pantalla del Server: IP del Server (192.9.200.77)
 
+Server Side #socat -u TCP-LISTEN:5000 STDOUT
+Client Side #socat -u OPEN:/var/log/tcpdump/tcpdump.log,rdonly=1,seek-end=0,ignoreeof TCP:192.9.200.77:5000
+
+Nota: Se está abriendo el fichero (OPEN:/var/log/system.log), como sólo lectura (rdonly=1), posicionándose al final del mismo (seek-end=0) e ignorando el fin del fichero (ignoreof). Los datos que se leen se están mandando por TCP a localhost:5000.
 
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
