@@ -432,14 +432,20 @@ directorio.
 de entrada asumiendo que está codificado en fromEncoding y convirtiéndolo a
 ToEncoding.
 
-_____________________________________________________________Encontrar archivos
 
 
-1. find / -name file1 → buscar fichero y directorio a partir de la raíz del sistema.
-2. find / -user user1 → buscar ficheros y directorios pertenecientes al usuario ‘user1′.
-3. find /home/user1 -name \*.bin → buscar ficheros con extensión ‘. bin’ dentro del directorio ‘/home/user1′.
-4. find /usr/bin -type f -atime +100 → buscar ficheros binarios no usados en los últimos 100 días.
-5. find /usr/bin -type f -mtime -10 → buscar ficheros creados o cambiados dentro de los últimos 10 días.
+ ___ _ _  __  __   _   ___    _   ___  __  _ _  _  _ _  _  __ 
+| o ) | |/ _|/ _| / \ | o \  / \ | o \/ _|| U || || | |/ \/ _|
+| o \ U |\_ ( (_ | o ||   / | o ||   ( (_ |   || || V ( o )_ \
+|___/___||__/\__||_n_||_|\\ |_n_||_|\\\__||_n_||_| \_/ \_/|__/
+                                                              BUSCAR ARCHIVOS/FIND FILES:
+
+
+1. find / -name file1                 → buscar fichero y directorio a partir de la raíz del sistema.
+2. find / -user user1                 → buscar ficheros y directorios pertenecientes al usuario ‘user1′.
+3. find /home/user1 -name \*.bin      → buscar ficheros con extensión ‘. bin’ dentro del directorio ‘/home/user1′.
+4. find /usr/bin -type f -atime +100  → buscar ficheros binarios no usados en los últimos 100 días.
+5. find /usr/bin -type f -mtime -10   → buscar ficheros creados o cambiados dentro de los últimos 10 días.
 6. find / -name \*.rpm -exec chmod 755 '{}' \; → buscar ficheros con extensión ‘.rpm’ y modificar permisos.
 7. find . -type f -print0 | xargs -0 chmod 644 → modificar recursivamente los permisos a todos los ficheros bajo el directorio actual.
 8. find / -xdev -name \*.rpm → Buscar ficheros con extensión ‘.rpm’ ignorando los dispositivos removibles como cdrom, pen-drive, etc.…
@@ -456,6 +462,23 @@ caracteres extraños por guiones bajos.
 
 13.which comando → mostrar la ruta completa a un comando. 
 
+14.find /etc/ -name "issue*"  →"busca por nombre"
+15.find / -perm 777           →"busca por permisos"
+16.find / -user root          →"busca por usuario"
+
+17.find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print    →"buscar archivos humman-readables"
+
+18.find -type f -size 1033c -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print 
+"buscar archivos hummand-readables con un tamaño especifico, ejemplo: 1033 bytes
+As units you can use:
+    b – for 512-byte blocks (this is the default if no suffix is used)
+    c – for bytes
+    w – for two-byte words
+    k – for Kilobytes (units of 1024 bytes)
+    M – for Megabytes (units of 1048576 bytes)
+    G – for Gigabytes (units of 1073741824 bytes)
+    
+    
 
 ________________________________________________________________Montando un sistema de ficheros
 
@@ -855,12 +878,12 @@ partición hda1.
  \___ \  \ \/  \/ / /\ \ |  ___/ 
  ____) |  \  /\  / ____ \| |     
 |_____/    \/  \/_/    \_\_|     
-________________________________________________________________Partición de sistema swap
+                                 Partición de sistema swap
 
 
-1. mkswap /dev/hda3 → crear fichero de sistema swap.
-2. swapon /dev/hda3 → activando una nueva partición swap.
-3. swapon /dev/hda2 /dev/hdb3 → activar dos particiones swap.
+1.#mkswap /dev/hda3 → crear fichero de sistema swap.
+2.#swapon /dev/hda3 → activando una nueva partición swap.
+3.#swapon /dev/hda2 /dev/hdb3 → activar dos particiones swap.
 
 
 
@@ -873,49 +896,49 @@ ________________________________________________________________Partición de si
 _____________________________________________________________________Salvas
 
 
-1. dump -0aj -f /tmp/home0.bak /home → hacer una salva completa del directorio ‘/home’.
-2. dump -1aj -f /tmp/home0.bak /home → hacer una salva incremental del directorio ‘/home’.
-3. restore -if /tmp/home0.bak → restaurando una salva interactivamente.
-4. rsync -rogpav --delete /home /tmp → sincronización entre directorios.
-5. rsync -rogpav -e ssh --delete /home ip_address:/tmp → rsync a través del túnel SSH.
-6. rsync -az -e ssh --delete ip_addr:/home/public /home/local → sincronizar un directorio local con
+1.#dump -0aj -f /tmp/home0.bak /home → hacer una salva completa del directorio ‘/home’.
+2.#dump -1aj -f /tmp/home0.bak /home → hacer una salva incremental del directorio ‘/home’.
+3.#restore -if /tmp/home0.bak → restaurando una salva interactivamente.
+4.#rsync -rogpav --delete /home /tmp → sincronización entre directorios.
+5.#rsync -rogpav -e ssh --delete /home ip_address:/tmp → rsync a través del túnel SSH.
+6.#rsync -az -e ssh --delete ip_addr:/home/public /home/local → sincronizar un directorio local con
 un directorio remoto a través de ssh y de compresión.
 
-7. rsync -az -e ssh --delete /home/local ip_addr:/home/public → sincronizar un directorio remoto
+7.#rsync -az -e ssh --delete /home/local ip_addr:/home/public → sincronizar un directorio remoto
 con un directorio local a través de ssh y de compresión.
 
-8. dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr 'dd of=hda.gz‘ → hacer una salva de un disco
-duro en un host remoto a través de ssh.
-
-9. dd if=/dev/sda of=/tmp/file1 → salvar el contenido de un disco duro a un fichero. (En este
+8.#dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr 'dd of=hda.gz‘ → hacer una salva de un disco duro en un host remoto a través de ssh.
+9.#dd if=/dev/sda of=/tmp/file1 → salvar el contenido de un disco duro a un fichero. (En este
 caso el disco duro es “sda” y el fichero “file1”).
 
-10.tar -Puf backup.tar /home/user → hacer una salva incremental del directorio ‘/home/user’.
-11.tar -czv --exclude=/root/dir1/* -f /var/salvas/cfg_$(date +%F_%H%M).tgz /etc /root → salvar los
+10.#tar -Puf backup.tar /home/user → hacer una salva incremental del directorio ‘/home/user’.
+11.#tar -czv --exclude=/root/dir1/* -f /var/salvas/cfg_$(date +%F_%H%M).tgz /etc /root → salvar los 
 directorios /etc y /root (excluyendo el contenido del subdirectorio /root/dir1/) en un
 archivo comprimido, cuyo nombre contenga la fecha y hora actual.
 
-12.( cd /tmp/local/ && tar c . ) | ssh -C user@ip_addr 'cd /home/share/ && tar x -p‘ → copiar el
+12.#( cd /tmp/local/ && tar c . ) | ssh -C user@ip_addr 'cd /home/share/ && tar x -p‘ → copiar el 
 contenido de un directorio en un directorio remoto a través de ssh.
 
-13.( tar c /home ) | ssh -C user@ip_addr 'cd /home/backup-home && tar x -p‘ → copiar un directorio
-local en un directorio remoto a través de ssh.
+13.#( tar c /home ) | ssh -C user@ip_addr 'cd /home/backup-home && tar x -p‘ → copiar un directorio local en un directorio remoto a través de ssh.
+14.#tar cf - . | (cd /tmp/backup ; tar xf - ) → copia local conservando las licencias y enlaces desde un directorio a otro.
 
-14.tar cf - . | (cd /tmp/backup ; tar xf - ) → copia local conservando las licencias y enlaces desde
-un directorio a otro.
-
-15.find /home/user1 -name '*.txt' | xargs cp -av --target-directory=/home/backup/ --parents →
+15.#find /home/user1 -name '*.txt' | xargs cp -av --target-directory=/home/backup/ --parents →
 encontrar y copiar todos los ficheros con extensión ‘.txt’ de un directorio a otro.
 
-16.find /var/log -name '*.log' | tar cv --files-from=- | bzip2 > log.tar.bz2 → encontrar todos los
-ficheros con extensión ‘.log’ y hacer un archivo bzip.
+16.#find /var/log -name '*.log' | tar cv --files-from=- | bzip2 > log.tar.bz2 → encontrar todos los ficheros 
+con extensión ‘.log’ y hacer un archivo bzip.
 
-17.dd if=/dev/hda of=/dev/fd0 bs=512 count=1 → hacer una copia del MRB (Master Boot
-Record) a un disco floppy.
-
-18.dd if=/dev/fd0 of=/dev/hda bs=512 count=1 → restaurar la copia del MBR (Master Boot
-Record) salvada en un floppy.
-
+17.#dd if=/dev/hda of=/dev/fd0 bs=512 count=1      → hacer una copia del MRB (Master Boot Record) a un disco floppy.
+18.#dd if=/dev/fd0 of=/dev/hda bs=512 count=1      → restaurar la copia del MBR (Master Boot Record) salvada en un floppy.
+19.#history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}'   → ver comandos mas usados
+20.#echo "" /var/log/auth.log                                     → limpiar auth log
+21.#echo "" ~/.bash_history -rf                                   →limpiar bash history
+22.#history -c                                                    →limpiar history sesion reciente
+23.#export HISTSIZE=0                                             →configura en 0 el maximo de history lines
+24.#unset HISTFILE                                                →deshabilitar history- desloguearse despues
+25.#kill -9 $$                                                    →kill current session
+26.#ln /dev/null ~/.bash_history -sf                              →envia todos los comandos de history a /dev/null
+27.#history | tail -50                                            →ultimos 50 comandos
 
 
   
