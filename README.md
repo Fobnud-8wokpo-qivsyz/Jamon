@@ -1,4 +1,97 @@
-FIREFOX Basicas
+ ____                                 _           
+|  _ \ ___  ___ _ __   ___  _ __   __| | ___ _ __ 
+| |_) / _ \/ __| '_ \ / _ \| '_ \ / _` |/ _ \ '__|
+|  _ <  __/\__ \ |_) | (_) | | | | (_| |  __/ |   
+|_| \_\___||___/ .__/ \___/|_| |_|\__,_|\___|_|   
+               |_|                             
+
+Obtencion pasiva de credenciales. Responde a las peticiones mDN, NBT-NS y LLMNR dando su propia direccion IP (envenenamiento).
+LLMNR:
+- LLMNR supports IPv6.
+- LLMNR is Multicast.
+- LLMNR is used when DNS name resolution is unable to identify a host. If LLMNR fail, NBT-NS will be used as last resort if enabled.
+NBT-NS poisoner will respond to broadcast NBT-NS queries.
+Cuando iniciamos responder, se unira al grupo IGMP y escuchara en el puerto UDP 5355 multicast.
+Ademas tambien se pondrá en escucha en los puertos TCP 139, 445, 1433, 80 and UDP port 137
+
+Usage:
+
+Several options are available, those are :
+- d : Target Domain name. This option is optional, by default WORKGROUP will be used.
+- i : Our IP address. This option is mandatory, it is used to poison LLMNR and NBT-NS answers with our ip address.
+- r : If set to 1, Responder will answer to NBT-NS Workstation/Redirect queries. By default this option is set to false.
+- b : Use HTTP basic authentication, this is used to capture clear text password. By default this option is set to false (NTLM auth)
+- s : Turn HTTP server On/Off. By default the HTTP is enabled.
+
+#responder -I eth0  → Ponemos a trabajar a responder
+En caso de Hashes capturados, ver carpeta /responder/logs, por ej. HTTP-NTLMv2-192.9.200.174.txt
+#john HTTP-NTLMv2-192.9.200.174.txt     → destripamos con John
+
+#responder -d SMB -i 192.9.200.MyIP -b 0 -s On -r 1 
+→ → → → → -d Nombre de Dominio
+	  -s Habilita el servidor HTTP
+	  -r Seteado a 1 'responder' reponderá a las NBT-NS Workstation/Redirect queries
+	  -b HTTP authentication
+
+
+
+	       
+REF:
+https://www.trustwave.com/Resources/SpiderLabs-Blog/Introducing-Responder-1-0/
+https://www.trustwave.com/Resources/SpiderLabs-Blog/Owning-Windows-Networks-with-Responder-1-7/
+https://www.trustwave.com/Resources/SpiderLabs-Blog/Owning-Windows-Networks-With-Responder-Part-2/
+https://www.trustwave.com/Resources/SpiderLabs-Blog/Responder-2-0---Owning-Windows-Networks-part-3/
+
+  ____ ____  _   _ _   _  ____ _   _ 
+ / ___|  _ \| | | | \ | |/ ___| | | |
+| |   | |_) | | | |  \| | |   | |_| |
+| |___|  _ <| |_| | |\  | |___|  _  |
+ \____|_| \_\\___/|_| \_|\____|_| |_|
+                                     
+En el archivo charset.lst podemos ver todos los charsets disponibles: Por Ej. 'numeric'
+
+#crunch <min> <max> 
+#crunch -o diccionario.txt             			    → Con la opcion -o (output) especificamos un nombre archivo de salida
+#crunch 4 4                                                 → Genera todas las combinaciones de 4 letras posibles segun su charset 
+                                                              setting por Default utiliza lalphet (Low Alphabet) letras minusculas 
+#crunch 4 4 -f /directorio_de/charset.lst numeric           → Genera todas las comb posibles de 4 digitos entre numeros del 0-9
+#crunch 4 4 ab12                                            → Genera comb posibles de 4, con los caracteres especificados
+#crunch 9 9 under@@@@@@                                     → Genera todas las combin. posibles de letras sobre los caracteres '@'  
+                                                              dejando fijos en su lugar los especificados por nosotros 'under'
+#crunch 9 9 -f .charset.lst lalpha-numeric -t und@@@@@@     → Genera combin. de letras(minusc.) y numeros sobre los '@' 
+#crunch 9 9 abcefghijklmnopqrstuwxyz1234567890 -t und@@@@@@ → Genera comb. sobre los '@' con los caracteres especificados
+
+#crunch 9 9 -t ,nd@@@%@^				    → con la opcion '-t' definimos el tipo de caracter que queremos insertar   
+							      @ inserta minusculas en las posiciones 3 4 5
+							      , inserta mayusculas en la posicion 1
+							      % inserta numeros en la posicion 6
+							      ^ inserta simbolos en la posicion 8
+							      
+#crunch 1 1 -p Harry Hermione Ron                           → concatenamos y combinamos las 3 palabras 
+
+
+#crunch 1 1 -o /crunch/START -c 5000                        → Cada 5000 lineas genera un fichero, usamos la opción -c (esta opción 
+                                                              solo funciona si el -o START está presente en la linea)
+							      -START funciona como nombre de archivo para el primer fichero a crear, 
+							      a partir de ahi los ficheros tomaran el nombre de la ultima linea del 
+							      archivo anterior + la primera linea del archivo posterior
+
+#crunch 1 1  -o /crunch/START -c 5000 -z gzip		    → Los ficheros generados son automaticamente comprimidos en gzip
+							      crunch soporta (gzip, bzip2, lzma, and 7z)
+
+
+#crunch 8 8 | aircrack-ng -e [ESSID] -w – [file path to the .cap file]                 → Piping Crunch con Aircrack
+#crunch 8 8 | aircrack-ng -e test -w - /pentest/wireless/aircrack-ng/test/wpa.cap      → Piping (otro ejemplo)
+
+
+
+
+ _____ ___ ____  _____ _____ _____  __
+|  ___|_ _|  _ \| ____|  ___/ _ \ \/ /
+| |_   | || |_) |  _| | |_ | | | \  / 
+|  _|  | ||  _ <| |___|  _|| |_| /  \ 
+|_|   |___|_| \_\_____|_|   \___/_/\_\
+                                      
 
 network.http.keep-alive.timeout  -->  300
 network.http.pipelining  --> TRUE
