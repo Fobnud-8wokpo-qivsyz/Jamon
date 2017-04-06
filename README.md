@@ -1529,6 +1529,11 @@ The usual way of doing this is to prefix the filename with a path - ./-, or /hom
 
 -Decodear una archivo ROT13: 
 #cat data.txt | tr a-zA-Z n-za-mN-ZA-M
+#alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"      → Con esto ya podemos usar 'rot13' como comando
+#rot13 < InputFile > OutputFile_Roteado
+
+
+
 
 
 _______________________________________________________________________________________________________
