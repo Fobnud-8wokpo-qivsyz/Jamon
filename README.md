@@ -1,4 +1,16 @@
- ____                                 _           
+______________________________________________________________________________________________________________________________
++-+-+-+-+
+|T|G|C|D|
++-+-+-+-+
+
+'TCP Gender Changer es un método para hacer accesible un servidor de red interno basado en TCP / IP más allá de su firewall de protección.' 'Para reenviar puertos, como lo del servidor SOCKS, a través del firewall'
+
+
+
+
+
+
+____                                 _           
 |  _ \ ___  ___ _ __   ___  _ __   __| | ___ _ __ 
 | |_) / _ \/ __| '_ \ / _ \| '_ \ / _` |/ _ \ '__|
 |  _ <  __/\__ \ |_) | (_) | | | | (_| |  __/ |   
