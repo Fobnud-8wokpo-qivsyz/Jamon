@@ -939,7 +939,10 @@ con extensión ‘.log’ y hacer un archivo bzip.
 25.#kill -9 $$                                                    →kill current session
 26.#ln /dev/null ~/.bash_history -sf                              →envia todos los comandos de history a /dev/null
 27.#history | tail -50                                            →ultimos 50 comandos
-
+ 
+28.MEGATOOLS
+28.a medadl --print-names 'link del archivo'      →descargamos archivos
+28.b megaput *.zip 'link de la carpeta a la que subiremos los archivos'
 
   
   _____ ____          _____   ____  __  __
