@@ -1,4 +1,13 @@
- ___ ___ ___ __  __ 
+___________________POWERSHELL
+
+>>Get-ExecutionPolicy        //ver el estado de 'Ejecucion de Scripts'
+>>Set-ExecutionPolicy Unrestricted        //Set 'Ejecucion de Scripts to Unrestricted mode'
+
+
+
+
+
+___ ___ ___ __  __ 
 |   \_ _/ __|  \/  |
 | |) | |\__ \ |\/| |
 |___/___|___/_|  |_|
