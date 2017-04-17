@@ -1,4 +1,20 @@
-___________________POWERSHELL
+    _   ___________________ __  __
+   / | / / ____/_  __/ ___// / / /
+  /  |/ / __/   / /  \__ \/ /_/ / 
+ / /|  / /___  / /  ___/ / __  /  
+/_/ |_/_____/ /_/  /____/_/ /_/   
+                                ______________________________________________NETSH
+                                
+#nesth firewall add portopening TCP 666 PuertaDelDiablo                →Abrimos puerto en el Firewall. 
+#netsh firewall delete portopening TCP 666                             →Cerramos el puerto
+
+
+
+
+___   __  _    _  ___  ___   ___  _  _  ___  __    __   
+(  ,\ /  \( \/\/ )(  _)(  ,) / __)( )( )(  _)(  )  (  )  
+ ) _/( () )\    /  ) _) )  \ \__ \ )__(  ) _) )(__  )(__ 
+(_)   \__/  \/\/  (___)(_)\_)(___/(_)(_)(___)(____)(____)___________________POWERSHELL
 
 >>Get-ExecutionPolicy        //ver el estado de 'Ejecucion de Scripts'
 >>Set-ExecutionPolicy Unrestricted        //Set 'Ejecucion de Scripts to Unrestricted mode'
