@@ -1,3 +1,14 @@
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+b374k
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+git clone(ate) el repo de b374k https://github.com/b374k/b374k
+$php -f index.php
+$php index.php -o b374kMyShell.php -p myPass
+
+subi la shell al server and enjoy them
+
+
 +-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+
 |W|E|E|V|E|L|Y|
 +-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+
