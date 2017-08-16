@@ -81,6 +81,34 @@ aptitude search linux-image-
 apt-get install 'el kernel que hayamos elejido'
 
 
+Escaping Linux Chroot
+
+#adduser prisoner
+#gpasswd -a prisoner root
+#mkdir chroot
+#cd chroot
+#mkdir bin dev  etc home  home/prisoner  lib  var  usr  usr/bin
+#cp /bin/bash /chroot/bin
+//To make sure that the bash shell will work properly we need to locate its necessary 
+//libraries and copying them to /lib jail folder:  
+//listamos las librerias asociadas al bash
+#ldd /bin/bash
+ejemplo resultado del comando ldd:
+        linux-vdso.so.1 (0x00007ffcb1fed000)
+        libtinfo.so.5 => /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007fafe891f000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fafe871b000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fafe837c000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000559e26c9e000)
+//copiamos todas las librerias que nos listo el anterior cmd a /chroot/lib
+#cp /lib/.......... /chroot/lib        
+//Ahora ejecutaremos el preciado chroot (en caso de que tengamos el siguiente error:
+//chroot: failed to run command ‘/bin/bash’ no such file or directory
+//Solution: [Enlace simbolico] # ln -s lib /chroot/lib64 (porque? http://bit.ly/2weXyO6)
+
+//Escaping the jail:
+
+IN PROCESS::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ___________________________________________________KERNEL
 
