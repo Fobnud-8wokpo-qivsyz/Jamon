@@ -466,7 +466,8 @@ ToEncoding.
 | o ) | |/ _|/ _| / \ | o \  / \ | o \/ _|| U || || | |/ \/ _|
 | o \ U |\_ ( (_ | o ||   / | o ||   ( (_ |   || || V ( o )_ \
 |___/___||__/\__||_n_||_|\\ |_n_||_|\\\__||_n_||_| \_/ \_/|__/
-                                                              BUSCAR ARCHIVOS/FIND FILES:
+                                                              BUSCAR ARCHIVOS/
+                                                              FILES:
 
 
 1. find / -name file1                 → buscar fichero y directorio a partir de la raíz del sistema.
@@ -488,7 +489,7 @@ caracteres extraños por guiones bajos.
 
 12.whereis halt → mostrar la ubicación de un fichero binario, de ayuda o fuente. En este caso pregunta dónde está el comando ‘halt’.
 
-13.which comando → mostrar la ruta completa a un comando. 
+13.which comando → mostrar la ruta completa a un comando/binario. 
 
 14.find /etc/ -name "issue*"  →"busca por nombre"
 15.find / -perm 777           →"busca por permisos"
@@ -505,6 +506,7 @@ As units you can use:
     k – for Kilobytes (units of 1024 bytes)
     M – for Megabytes (units of 1048576 bytes)
     G – for Gigabytes (units of 1073741824 bytes)
+    
     
     
 
