@@ -1,4 +1,4 @@
-____________________________________________________SMB
+____________________________________________________SMB_______________________________________________________________________
 
 Imprimir desde la Linea de Comandos en una impresora compartida en red:
 #echo -en "\rHello\r\f" | smbclient "//192.9.200.165/MULTIPROPOSITO" "password" -c "print -" -N -U "username" -W "workgroup"
@@ -6,7 +6,7 @@ Imprimir desde la Linea de Comandos en una impresora compartida en red:
 
 
 
-_________________________________________________update-rc.d
+_________________________________________________update-rc.d___________________________________________________________________
 
 El comando update-rc.d nos permite automatizar el proceso de creación y borrado de enlaces 
 a los scripts de inicio, con en fin de iniciar/parar servicios.
@@ -20,14 +20,7 @@ a los scripts de inicio, con en fin de iniciar/parar servicios.
 #/etc/init.d/networking restart
 
 
-
-  _____ _____ _    _ 
- / ____/ ____| |  | |
-| (___| (___ | |__| |
- \___ \\___ \|  __  |
- ____) |___) | |  | |
-|_____/_____/|_|  |_|
-__________________________________________________SSH authentication
+__________________________________________________SSH authentication___________________________________________________________
 
 //chequeamos la configuracion /etc/ssh/sshd_config
 PubkeyAuthentication yes
@@ -46,7 +39,7 @@ si no existe el archivo autohrized_keys lo creamos:
 #ssh user@syslocal "cat .ssh/id_dsa.pub" >> .ssh/authorized_keys        //opcion 2 si el usuario tiene un ssh levantado me copio su clave
 #scp id_rsa.pub root@sysremoto:/root/.ssh && cat id_rsa.pub >> authorized_keys    //opcion 3 copia manual
 
-__________________________________________________SQL basic
+__________________________________________________SQL basic____________________________________________________________________
 
 show databases;
 use agendaDB;
@@ -64,7 +57,7 @@ delete from ejemplo where numero = 1;
 
 
 
-___________________________________________________CHROOT
+___________________________________________________CHROOT______________________________________________________________________
 
 apt-get install debootstrap
 //vamos a necesitar tener una particion extra. por ejemplo /sdb1
@@ -110,20 +103,14 @@ ejemplo resultado del comando ldd:
 IN PROCESS::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-___________________________________________________KERNEL
+___________________________________________________KERNEL______________________________________________________________________
 
 #aptitude search linux-image-                      //ver los kernels disponibles
 #apt-get install 'el kernel que elijamos'
 
 
 
- _____  _   _  _____ 
-|  __ \| \ | |/ ____|
-| |  | |  \| | (___  
-| |  | | . ` |\___ \ 
-| |__| | |\  |____) |
-|_____/|_| \_|_____/
-___________________________________________________DNS-hostname-domainname-fqdn
+___________________________________________________DNS-hostname-domainname-fqdn________________________________________________
 
 #nslookup 192.168.1.10
 #dig casita.com
@@ -224,13 +211,8 @@ nameserver 8.8.8.8
                 
                                 
                                 
-  _____ _____ _____  _    _ ______ _____  
- / ____|_   _|  __ \| |  | |  ____|  __ \ 
-| |      | | | |__) | |__| | |__  | |__) |
-| |      | | |  ___/|  __  |  __| |  _  / 
-| |____ _| |_| |    | |  | | |____| | \ \ 
- \_____|_____|_|    |_|  |_|______|_|  \_\
-___________________________________________________Cipher_Keys_and others
+
+___________________________________________________Cipher_Keys_and others_____________________________________________________
 
 Simetrico
 1.  gpg -c supersecreto.txt      //cifrado
@@ -292,20 +274,7 @@ Generar un certificado con openssl
 
 
 
-
-
-
-
-
-
- _____  _____   ____   _____ ______  _____  ____   _____ 
-|  __ \|  __ \ / __ \ / ____|  ____|/ ____|/ __ \ / ____|
-| |__) | |__) | |  | | |    | |__  | (___ | |  | | (___  
-|  ___/|  _  /| |  | | |    |  __|  \___ \| |  | |\___ \ 
-| |    | | \ \| |__| | |____| |____ ____) | |__| |____) |
-|_|    |_|  \_\\____/ \_____|______|_____/ \____/|_____/ 
-                                                         
-___________________________________________________Analisis de procesos y monitoreo del sistema
+___________________________________________________Analisis de procesos y monitoreo del sistema________________________________
 
 1. uptime → hora.fecha.usuarios conectados
 2. top    → info detallada de los procesos.memoria.cpu.hora.etc...
@@ -346,16 +315,10 @@ W: intercambio
 14.b sadc(system activity data collector): recoge los datos relacionados con el sistema y construye con ellos un registro en formato binario.
 14.c sar (system activity reader): recopila datos en formato texto o binario y permite leer los datos binarios recogidos por sadc, y los traduce a formato texto.
 
+15.at 3pm  → el comando 'at' permite correr procesos en un tiempo definido
 
-
-  _______     _______ _______ ______ __  __   _____ _   _ ______ ____  
- / ____\ \   / / ____|__   __|  ____|  \/  | |_   _| \ | |  ____/ __ \ 
-| (___  \ \_/ / (___    | |  | |__  | \  / |   | | |  \| | |__ | |  | |
- \___ \  \   / \___ \   | |  |  __| | |\/| |   | | | . ` |  __|| |  | |
- ____) |  | |  ____) |  | |  | |____| |  | |  _| |_| |\  | |   | |__| |
-|_____/   |_| |_____/   |_|  |______|_|  |_| |_____|_| \_|_|    \____/ 
-                                                                       
-___________________________________________________Información del sistema
+                                                                      
+___________________________________________________Información del sistema_____________________________________________________
 
 1. arch → mostrar la arquitectura de la máquina (1).
 2. uname -m → mostrar la arquitectura de la máquina (2).
@@ -389,7 +352,7 @@ dispositivos de bloque (discos rígidos, etc.)
 26.echo $DESKTOP_SESSION           → mostrar the windows manager terminal
 
  
-______________________________________________________Apagar, reiniciar o cerrar sesión
+______________________________________________________Apagar, reiniciar o cerrar sesión________________________________________
 
 
 1. shutdown -h now → apagar el sistema (1).
@@ -404,7 +367,7 @@ ______________________________________________________Apagar, reiniciar o cerrar
 10.skill nombre_de_usuario → cerrar sesión (2) [Es preciso ejecutarlo con privilegios de root]
 11.exit → salir del intérprete de comandos (si solo hay uno, equivale a cerrar sesión).
 
-___________________________________________________________Gestionar archivos y directorios
+___________________________________________________________Gestionar archivos y directorios____________________________________
 
 1. cd → ir al directorio personal.
 2. cd /home → cambiar al directorio “/home”.
@@ -462,12 +425,7 @@ ToEncoding.
 
 
 
- ___ _ _  __  __   _   ___    _   ___  __  _ _  _  _ _  _  __ 
-| o ) | |/ _|/ _| / \ | o \  / \ | o \/ _|| U || || | |/ \/ _|
-| o \ U |\_ ( (_ | o ||   / | o ||   ( (_ |   || || V ( o )_ \
-|___/___||__/\__||_n_||_|\\ |_n_||_|\\\__||_n_||_| \_/ \_/|__/
-                                                              BUSCAR ARCHIVOS/
-                                                              FILES:
+____________________________________________________________BUSCAR ARCHIVOS/FILES:_____________________________________________
 
 
 1. find / -name file1                 → buscar fichero y directorio a partir de la raíz del sistema.
@@ -510,7 +468,7 @@ As units you can use:
     
     
 
-________________________________________________________________Montando un sistema de ficheros
+________________________________________________________________Montando un sistema de ficheros________________________________
 
 1. mount /dev/hda2 /mnt/hda2 → montar un disco llamado hda2. Verifique primero la
 existencia del directorio ‘/ mnt/hda2′; si no está, debe crearlo.
@@ -535,7 +493,7 @@ fichero es de solo lectura o el disco duro está lleno.
 tipo de sistema de ficheros).
 
  
-____________________________________________________________________Espacio en disco
+____________________________________________________________________Espacio en disco__________________________________________
 
 1. lsblk  → muestra todos los dispositivos conectados junto con sus esquemas de particionado
 1. lsscsi
@@ -555,13 +513,7 @@ awk '{printf ”%.3f MB\t%s\n”, $2/(1024), $1}‘ → mostrar (en Debian o der
 instalados que más espacio consumen (en orden descendente).
 
 
- _    _  _____ _    _         _____  _____ ____   _____ 
-| |  | |/ ____| |  | |  /\   |  __ \|_   _/ __ \ / ____|
-| |  | | (___ | |  | | /  \  | |__) | | || |  | | (___  
-| |  | |\___ \| |  | |/ /\ \ |  _  /  | || |  | |\___ \ 
-| |__| |____) | |__| / ____ \| | \ \ _| || |__| |____) |
- \____/|_____/ \____/_/    \_\_|  \_\_____\____/|_____/ 
-______________________________________________________________________Usuarios y grupos
+ ______________________________________________________Usuarios y grupos______________________________________________________
 
 1. groupadd nombre_del_grupo → crear un nuevo grupo.
 2. groupdel nombre_del_grupo → borrar un grupo.
@@ -593,7 +545,7 @@ de los ficheros creados recientemente.
  
  
  
-_____________________________________________________Permisos en ficheros (usar “+” para colocar permisos y “-” para eliminar)
+______________________________Permisos en ficheros (usar “+” para colocar permisos y “-” para eliminar)_______________________
 
 1. ls -lh → Mostrar permisos.
 2. ls /tmp | pr -T5 -W$COLUMNS → dividir la terminal en 5 columnas.
@@ -626,7 +578,7 @@ ficheros solamente a los dueños legítimos.
 
 
 
-___________________________________________Atributos especiales en ficheros (usar “+” para colocar permisos y “-” para eliminar)
+__________________________Atributos especiales en ficheros (usar “+” para colocar permisos y “-” para eliminar)________________
 
 1. chattr +a file1 → permite escribir abriendo un fichero solamente modo append.
 
@@ -649,7 +601,7 @@ cancelado.
 8. lsattr → mostrar atributos especiales.
 
  
-___________________________________________________________________Archivos y ficheros comprimidos
+___________________________________________________________________Archivos y ficheros comprimidos____________________________
 
 
 
@@ -697,7 +649,7 @@ simultánea.
 28.xz -d file.xz
 
  
-____________________________________________________________________Paquetes rpm (Red Hat, Fedora y similares)
+____________________________________________________________________Paquetes rpm (Red Hat, Fedora y similares)_________________
 
 
 
@@ -751,7 +703,7 @@ una fuente rpm.
 28.cat /var/log/aptitude | grep "\[INSTALA\]"          → ver paquetes instalados con aptitude
 
  
-_____________________________________________________________Actualizador de paquetes yum (Fedora, Redhat y otros)
+_____________________________________________________________Actualizador de paquetes yum (Fedora, Redhat y otros)_____________
 
 
 
@@ -769,7 +721,7 @@ dependencies para ti, usando tus repositorios.
 9. yum clean headers → eliminar todos los ficheros de encabezamiento que el sistema usa para resolver la dependencia.
 10.yum clean all → eliminar desde los paquetes caché y ficheros de encabezado.
 
-_______________________________________________________Paquetes deb (Debian, Ubuntu y otros)
+_______________________________________________________Paquetes deb (Debian, Ubuntu y otros)___________________________________
 
 1. dpkg -i package.deb → instalar / actualizar un paquete deb.
 2. dpkg -r package_name → eliminar un paquete deb del sistema.
@@ -782,7 +734,7 @@ _______________________________________________________Paquetes deb (Debian, Ubu
 
 
 
-________________________________________________________Actualizador de paquetes apt (Debian, Ubuntu y otros)
+________________________________________________________Actualizador de paquetes apt (Debian, Ubuntu y otros)__________________
 
 
 1. apt-get install package_name → instalar / actualizar un paquete deb.
@@ -796,7 +748,7 @@ ________________________________________________________Actualizador de paquetes
 9. apt-cache show <paquete>  → muestra una descripcion completa del paquete
 
 
-____________________________________________________________Ver el contenido de un fichero
+____________________________________________________________Ver el contenido de un fichero_____________________________________
 
 
 1. cat file1 → ver los contenidos de un fichero comenzando desde la primera hilera.
@@ -809,7 +761,7 @@ ____________________________________________________________Ver el contenido de 
 
 
 
-____________________________________________________________Manipulación de texto
+____________________________________________________________Manipulación de texto______________________________________________
 
 1. cat file1 file2 … | command <> file1_in.txt_or_file1_out.txt → sintaxis general para la
 manipulación de texto utilizando PIPE, STDIN y STDOUT.
@@ -836,11 +788,13 @@ que contienen números.
 11.echo 'ejemplo' | tr '[:lower:]' '[:upper:]‘ → convertir “ejemplo” de minúsculas a mayúsculas.
 12.sed -e '1d' ejemplo.txt → elimina la primera línea del fichero ejemplo.txt
 13.sed -n '/string1/p‘ → visualizar solamente las líneas que contienen la palabra “string1”.
+14.sed s/mysql/MySQL/g <FILEORIGIN> > <FILEDEST> → busca la palabra mysql (minuscula) y la reemplaza con MYSQL (mayuscula)
+15.sed -i 's/\. */. /g'  → reemplaza todas las instancias con varios espacios seguidos por un numero por un espacio simple en todos los archivos de un directorio
 
 
 
      
-____________________________________________Establecer caracter y conversión de ficheros
+____________________________________________Establecer caracter y conversión de ficheros_______________________________________
 
 
 
@@ -855,7 +809,7 @@ MSDOS.
 
  
 
-___________________________________________________________Análisis del sistema de ficheros
+___________________________________________________________Análisis del sistema de ficheros___________________________________
 
 
 
@@ -886,7 +840,7 @@ disco hda1.
 
 
 
-_______________________________________________________________Formatear un sistema de ficheros
+_______________________________________________________________Formatear un sistema de ficheros______________________________
 
 
 
@@ -902,13 +856,8 @@ partición hda1.
 
 
 
-  _______          __     _____  
- / ____\ \        / /\   |  __ \ 
-| (___  \ \  /\  / /  \  | |__) |
- \___ \  \ \/  \/ / /\ \ |  ___/ 
- ____) |  \  /\  / ____ \| |     
-|_____/    \/  \/_/    \_\_|     
-                                 Partición de sistema swap
+   
+___________________________________________________________Partición de sistema swap________________________________________
 
 
 1.#mkswap /dev/hda3 → crear fichero de sistema swap.
@@ -917,13 +866,8 @@ partición hda1.
 
 
 
-  _____         _ __      __      _____ 
- / ____|  /\   | |\ \    / /\    / ____|
-| (___   /  \  | | \ \  / /  \  | (___  
- \___ \ / /\ \ | |  \ \/ / /\ \  \___ \ 
- ____) / ____ \| |___\  / ____ \ ____) |
-|_____/_/    \_\______\/_/    \_\_____/ 
-_____________________________________________________________________Salvas
+
+_____________________________________________________________________Salvas________________________________________________
 
 
 1.#dump -0aj -f /tmp/home0.bak /home → hacer una salva completa del directorio ‘/home’.
@@ -975,13 +919,8 @@ con extensión ‘.log’ y hacer un archivo bzip.
 28.b megaput *.zip 'link de la carpeta a la que subiremos los archivos'
 
   
-  _____ ____          _____   ____  __  __
- / ____|  __ \       |  __ \ / __ \|  \/  |
-| |    | |  | |______| |__) | |  | | \  / |
-| |    | |  | |______|  _  /| |  | | |\/| |
-| |____| |__| |      | | \ \| |__| | |  | |
- \_____|_____/       |_|  \_\\____/|_|  |_|
-______________________________________________________________________CDROM
+
+______________________________________________________________________CDROM___________________________________________________
 
 
 
@@ -1008,13 +947,8 @@ iso de un directorio.
 
 
     
- _   _ ______ _________          ______  _____  _  _
-| \ | |  ____|__   __\ \        / / __ \|  __ \| |/ /
-|  \| | |__     | |   \ \  /\  / / |  | | |__) | ' / 
-| . ` |  __|    | |    \ \/  \/ /| |  | |  _  /|  <  
-| |\  | |____   | |     \  /\  / | |__| | | \ \| . \ 
-|_| \_|______|  |_|      \/  \/   \____/|_|  \_\_|\_\
-______________________________________________________Trabajo con la red (LAN Y WIFI)
+
+______________________________________________________Trabajo con la red (LAN Y WIFI)_________________________________________
 
 
 
