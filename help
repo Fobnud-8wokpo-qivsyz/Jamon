@@ -34,7 +34,7 @@ RSAAuthentication yes
 copiamos la clave publica generada al archivo authorized_keys del sistema remoto:
 si no existe el archivo autohrized_keys lo creamos:
 #touch authorized_keys
-#chmod 644 authorized_keys
+#chmod 644 authorized_keys 
 #cat .ssh/id_dsa.pub | ssh root@sysremoto "cat >> .ssh/authorized_keys" //opcion 1 copiado
 #ssh user@syslocal "cat .ssh/id_dsa.pub" >> .ssh/authorized_keys        //opcion 2 si el usuario tiene un ssh levantado me copio su clave
 #scp id_rsa.pub root@sysremoto:/root/.ssh && cat id_rsa.pub >> authorized_keys    //opcion 3 copia manual
