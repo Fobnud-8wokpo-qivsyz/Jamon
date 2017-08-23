@@ -212,7 +212,7 @@ nameserver 8.8.8.8
                                 
                                 
 
-___________________________________________________Cipher_Keys_and others_____________________________________________________
+___________________________________________________Cipher_Keys_and Passwords && others_____________________________________________________
 
 Simetrico
 1.  gpg -c supersecreto.txt      //cifrado
@@ -271,6 +271,16 @@ Bajar/importar clave desde un servidor:
 
 Generar un certificado con openssl
 #openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout cert
+
+21.Crear generador de passwords
+//Añadir en  ~/.bashrc las lineas de abajo y luego reiniciar #source ~/.bashrc
+
+genpass() {
+    local p=$1
+        [ "$p" == "" ] && p=16
+        tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${p} | xargs
+}
+
 
 
 
@@ -366,6 +376,8 @@ ______________________________________________________Apagar, reiniciar o cerrar
 9. logout → cerrar sesión.
 10.skill nombre_de_usuario → cerrar sesión (2) [Es preciso ejecutarlo con privilegios de root]
 11.exit → salir del intérprete de comandos (si solo hay uno, equivale a cerrar sesión).
+
+
 
 ___________________________________________________________Gestionar archivos y directorios____________________________________
 
@@ -857,12 +869,21 @@ partición hda1.
 
 
    
+
+
+
+
 ___________________________________________________________Partición de sistema swap________________________________________
 
 
 1.#mkswap /dev/hda3 → crear fichero de sistema swap.
 2.#swapon /dev/hda3 → activando una nueva partición swap.
 3.#swapon /dev/hda2 /dev/hdb3 → activar dos particiones swap.
+
+
+
+
+
 
 
 
@@ -917,8 +938,18 @@ con extensión ‘.log’ y hacer un archivo bzip.
 28.MEGATOOLS
 28.a medadl --print-names 'link del archivo'      →descargamos archivos
 28.b megaput *.zip 'link de la carpeta a la que subiremos los archivos'
+29.PATH=$PATH:/root/new_command → Le decimos al sistema que a la variable PATH le agregue la variable existente PATH + 
+                                  el nuevo comando new_command que se encuentra en el directorio /root
 
   
+
+
+
+
+
+
+
+
 
 ______________________________________________________________________CDROM___________________________________________________
 
@@ -947,6 +978,14 @@ iso de un directorio.
 
 
     
+
+
+
+
+
+
+
+
 
 ______________________________________________________Trabajo con la red (LAN Y WIFI)_________________________________________
 
