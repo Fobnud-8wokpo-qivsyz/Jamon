@@ -1128,6 +1128,8 @@ $tcpdump -s 500
 buscando a metasploit
 $tcpdump -r5g.pcap -l -s0 -w - | strings | grep "PUT /"
 
+Nota: una buena herramienta para leer capturas de tcpdump muy grandes es tcp-reduce
+
 
 Advanced tcpdump ----------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
