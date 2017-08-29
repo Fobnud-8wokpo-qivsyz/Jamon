@@ -1265,7 +1265,7 @@ Find SSH connections on any port (via banner text)
 # tcpdump 'tcp[(tcp[12]>>2):4] = 0x5353482D'
 Packets with a TTL less than 10 (usually indicates a problem or use of traceroute)
 # tcpdump 'ip[8] < 10'
-Packets with the Evil Bit set (hacker trivia more than anything else)
+Packets with the Evil Bit set (hacker trivia more than anything else) ;);;);;););););););););););););););)
 # tcpdump 'ip[6] & 128 != 0'
 
 TKS To: (https://danielmiessler.com/study/tcpdump/#gs.jufPjHI)
