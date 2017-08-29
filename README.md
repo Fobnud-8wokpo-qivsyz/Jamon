@@ -1,3 +1,29 @@
+_____________________________________________________________________________________________________________________________
+
+NMAP
+
+#nmap -sS TARGET			/**TCP SYN Scan
+#nmap -sT TARGET			/**TCP Connect Scan (connect system call)
+#nmap -sU TARGET 			/**UDP Scan
+#nmap -sU -data-length='valor' TARGET	/**Tamaño de PAYLOAD (valor) o 0 para deshabilitar PAYLOAD
+#nmap -sY TARGET			/**SCTP INIT Scan. (Mayormente usado para SS7/SIGTRAN)
+#nmap -sN TARGET			/**TCP Flag Header is 0
+#nmap -sX TARGET			/**Set the FIN PUSH URG Flag
+#nmap -sF TARGET			/**Set the TCP FIN bit
+#nmap -sA TARGET			/**Set the TCP ACK bit (Mostly used to detect and map out firewalls ruleset)
+#nmap -sW TARGET			/**TCP Window Scan (idem ACK, except that it exploits an implementation detail of
+					/**certain systems to differentiate open and closed ports
+#
+
+
+
+
+
+
+
+
+
+
 ______________________________________________________________________________________________________________________________
 +-+-+-+-+
 |T|G|C|D|
