@@ -1091,6 +1091,8 @@ tcpdump
 
 operadores: and|or|not ; inbound|outbound (para PPP protocols) ; 
 
+
+
 listar interfaces
 $tcpdump -D   
 guardar la captura en file.cap
@@ -1127,6 +1129,14 @@ capturar 500 bytes de datos por cada paquete en lugar de los 68 bytes por defaul
 $tcpdump -s 500
 buscando a metasploit
 $tcpdump -r5g.pcap -l -s0 -w - | strings | grep "PUT /"
+Captura: -nn (No resuelve HostName ni portName) -v (Verbose) -X (Packets content in Hex+ASCII) -S (Seq numbers)
+-s0 (-s define el tamaño en bytes de la captura, -s0 captura todo) -c1 (cantidad 1 paq) icmp (icmp) ;)
+$tcpdump -nnvXSs 0 -c1 icmp
+Captura por tamaño
+$tcpdump less 32 
+$tcpdump greater 64
+$tcpdump <= 128
+
 
 Nota: una buena herramienta para leer capturas de tcpdump muy grandes es tcp-reduce
 
@@ -1212,7 +1222,53 @@ Enmascaramos el ACK para capturar solamente SYN y SYN/ACK
 Every bits of the mask match !
 $tcpdump -i eth1 'tcp[13] & 2 = 2'
 
+						RESUMEN PARA CAPTURA DE BANDERAS:
+						
+						>>>URGENT (URG) packets...
+						tcpdump 'tcp[13] & 32 != 0'
+						
+						>>>ACKNOWLEDGE (ACK) packets
+						tcpdump 'tcp[13] & 16 != 0'
+						
+						>>>PUSH (PSH) packets
+						tcpdump 'tcp[13] & 8 != 0'
+						
+						>>>RESET (RST) packets
+						tcpdump 'tcp[13] & 4 != 0'
+						
+						>>>SYNCHRONIZE (SYN) packets
+						tcpdump 'tcp[13] & 2 != 0'
+						
+						>>>FINISH (FIN) packets
+						tcpdump 'tcp[13] & 1 != 0'
+						
+						>>>SYNCHRONIZE/ACKNOWLEDGE (SYNACK) packets
+						tcpdump 'tcp[13] = 18'
+						
+						Capture SYN Flags
+						#tcpdump 'tcp[tcpflags] == tcp-syn'
+						Capture RST Flags
+						#tcpdump 'tcp[tcpflags] == tcp-rst'
+						Capture FIN Flags
+						#tcpdump 'tcp[tcpflags] == tcp-fin'
+						
+						
 
+Identifying Noteworthy Traffic
+(Finally, there are a few quick recipes you’ll want to remember for catching specific and specialized traffic, such as malformed / likely-malicious packets.) 
+
+Packets with both the RST and SYN flags set (this should never be the case)
+# tcpdump 'tcp[13] = 6'
+Find cleartext HTTP GET requests (Ex. lynx www.google.com OR GET www.google.com)
+# tcpdump 'tcp[32:4] = 0x47455420'
+Find SSH connections on any port (via banner text)
+# tcpdump 'tcp[(tcp[12]>>2):4] = 0x5353482D'
+Packets with a TTL less than 10 (usually indicates a problem or use of traceroute)
+# tcpdump 'ip[8] < 10'
+Packets with the Evil Bit set (hacker trivia more than anything else)
+# tcpdump 'ip[6] & 128 != 0'
+
+TKS To: (https://danielmiessler.com/study/tcpdump/#gs.jufPjHI)
 
 
 
