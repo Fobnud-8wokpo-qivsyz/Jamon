@@ -13,8 +13,22 @@ NMAP
 #nmap -sA TARGET			/**Set the TCP ACK bit (Mostly used to detect and map out firewalls ruleset)
 #nmap -sW TARGET			/**TCP Window Scan (idem ACK, except that it exploits an implementation detail of
 					/**certain systems to differentiate open and closed ports
-#
-
+#nmap -sM TARGET			/**Maimon Scan idem Xmas Scan, except that the probe is FIN/ACK
+#nmap -sP TARGET			/**TCP SYN Ping (or ACK for unpriviliged users)
+#nmap -PE TARGET			/**Send a ICMP type 8 echo request, and expects an ICMP type 0 echo reply
+#nmap -PP TARGET			/**Send a ICMP type 13 timestamp request, expects a type 14 timestamp reply
+#nmap -PM TARGET 			/**Send a ICMP type 17 address mask request, expects a type 18 add mask reply
+#nmap --reason				/**the 'reason' cmdline option nos dice cual fue la razon de respuesta a un paquete
+#nmap -PA TARGET			/**TCP ACK Ping
+#nmap -PU TARGET			/**Sends UDP Packet.(If port closed >ICMP port unreachable)(if UDP open>no response)
+#nmap -sP -PO1 TARGET (letra O)		/**IP Ping. IP Packet with the specified protocol numbers in the protocol field of the 						.../**IP header (1=ICMP) (2=IGMP) (4=IP)
+#nmap -PN TARGET			/**Disable host discovery
+#nmap -sL TARGET			/**List potential targets and their DNS names
+#nmap -n -sL TARGET			/**List ip targets (-sL) disabling DNS lookups
+#nmap -PR TARGET 			/**ARP Ping
+#nmap --dns-servers LIST		/**Specify DNS Servers to nmap to use
+#nmap --send-ip TARGET			/**Disable the default ARP ping for local ethernet networks
+#nmap 
 
 
 
