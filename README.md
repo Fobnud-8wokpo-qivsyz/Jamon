@@ -7,10 +7,17 @@ NMAP
 #nmap -sU TARGET 			/**UDP Scan
 #nmap -sU -data-length='valor' TARGET	/**Tamaño de PAYLOAD (valor) o 0 para deshabilitar PAYLOAD
 #nmap -sY TARGET			/**SCTP INIT Scan. (Mayormente usado para SS7/SIGTRAN)
-#nmap -sN TARGET			/**TCP Flag Header is 0
-#nmap -sX TARGET			/**Set the FIN PUSH URG Flag
-#nmap -sF TARGET			/**Set the TCP FIN bit
+
+Any packet not containing SYN, ACK or RST resultará en una respuesta RST>Puerto cerrado o no response>Puertos abiertos (Open|Filtered), Nmap includes three scan options to take advantage of this characteristic:
+#nmap -sX TARGET			/**Xmas Scan (Set the FIN PUSH URG Flag)
+#nmap -sF TARGET			/**Set the TCP FIN bit flag
+#nmap -sN TARGET			/**Null Scan. Does not set any TCP flag bits in the TCP Header
+
+En el ACK scan (-sA) unfiltered systems will respond with a RST packet for both open and closed ports. If and ICMP error
+message or no response is received, the port is considered filtered by a firewall:
 #nmap -sA TARGET			/**Set the TCP ACK bit (Mostly used to detect and map out firewalls ruleset)
+
+
 #nmap -sW TARGET			/**TCP Window Scan (idem ACK, except that it exploits an implementation detail of
 					/**certain systems to differentiate open and closed ports
 #nmap -sM TARGET			/**Maimon Scan idem Xmas Scan, except that the probe is FIN/ACK
@@ -21,6 +28,7 @@ NMAP
 #nmap --reason				/**the 'reason' cmdline option nos dice cual fue la razon de respuesta a un paquete
 #nmap -PA TARGET			/**TCP ACK Ping
 #nmap -PU TARGET			/**Sends UDP Packet.(If port closed >ICMP port unreachable)(if UDP open>no response)
+					/**Another ICMP errors indicate>ports blocked by filters
 #nmap -sP -PO1 TARGET (letra O)		/**IP Ping. IP Packet with the specified protocol numbers in the protocol field of the 						.../**IP header (1=ICMP) (2=IGMP) (4=IP)
 #nmap -PN TARGET			/**Disable host discovery
 #nmap -sL TARGET			/**List potential targets and their DNS names
@@ -28,7 +36,8 @@ NMAP
 #nmap -PR TARGET 			/**ARP Ping
 #nmap --dns-servers LIST		/**Specify DNS Servers to nmap to use
 #nmap --send-ip TARGET			/**Disable the default ARP ping for local ethernet networks
-#nmap 
+#nmap -sO TARGET			/**Analiza Protocolos IP activos en el target
+#nmap -sI host
 
 
 
