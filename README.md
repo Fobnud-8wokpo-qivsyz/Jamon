@@ -37,8 +37,12 @@ message or no response is received, the port is considered filtered by a firewal
 #nmap --dns-servers LIST		/**Specify DNS Servers to nmap to use
 #nmap --send-ip TARGET			/**Disable the default ARP ping for local ethernet networks
 #nmap -sO TARGET			/**Analiza Protocolos IP activos en el target
-#nmap -sI host
+#nmap -sI ZOMBIE TARGET			/**Scan a través del puerto 80 del Zombie.Las impresoras son un buen cadaver viviente
+#nmap -p80 --script ipidseq Red/24	/**Script para ayudarnos a encontrar Zombies dentro de una red (Incremental is good)
+#nmap --script whois-* TARGET		/**Ejecuta un Whois del TARGET a través de nmap
 
+#nmap --script whois-* --script-args whois.whodb=arin+ripe+afrini TARGET 
+					/**Idem anterior whois pero especificamos el orden de los ISP
 
 
 
