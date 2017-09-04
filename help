@@ -1048,16 +1048,17 @@ iface eth0:0 inet static
 1.4.c)ifconfig     → Check and Enjoy tu nueva interfaz
  
 
-1. iw dev       → listar interfaces de red
-1. ifconfig eth0 → mostrar la configuración de una tarjeta de red Ethernet.
-2. ifup eth0 → activar una interface ‘eth0′.
-3. ifdown eth0 → deshabilitar una interface ‘eth0′.
-4. ifconfig eth0 192.168.1.1 netmask 255.255.255.0 → configurar una dirección IP.
-5. ifconfig eth0 promisc → configurar ‘eth0′en modo común para obtener los paquetes (sniffing).
-6. dhclient eth0 → activar la interface ‘eth0′ en modo dhcp.
-7. route -n → mostrar mesa de recorrido.
-8. route add -net 0/0 gw IP_Gateway → configurar entrada predeterminada.
-9. route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 → configurar ruta estática para 
+1.  iw dev       → listar interfaces de red
+1.  ifconfig eth0 → mostrar la configuración de una tarjeta de red Ethernet.
+2.  ifup eth0 → activar una interface ‘eth0′.
+3.  ifdown eth0 → deshabilitar una interface ‘eth0′.
+4.  ifconfig eth0 192.168.1.1 netmask 255.255.255.0 → configurar una dirección IP.
+5.  ifconfig eth0 promisc → configurar ‘eth0′en modo común para obtener los paquetes (sniffing).
+5.a ip link set eth0 multicast off  → apaga el multicast en la interfaz (check it with netstat -i ('M' flag))
+6.  dhclient eth0 → activar la interface ‘eth0′ en modo dhcp.
+7.  route -n → mostrar mesa de recorrido.
+8.  route add -net 0/0 gw IP_Gateway → configurar entrada predeterminada.
+9.  route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 → configurar ruta estática para 
 buscar la red ’192.168.0.0/16′.
 
 10.route del 0/0 gw IP_gateway → eliminar la ruta estática.
@@ -1066,17 +1067,25 @@ buscar la red ’192.168.0.0/16′.
 13.host www.example.com → buscar el nombre del host para resolver el nombre a una dirección ip(1).
 14.nslookup www.example.com → buscar el nombre del host para resolver el nombre a una direccióm ip y viceversa(2).
 
-15.ip link show → mostar el estado de enlace de todas las interfaces.
-16.mii-tool eth0 → mostar el estado de enlace de ‘eth0′.
-17.ethtool eth0 → mostrar las estadísticas de tarjeta de red ‘eth0′.
-18.netstat -tup → mostrar todas las conexiones de red activas y sus PID.
-19.netstat -tupl → mostrar todos los servicios de escucha de red en el sistema y sus PID.
-20.netstat -punta → mostrar todas las conexiones activas por dirección IP y puerto.
-21.tcpdump tcp port 80 → mostrar todo el tráfico HTTP.
-22.iwlist scan → mostrar las redes inalámbricas.
-23.iwconfig eth1 → mostrar la configuración de una tarjeta de red inalámbrica.
-24.whois www.example.com → buscar en base de datos Whois.
-25.iftop -nNP -i eth0 → mostrar en tiempo real las conexiones abiertas en eth0 y su tasa de
+15.  ip link show → mostar el estado de enlace de todas las interfaces.
+16.  mii-tool eth0 → mostar el estado de enlace de ‘eth0′.
+17.  ethtool eth0 → mostrar las estadísticas de tarjeta de red ‘eth0′.
+18.  netstat -tup → mostrar todas las conexiones de red activas y sus PID.
+19.  netstat -tupl → mostrar todos los servicios de escucha de red en el sistema y sus PID.
+20.  netstat -punta → mostrar todas las conexiones activas por dirección IP y puerto.
+
+20.a netstat -i → muestra el estado de las interfaces con sus Flags:
+        B flag is for broadcast
+        M flag is for multicast
+        P flag is for promisc mode
+        R is for running
+        U is for up
+
+21.  tcpdump tcp port 80 → mostrar todo el tráfico HTTP.
+22.  iwlist scan → mostrar las redes inalámbricas.
+23.  iwconfig eth1 → mostrar la configuración de una tarjeta de red inalámbrica.
+24.  whois www.example.com → buscar en base de datos Whois.
+25.  iftop -nNP -i eth0 → mostrar en tiempo real las conexiones abiertas en eth0 y su tasa de
 transferencia.
 
 26.sockstat → mostrar información sobre las conexiones abiertas.
