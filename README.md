@@ -44,9 +44,6 @@ message or no response is received, the port is considered filtered by a firewal
 #nmap --script whois-* --script-args whois.whodb=arin+ripe+afrini TARGET 
 					/**Idem anterior whois pero especificamos el orden de los ISP
 
-#nmap 
-
-
 
 
 
