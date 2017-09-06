@@ -2,6 +2,13 @@ ________________________________________________________________________________
 
 NMAP
 
+DATA:	ports: /nmap-services
+	OS   : /nmap-os-db
+	service detection: /nmap-service-probes
+	
+
+#nmap -F TARGET				/**Fast Scan
+#nmap -r TARGET				/**Don't randomize ports
 #nmap -sS TARGET			/**TCP SYN Scan
 #nmap -sT TARGET			/**TCP Connect Scan (connect system call)
 #nmap -sU TARGET 			/**UDP Scan
@@ -44,8 +51,24 @@ message or no response is received, the port is considered filtered by a firewal
 #nmap --script whois-* --script-args whois.whodb=arin+ripe+afrini TARGET 
 					/**Idem anterior whois pero especificamos el orden de los ISP
 
+#nmap --traceroute TARGET		/**Obvio ==>> es un traceroute
 
+#nmap –sU –sS –p U:53,T:80 TARGET	/**Define un escaneo a puertos de diferentes protocolos UDP:53 y TCP:80
+#nmap -p ftp,http* TARGET		/**Escaneara el puerto ftp y todos los puertos http* del nmap-services file
 
+#nmap –-servicedb /home/me/my-services TARGET 
+					/**Nos permite usar nuestro propio nmap-services file 
+					
+#nmap -O TARGET				/**Deteccion de Sistema operativo
+#nmap --osscan-limit			/**Limit OS detection a hosts que tengan al menos 1 puerto abierto y un puerto cerrado
+#nmap --osscan-guess 			/**More agressive scan
+#nmap --max-os-retries			/**To make quicker set to 1 or 2 (default 5 retries OS detection)
+
+#nmap -sV --allports --version-intensity --version-trace TARGET
+					/**Scan Service version + todos/Not only default ports+ intensidad de 0-9
+
+#nmap -sR TARGET			/**scan for RPC program and version detection
+#
 
 
 ______________________________________________________________________________________________________________________________
