@@ -5,7 +5,7 @@ NMAP
 DATA:	ports: /nmap-services
 	OS   : /nmap-os-db
 	service detection: /nmap-service-probes
-	
+	nse : /usr/share/nmap/scripts/*.nse
 
 #nmap -F TARGET				/**Fast Scan
 #nmap -r TARGET				/**Don't randomize ports
@@ -68,7 +68,18 @@ message or no response is received, the port is considered filtered by a firewal
 					/**Scan Service version + todos/Not only default ports+ intensidad de 0-9
 
 #nmap -sR TARGET			/**scan for RPC program and version detection
-#
+
+
+
+NSE:
+
+#nmap -sC TARGET			/**Ejecuta un Scan con todos los scripts nse safe+intrusive
+#nmap --script=vulnerability TARGET	/**Ejecutar todos los scripts de la categoria vulnerability
+
+#nmap --script=sniffer-detect.nse TARGET
+					/**Ejecuta el script promiscuous.nse
+
+#nmap 
 
 
 ______________________________________________________________________________________________________________________________
