@@ -7,6 +7,18 @@ DATA:	ports: /nmap-services
 	service detection: /nmap-service-probes
 	nse : /usr/share/nmap/scripts/*.nse
 
+#nmap -v 				/**Increase verbosity level
+#nmap -V				/**Decrease verbosity level
+#nmap -d				/**increase debbuging level
+#nmap -D				/**Decrease debugging level
+#nmap -p				/**enable packet tracing
+#nmap -P				/**disable packet tracing
+#nmap --packet-trace			/**print every packet, just like a packet sniffer
+#nmap --iflist				/**displays a list of the scanning system's interfaces and network routes
+#nmap --open				/**show only open, open|filtered and unfiltered ports
+#nmap --append-output			/**Agrega el resultado a un resultado en archivo ya existente en lugar de pisarlo
+#nmap --resume				/**si guardamos un archivo en formato grepable o normal podemos retomar el escaneo 					   /**cancelado o interrumpido desde este
+#nmap -oN myscan-%D-%T TARGET		/**nmap guardara el escaneo con fecha y hora: "myscan-010108-112927.nmap"
 #nmap -F TARGET				/**Fast Scan
 #nmap -r TARGET				/**Don't randomize ports
 #nmap -sS TARGET			/**TCP SYN Scan
@@ -155,6 +167,75 @@ Enforce use of a given nsock IO multiplexing engine. Only the select(2)-based fa
 
 PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:
 
+
+EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:
+
+Fragmentation
+(Split packet header across many small packets)
+#nmap -f TARGET				/**-f option will break the packets into a maximum of 8 bytes after the IP header
+#nmap -f -f TARGET			/**-f -f twice will break the packet into a max of 16 after the IP header
+#nmap --mtu (8,16,32...) TARGET		/**--mtu nos permite definir a nosotros el tamaño del paquete (>0 y multiplos de 8)
+
+Spoof
+(Decoy option doesn¿t work con nmap connect scan && version detection)
+# nmap -D 				/**-D decoy option nos permite aparentar que otros hosts tambien estan escaneando 					  /**nuestro mismo TARGET, podemos declarar varios decoys.
+Ejemplo: (Nota: ME command option nos posiciona a nosotros en el lugar que queramos)
+#nmap TARGET -D 192.168.100.1,192.168.100.4,192.168.100.20,192.168.100.3,192.168.100.55,ME
+
+Spoof the MAC
+#nmap --spoof-mac 0 192.168.100.0/24
+#nmap --spoof-mac 11:22:33:44:55:66 192.168.100.0/24
+#nmap --spoof-mac 000D93 192.168.100.0/24
+#nmap --spoof-mac D-Link 192.168.100.0/24
+
+Source port:
+#nmap -g 53 TARGET			/**Especifica el puerto 53 como origen
+#nmap --source-port 53 TARGET		/**idem
+
+EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:EVASION:
+
+
+
+PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:
+
+#nmap --date-length			/**Nos permite agregar un numero aleatorio de bytes a los paquetes que se usan durante 					       /**el escaneo. This may avoid Nmap detection signatures and other detection techniques.
+
+#nmap --ttl				/**permite especificar el TTL
+
+#nmap --badsum				/**permite usar checksums TCP o UDP invalidos
+					/**Most hosts will drop packets with bad checksums, so if you receive responses to 					   /**these scans, they are probably coming from security controls, such as fi rewalls, 					/**that don’t verify checksums.
+
+
+
+#nmap --ip-options			/**la opcion --ip-options nos permite modificar/incluir opciones IP en el paquete
+
+					BASIC USAGE for "--ip-options"
+For the simplest usage we created some templates. They will build ip options for you and you don't need to know the internals.
+Supported ip options: see http://seclists.org/nmap-dev/2006/q3/52
+					
+					"R"		     	/** record route (9 slots availble)
+					#nmap -n -sP --packet-trace --ip-options "R" scanme.insecure.org
+					
+					"T"			/** record internet timestamps (9 slots)
+					#nmap -n -sP --packet-trace  --ip-options "T"  7thguard.pl
+					
+					"U"     		/** record timestamps and ip addresses (4 slots)
+					#nmap -n -sP --packet-trace  --ip-options "U"  7thguard.pl
+					
+					"L <hop_ip> ..." 	/** loose source routing (8 slots) Select middle hops
+					#nmap -n -sS -p139 --packet-trace  --ip-options "S 192.168.1.1 10.0.0.3"
+					
+					"S <hop_ip> ..." 	/** strict source routing (8 slots) 
+					
+					
+					ADVANCED USAGE
+There is also possibility of building custom ip options. Consider reading rfc 791. Supported values in parameter:
+you can also use hex notation to specify IP options as long as they are each preceded by an \x. IP options may evade security controls by specifying routes to take to the target.
+					"\xFF"  -> hex value
+        				"\255"  -> decimal value
+        				"\x00*16" -> copying char many times
+
+PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:
 
 
 
