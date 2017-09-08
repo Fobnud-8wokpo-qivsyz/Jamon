@@ -71,7 +71,7 @@ message or no response is received, the port is considered filtered by a firewal
 
 
 
-NSE:
+NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:NSE:
 
 #nmap -sC TARGET			/**Ejecuta un Scan con todos los scripts nse safe+intrusive
 #nmap --script=vulnerability TARGET	/**Ejecutar todos los scripts de la categoria vulnerability
@@ -79,7 +79,84 @@ NSE:
 #nmap --script=sniffer-detect.nse TARGET
 					/**Ejecuta el script promiscuous.nse
 
-#nmap 
+#nmap --script=/my-scripts TARGET	/**Ejecuta todos los scripts en el directorio my-scripts
+#nmap --script=all TARGET		/**Ejecuta todos los scripts de nmap
+#nmap --script-args=<n1=v1> TARGET	/**Provee argumentos para sobreescribir los valores del script
+#nmap --script-trace TARGET		/**Muestra todas las comunicaciones de salidas y entradas del script
+#nmap --script-updatedb			/**Update the script database
+
+
+
+
+PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:
+
+Time 
+
+#nmap -T(0,1,2,3,4,5)			/**Time scan performance. Puedo declararlo en (m)inuto,(h)ora,(s)egundos,(ms)iliseconds
+#nmap -Tparanoid
+					0 paranoid
+					1 sneaky
+					2 polite
+					3 normal
+					4 agressive
+					5 insane
+Parallel
+
+(Adjust parallel scan group sizes)
+Nmap has the ability to port scan or version scan multiple hosts in parallel...
+/**Estas opciones no tienen efecto durante la fase de descubrimiento de hosts. Esto incluye ping scans -sn
+#nmap --min-hostgroup <num>		/**nmap will never exceed that size
+#nmap --max-hostgroup <num>		/**nmap will try to keep group sizes above that level
+
+(Adjust probe parallelization)
+These options control the total number of probes that may be outstanding for a host group
+used for port scanning and host discovery
+#nmap --min-parallelism
+#nmap --max-parallelism
+				
+Probe Timeouts
+(Adjust probe timeouts)
+Nmap maintains a running timeout value for determining how long it will wait for a probe response before giving up or retransmitting the probe. Es calculado en reaccion a los response times de pruebas previas.
+#nmap --min-rtt-timeout <time>
+#nmap --max-rtt-timeout <time>
+#nmap --initial-rtt-timeout <time>
+Ajustando el --max-rtt-timeout y el --initial-rtt-timeout a tiempos menores que el default se puede acortar de manera
+	significante los tiempos de escaneo.
+
+#nmap --max-rtt-timeout 100ms		/**Si todos los host´s pertenecen a la misma red 100ms in --max-rtt-timeout es una 					      buena medida agresiva.
+
+Si hubiera un router intermedio podemos testear el rtt con un ping, tomar el menor valor y duplicarlo para el --initial-rtt-timeout y cuadruplicarlo para el --max-rtt-timeout (de todas maneras el sensei Fyodor (lustrar pulir;) no establece los valores para --max por debajo de 100 ni encima de 1000)
+
+#nmap --max-retries			/** (Specify the maximum number of port scan probe retransmissions)
+#nmap --host-timeout			/**Limita el tiempo maximo de escaneo contra un host
+#nmap --script-timeout			/**ESpecifica el tiempo maximo para el escaneo con scripts
+
+(Adjust delay between probes) 
+#nmap --scan-delay <time>		/**Espera la cantidad de tiempo especificada entre cada prueba contra un host
+#nmap --max-scan-delay <time> 		/**Especifica el retardo mas largo que nmap permitiría
+
+(Directly control the scanning rate)
+Estas especificaciones trabajan sobre las etapas port scans and discovery hosts
+#nmap --min-rate 300			/**Le decimos a nmap que haga un envio de 300 paquetes/segundo
+#nmap --max-rate 			/**Indicamos la cantidad maxima de paquetes enviados por /segundo
+#nmap --max-rate 0.1 			/**Escaneo lento de 1 paquete cada 10 segundos
+
+
+--defeat-rst-ratelimit 
+Many hosts have long used rate limiting to reduce the number of ICMP error messages (such as port-unreachable errors) they send. Some systems now apply similar rate limits to the RST (reset) packets they generate. This can slow Nmap down dramatically as it adjusts its timing to reflect those rate limits. You can tell Nmap to ignore those rate limits (for port scans such as SYN scan which don't treat non-responsive ports as open) by specifying --defeat-rst-ratelimit.
+
+--defeat-icmp-ratelimit 
+    Similar to --defeat-rst-ratelimit, the --defeat-icmp-ratelimit option trades accuracy for speed, increasing UDP scanning speed against hosts that rate-limit ICMP error messages. Because this option causes Nmap to not delay in order to receive the port unreachable messages, a non-responsive port will be labeled closed|filtered instead of the default open|filtered. This has the effect of only treating ports which actually respond via UDP as open. Since many UDP services do not respond in this way, the chance for inaccuracy is greater with this option than with --defeat-rst-ratelimit.
+    
+--nsock-engine epoll|kqueue|poll|select 
+Enforce use of a given nsock IO multiplexing engine. Only the select(2)-based fallback engine is guaranteed to be available on your system. Engines are named after the name of the IO management facility they leverage. Engines currently implemented are epoll, kqueue, poll, and select, but not all will be present on any platform. Use nmap -V to see which engines are supported.
+
+
+
+PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:PERFORMANCE:
+
+
+
 
 
 ______________________________________________________________________________________________________________________________
