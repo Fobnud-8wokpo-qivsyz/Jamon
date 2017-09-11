@@ -13,6 +13,9 @@ DATA:	ports: /nmap-services
 #nmap -D				/**Decrease debugging level
 #nmap -p				/**enable packet tracing
 #nmap -P				/**disable packet tracing
+#nmap -A TARGET				/**Combines -O + -sV + -sC + --traceroute
+#nmap --send-ip				/**Force nmap to use raw sockets at the IP layer especificada
+#nmap --send-eth			/**Force nmap to use raw Ethernet at the data link layer especificada
 #nmap --packet-trace			/**print every packet, just like a packet sniffer
 #nmap --iflist				/**displays a list of the scanning system's interfaces and network routes
 #nmap --open				/**show only open, open|filtered and unfiltered ports
@@ -71,7 +74,8 @@ message or no response is received, the port is considered filtered by a firewal
 #nmap –-servicedb /home/me/my-services TARGET 
 					/**Nos permite usar nuestro propio nmap-services file 
 					
-#nmap -O TARGET				/**Deteccion de Sistema operativo
+#nmap -O TARGET				/**Deteccion de Sistema operativo /OS Fingerprinting
+#nmap --fuzzy				/**The fuzzy option le dice a nmap que haga su mejor esfuerzo para Detectar OS
 #nmap --osscan-limit			/**Limit OS detection a hosts que tengan al menos 1 puerto abierto y un puerto cerrado
 #nmap --osscan-guess 			/**More agressive scan
 #nmap --max-os-retries			/**To make quicker set to 1 or 2 (default 5 retries OS detection)
@@ -236,6 +240,77 @@ you can also use hex notation to specify IP options as long as they are each pre
         				"\x00*16" -> copying char many times
 
 PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:PACKET+MANIPULATION:
+
+INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:
+
+Info detallada sobre un OS Fingerprint: https://nmap.org/book/osdetect.html
+
+SCAN(V=4.50%D=11/18%OT=80%CT=1%CU=40873%PV=Y%DS=1%G=Y%M=001217%TM=4740A1A8%
+P=i686-pc-linux-gnu)
+
+V=4.50			/**nmap version
+D=11/18			/**Dia
+OT=80%CT=1		/**Open & Closed ports nmap used during the fingerprinting process
+CU=40873		/**Closed UDP port used during the scan
+PV=Y			/**These tells us that the IP address fingerprinted resides in private space RFC1918
+DS=1			/**number of hops in network distance
+G=Y			/**Fingerprint Good (G) to submit to insecure.org
+M=001217		/**if DS=1 nmap is able to discern the MAC OID de sistema targeteado
+TM=4740A1A8		/**the time the scan was performed in unix HEX time format
+P=i686-pc-linux-gnu	/**our platform
+
+SEQ test, SEQ(SP=D0%GCD=1%ISR=CC%TI=Z%II=I%TS=7)
+
+SP=D0		/**Reports on TCP Initial Sequence Number (ISN) Predictability.
+GCD=1 		/**Greatest Common Denominator, this sub-test provides feedback about TCP ISN incrementation.
+ISR=CC 		/**Describes the ISN sequence rates.
+TI=Z 		/**Evaluates the TCP SEQ probe IP header ID field. In this example, Z means that all IP ids returned were set 		      /**to 0.
+II=I 		/**Evaluates the IP IDs based on the responses to the ICMP probes. A value of I reflects incremental ids.
+TS=7		/**Returns information about the TCP timestamp attached to the responses. 7 reflects a 100Hz frequency in use 		      /**by the target.
+
+OPS(O1=M5B4ST11NW0%O2=M5B4ST11NW0%O3=M5B4NNT11NW0%O4=M5B4ST11NW0%O5=M5B4ST11NW0%O6=M5B4ST11)
+Describes the TCP options received
+
+O1=M5B4 		/**Test O1 reports a Maximum Segment Size (MSS) of 0x5B4.
+ST11 			/**provides information about a permitted Selective ACK and the timestamp of the packet.
+N 			/**is a NOP or No Operation.
+W0 			/**refl ects a Window scale size of 0.
+
+WIN, WIN(W1=16A0%W2=16A0%W3=16A0%W4=16A0%W5=16A0%W6=16A0) 
+returns the TCP initial windows size information for each of the 6 probes.
+
+W1=16A0
+W2=16A0
+W3=16A0
+W4=16A0
+W5=16A0
+W6=16A0
+
+ECN(R=Y%DF=Y%T=40%W=16D0%O=M5B4NNSNW0%CC=N%Q=) 
+or explicit congestion notification response.
+
+R=Y 			/**indicates whether or not the target responded to our probe.
+DF=Y 			/**evaluates whether the IP don’t fragment bit is enabled or not.
+T=40 			/**The IP time-to-live value found in the response.
+W=16D0 			/**TCP initial window size information.
+O=M5B4NNSNW0 		/**TCP Options information.
+CC=N 			/**Examines the Explicit Congestion Notifi cation (congestion control) capability of the target. N 			   /**indicates the target does not support ECN.
+Q=) Looks for any known quirks in the TCP stack of the target.
+
+MORE INFO :  https://nmap.org/book/osdetect.html
+
+This is the first of the TCP probes that are sent. This is the more intense of the TCP probes.
+T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q)
+■ T2 is a null packet sent with the IP DF bit set and a window fi eld size of 128. T2(R=N)
+■ T3 is a TCP packet set with FIN, URG, PSH, and SYN fl ags all set and a window field size of 256. T3(R=N)
+■ T4 sends a TCP ACK packet with a window field of 1024 and IP DF bit set.T4(R=N)
+■ T5 sends a SYN packet with the ubiquitous and glorious prime 31337 as its window field size. T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+■ T6 is very similar to T4, just a larger window field size of 32768 and to a closed port, instead of open. T6(R=N) 
+■ Here we finish up this set of TCP probes by sending a packet with FIN, URG, and PSH fl ags set. This probe goes to a closed port with a window field size of 65535. T7(R=N)
+■ This is the U1, UDP probe results. This probe goes to a closed port and the character ‘C’ is repeated 300 times in the data field. U1(R=Y%DF=N%T=40%TOS=C0%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUL=G%RUD=G
+■ The IE probe is based on the ICMP protocol. It is a two part probe, both being very similar in structure and comprised of such elements as: type-of-service (TOS), IP ID, sequence numbers, and data payloads consisting of the typical repeated character methodology used in other probes. IE(R=Y%DFI=N%T=40%TOSI=S%CD=S%SI=S%DLI=S)
+
+INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:INFORMACION:eXTRA:
 
 
 
