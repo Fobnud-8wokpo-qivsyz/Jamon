@@ -1084,6 +1084,10 @@ buscar la red ’192.168.0.0/16′.
 21.  tcpdump tcp port 80 → mostrar todo el tráfico HTTP.
 22.  iwlist scan → mostrar las redes inalámbricas.
 23.  iwconfig eth1 → mostrar la configuración de una tarjeta de red inalámbrica.
+23.a iwconfig wlan0 | grep -i --color quality                   //Encontrar link quality
+23.b iwconfig wlan0 | grep -i --color signal                    //Encontrar Signal Level
+23.c watch -n 1 cat /proc/net/wireless                          //Ver en pantalla la calidad del enlace
+23.d wavemon                                                    //utilidad para monitorar wifi connections
 24.  whois www.example.com → buscar en base de datos Whois.
 25.  iftop -nNP -i eth0 → mostrar en tiempo real las conexiones abiertas en eth0 y su tasa de
 transferencia.
@@ -1166,6 +1170,14 @@ ONBOOT=yes
 33.a) rfkill unblock wifi       //forzar desbloqueo de WIFI al inicio del sistema
 33.b) rfkill list all           //listar todos los dispositivos inalambricos
 33.c) rfkill block bluetooth    //bloquear el dispositivo bluetooth
+
+NetworkManager command line utility
+34.a)nmcli connection show                              //muestra las conexiones guardadas por NetworkManager
+34.b)nmcli connection show MiConexion                   //Detalle de la conexion MiConexion
+34.c)nmcli -f GENERAL,WIFI-PROPERTIES dev show wlan0    //muestra detalles de la interface wlan0
+34.d)nmcli dev wifi                                     //muestra las conexiones disponibles y detalles
+
+
 
 
 
