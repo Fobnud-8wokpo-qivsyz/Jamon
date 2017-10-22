@@ -1162,6 +1162,11 @@ ONBOOT=yes
 #service network restart
 
 
+33)   rfkill                    //nos permite activar o desactivar conexiones inalambricas
+33.a) rfkill unblock wifi       //forzar desbloqueo de WIFI al inicio del sistema
+33.b) rfkill list all           //listar todos los dispositivos inalambricos
+33.c) rfkill block bluetooth    //bloquear el dispositivo bluetooth
+
 
 
 
