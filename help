@@ -119,6 +119,7 @@ ___________________________________________________DNS-hostname-domainname-fqdn_
 #host -t NS -T parrot.casita.com
 #hostname
 #domainname
+#dnsdomainname
 
 Para asignar el fqdn, añadimos esta linea al archivo etc/hosts que es el que lee init.d/hostname.sh para configurar el fqdn:
 #echo "127.0.0.1 mipc.localhost.com mipc localhost" > /etc/hosts
