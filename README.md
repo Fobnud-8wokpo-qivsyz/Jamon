@@ -1288,6 +1288,9 @@ ESET antivirus aun estando desactivado tiene activo el modulo HIPS con "explorac
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 NETBIOS/SMB
 
+netdiscover /mapeo de LAN
+nbtscan     /mapeo de LAN con nombres de HOSTS
+
 smbclient:
 
 nmap'ear puerto 139
