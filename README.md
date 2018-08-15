@@ -324,9 +324,19 @@ ________________________________________________________________________________
 
 Tiene dos instancias: ConnectConnect & ListenListen que se usan en conjunto. Tambien posee una instancia PortForwarder que trabaja sola. Del lado interno de la red (LAN) estará activa la instancia ConnectConnect que cada n segundos intentará una conexión a la instancia externa ListenListen (Afuera en la Internet). 
 
+Lets say you'd like to access a localy running WEB server on your work PC from home, this is how to do it:
+To run tgcd in CC mode and provide access to the local WEB server :
+
+tgcd -C -s localhost:80 -c my_home_computer:1234
+
+To run tgcd in LL mode on my_home_computer host to provide access to the above service:
+
+tgcd -L -p 8000 -q 1234
+
+This will make the WEB server running on the work PC accessible on port 8000 of my_home_computer. 
 
 
-
+______________________________________________________________________________________________________________________________
 
 
 ____                                 _           
