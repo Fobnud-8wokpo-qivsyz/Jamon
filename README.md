@@ -322,6 +322,8 @@ ________________________________________________________________________________
 
 'TCP Gender Changer es un método para hacer accesible un servidor de red interno basado en TCP / IP más allá de su firewall de protección.' 'Para reenviar puertos, como lo del servidor SOCKS, a través del firewall'
 
+Tiene dos instancias: ConnectConnect & ListenListen que se usan en conjunto. Tambien posee una instancia PortForwarder que trabaja sola. Del lado interno de la red (LAN) estará activa la instancia ConnectConnect que cada n segundos intentará una conexión a la instancia externa ListenListen (Afuera en la Internet). 
+
 
 
 
@@ -861,6 +863,8 @@ Por último sólo nos queda configurar en firefox: En Preferencias -> Avanzado -
 Con esto añadimos un salto más al salir por el nodo de salida de tor. Aunque no está cifrado podemos usar direcciones de servidores proxy que no esten en las blacklist de los proveedores, los cuales están bloqueando los nodos de salida tor ;-)
 
 From: https://elbinario.net/2015/03/08/torificar-un-proxy-con-socat-un-salto-mas-al-infinito/
+http://www.dest-unreach.org/socat/doc/socat-gender.txt
+
 
                                       *************************************************************
 				      
