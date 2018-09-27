@@ -334,6 +334,9 @@ W: intercambio
 
 15.at 3pm  → el comando 'at' permite correr procesos en un tiempo definido
 
+16. jobs                //Nos muestra trabajos detenidos o en suspenso
+17. kill -9 $(jobs -ps)         //Exterminar trabajos en suspenso
+
                                                                       
 ___________________________________________________Información del sistema_____________________________________________________
 
