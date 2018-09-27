@@ -1,3 +1,9 @@
+________________________________________________SYSTEM SETTING_______________________________________________________________
+
+#xrandr -s 1024x768             //Modificar resolución de pantalla en Terminal(LINUX)
+
+
+
 ____________________________________________________SMB_______________________________________________________________________
 
 Imprimir desde la Linea de Comandos en una impresora compartida en red:
