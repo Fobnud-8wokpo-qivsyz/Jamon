@@ -1422,6 +1422,7 @@ Para buscar hacia atrás, se utiliza el comando ?
 
 
 tcpdump
+https://hackertarget.com/tcpdump-examples/
 
 operadores: and|or|not ; inbound|outbound (para PPP protocols) ; 
 
