@@ -538,6 +538,7 @@ instalados que más espacio consumen (en orden descendente).
  ______________________________________________________Usuarios y grupos______________________________________________________
 
 1. groupadd nombre_del_grupo → crear un nuevo grupo.
+   groupadd -g 31337 nombre_de_grupo → crear un grupo con un GID especifico
 2. groupdel nombre_del_grupo → borrar un grupo.
 3. groupmod -n nuevo_nombre_del_grupo viejo_nombre_del_grupo → renombrar un grupo.
 4. useradd -c “Name Surname ” -g admin -d /home/user1 -s /bin/bash user1 → Crear un nuevo usuario perteneciente al grupo “admin”.
@@ -546,6 +547,7 @@ instalados que más espacio consumen (en orden descendente).
 6. userdel -r user1 → borrar un usuario (‘-r’ elimina el directorio Home).
 7. usermod -c “User FTP” -g system -d /ftp/user1 -s /bin/nologin user1 → cambiar los atributos del
 usuario.
+   usermod -u 31337 'usuario'   → cambiar el UID de un usuario
 
 8. usermod -aG sudoers,plugdev user1 → agregar el usuario user1 a dos grupos existentes, para incrementar sus permisos (en este caso, agregar la posibilidad de conectar
 dispositivos y ejecutar comandos como superusuario)
