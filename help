@@ -598,8 +598,13 @@ directorio.
 ficheros solamente a los dueños legítimos.
 
 15.chmod o-t /home/public → desabilitar un bit STIKY en un directorio.
+16.sudo -l      → chequeamos que puede hacer un usuario con 'sudo'
 
-
+17.root_squash | no_root_squash | all_squash (Para sistemas de archivos NFS)
+        root_squash → degrada a un usuario root que accede al sistema de archivos compartido al usuario mas bajo del
+                      sistema servidor
+        no_root_squash → mantiene los privilegios del root remoto que se conecta al sistema (Too dangerous)
+        all_squash     → cada usuario conectado, sea root o pepito tendrá los privilegios de un usuario anónimo
 
 
 __________________________Atributos especiales en ficheros (usar “+” para colocar permisos y “-” para eliminar)________________
