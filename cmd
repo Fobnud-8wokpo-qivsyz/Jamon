@@ -1,34 +1,40 @@
-    _   ___________________ __  __
-   / | / / ____/_  __/ ___// / / /
-  /  |/ / __/   / /  \__ \/ /_/ / 
- / /|  / /___  / /  ___/ / __  /  
-/_/ |_/_____/ /_/  /____/_/ /_/   
-                                ______________________________________________NETSH
+___________________WMI and PYTHON____________________________________________________________________________________
+#python -m pip install wmi
+#python -m pip install pywin32  //En caso de que tengamos el error: "no module named Win32com"
+
+-En el Interprete de Python:
+
+import wmi
+conn = wmi.WMI("192.168.1.1", user="usuario", password="contraseña") //Conexión Remota
+conn = wmi.WMI()                                                     //Conexión Local
+
+>>>for class_name in conn.classes:              //Estas lineas devolveran una lista de WMI Classes       
+...    if 'Process' in class_name:
+...        print(class_name)       
+
+>>>wmi.WMI().Win32_Process.methods.keys()      //Esta linea detallaran los metodos de la clase Win32_Process
+>>>wmi.WMI().Win32_Process.properties.keys()   //Esta linea detallaran las propiedades de la clase Win32_Process
+
+>>>import wmi                                  //Estas lineas retornaran una lista de los objetos de la clase Win32_Process
+>>>conn = wmi.WMI()
+>>>for process in conn.Win32_Process():
+        print("ID: {0}\nHandleCount: {1}\nProcessName: {2}\n".Format(process.ProcessId, process.HandleCount, process.Name))
+
+___________________NETSH_____________________________________________________________________________________________
                                 
 #nesth firewall add portopening TCP 666 PuertaDelDiablo                →Abrimos puerto en el Firewall. 
 #netsh firewall delete portopening TCP 666                             →Cerramos el puerto
 
 
 
-
-___   __  _    _  ___  ___   ___  _  _  ___  __    __   
-(  ,\ /  \( \/\/ )(  _)(  ,) / __)( )( )(  _)(  )  (  )  
- ) _/( () )\    /  ) _) )  \ \__ \ )__(  ) _) )(__  )(__ 
-(_)   \__/  \/\/  (___)(_)\_)(___/(_)(_)(___)(____)(____)___________________POWERSHELL
+___________________POWERSHELL________________________________________________________________________________________
 
 >>Get-ExecutionPolicy        //ver el estado de 'Ejecucion de Scripts'
 >>Set-ExecutionPolicy Unrestricted        //Set 'Ejecucion de Scripts to Unrestricted mode'
 
 
 
-
-
-___ ___ ___ __  __ 
-|   \_ _/ __|  \/  |
-| |) | |\__ \ |\/| |
-|___/___|___/_|  |_|
-                    
-                    _________________Habilitar o deshabilitar características de Windows con DISM
+___________________DISM Habilitar o deshabilitar características de Windows con DISM_________________________________
                     
 Para montar una imagen sin conexión para mantenimiento:
 
