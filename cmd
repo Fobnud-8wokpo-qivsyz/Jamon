@@ -18,7 +18,40 @@ conn = wmi.WMI()                                                     //Conexión
 >>>import wmi                                  //Estas lineas retornaran una lista de los objetos de la clase Win32_Process
 >>>conn = wmi.WMI()
 >>>for process in conn.Win32_Process():
-        print("ID: {0}\nHandleCount: {1}\nProcessName: {2}\n".Format(process.ProcessId, process.HandleCount, process.Name))
+        print("ID: {0}\nHandleCount: {1}\nProcessName: {2}\n".format(process.ProcessId, process.HandleCount, process.Name))
+
+
+>>>import wmi
+>>>conn = wmi.WMI()
+>>>pid, returnval= conn.Win32_Process.Create(CommandLine="notepad.exe")  //Inicia un proceso y captura su PID
+>>>conn.Win32_Process(ProcessId=pid)[0].Terminate()                      //Extermina el proceso del PID capturado
+
+
+>>>import wmi
+>>>conn = wmi.WMI()
+>>>for s in conn.Win32_Service(StartMode="Auto", State="Stopped"):      //Detecta procesos Detenidos
+...      if 'Update' in s.Name:                                         
+...              result, = s.StartService()                             //Usamos el método StartService P/iniciar los procesos         
+...      if result == 0:                                                //Podemos usar StopService P/detener procesos        
+...              print("Successfully started service:", s.Name)
+
+
+>>>import wmi
+>>>conn = wmi.WMI()                                                     //Detectar Espacio libre en discos
+>>>for disk in conn.Win32_LogicalDisk():
+...      if disk.size != None:
+...             print(disk.Caption, "is {0:.2f}% free".format(100*float(disk.FreeSpace)/float(disk.Size)))
+
+
+>>>import wmi
+>>>conn = wmi.WMI()
+>>>for group in conn.Win32_Group():                                     //Obtener Usuarios y Grupos Locales
+...     print(group.Caption)
+...     for user in group.associators(wmi_result_class="Win32_UserAccount"):
+...             print(" [+]", user.Caption)
+
+
+
 
 ___________________NETSH_____________________________________________________________________________________________
                                 
