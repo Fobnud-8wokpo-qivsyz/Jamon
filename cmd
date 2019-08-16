@@ -1,3 +1,14 @@
+___________________PSEXEC___________________________________________________________________________________________
+
+Requisitos para que PsExec se ejecute sin inconvenientes:
+- Incoming Traffic must Be Habilitado: 
+  netsh advfirewall firewall set rule name="File and Printer Sharing(SMB-In)" dir=in new enable=Yes
+
+
+
+
+
+
 ___________________WMI and PYTHON____________________________________________________________________________________
 #python -m pip install wmi
 #python -m pip install pywin32  //En caso de que tengamos el error: "no module named Win32com"
