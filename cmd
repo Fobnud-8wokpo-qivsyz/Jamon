@@ -1,3 +1,21 @@
+___________________NET USER_________________________________________________________________________________________
+
+WIN7 
+
+
+1.Habilitar cuenta administrad(t)or
+
+c:>>net user administrador active/yes
+C:>>net user administrador active/no
+C:>>net user administrador *
+c:>>escriba una contraseña para el usuario:  ;);););););););););)
+
+2.Crear cuenta de admin + agregarla al grupo Administrator + eliminarla del grupo CommonPeople
+c:>>net user admin admin /add
+c:>>net localgroup Administrators admin /add
+c:>>net localgroup Users admin /delete
+
+
 ___________________PSEXEC___________________________________________________________________________________________
 
 Requisitos para que PsExec se ejecute sin inconvenientes:
