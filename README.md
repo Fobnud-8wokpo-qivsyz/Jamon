@@ -941,15 +941,7 @@ TOR
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-WIN7 
 
-
-Habilitar cuenta administrad(t)or
-
-c:>>net user administrador active/yes
-C:>>net user administrador active/no
-C:>>net user administrador *
-c:>>escriba una contraseña para el usuario:  ;);););););););););)
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
