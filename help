@@ -63,6 +63,23 @@ delete from ejemplo where numero = 1;
 
 
 
+____________________________________________________PSQL______________________________________________________________________
+
+sudo -u postgres psql                           Connect with user 'postgres'
+psql -h loclahost -U usuario db_name            Connect with user 'usuario' a la base de datos db_name en el host 'localhost'
+\l              List all databases
+\l+             List all databases W/extra info
+\dn             List all schemas
+\dn+            List all schemas W/extra info
+\df             List all functions
+\df+            List all functions W/extra
+\e              Text Editor inside PSQL  interpreter
+\q              Quit
+\d              List Tables in database
+\d Empleados    Describe a Table
+\d              List Tables W/extra
+\d+ TablaX      Describe TablaX W/extra info
+
 ___________________________________________________CHROOT______________________________________________________________________
 
 apt-get install debootstrap
